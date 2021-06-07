@@ -1,11 +1,11 @@
 import React from 'react';
-import QAList from './qa_components/QAList.jsx';
+import QAMain from './qa_components/QAMain.jsx';
 
 const App = () => {
   return (
     <div>
       <p>Hello From App!!!</p>
-      <QAList />
+      <QAMain />
     </div>
   );
 }

@@ -18,18 +18,20 @@ const QACard = (props) => {
   console.log(props);
   const classes = useStyles();
 
+  // map over questionlist
+
+  // Each question needs a QA Card
+
 
 
 
 
   return (
     <Grid container >
-      <Question productQs={props.productQs}/>
+      <Question productQs={props.productQs} questionId={props.questionId}/>
       <Grid item xs={3}>
         <Typography>Helpful? Yes | Add Answer here</Typography>
       </Grid>
-      <Answer />
-      <Answer />
     </Grid>
 
 
