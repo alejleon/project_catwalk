@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import Question from './Question.jsx';
+import Answer from './Answer.jsx';
 import { makeStyles } from '@material-ui/core/styles';
 import { Button, Container, Grid, Typography, Paper, CssBaseline } from '@material-ui/core';
 
@@ -13,24 +15,21 @@ const useStyles = makeStyles((theme) => ({
 
 
 const QACard = (props) => {
+  console.log(props);
   const classes = useStyles();
+
+
+
 
 
   return (
     <Grid container >
-      <Grid item xs={9} style={{ background: 'SeaShell' }}>
-        <Typography>Q: Question will go here? Do you like to eat sushi?
-      </Typography>
-      </Grid>
+      <Question productQs={props.productQs}/>
       <Grid item xs={3}>
         <Typography>Helpful? Yes | Add Answer here</Typography>
       </Grid>
-      <Grid item xs={9}>
-        <Typography> A: Answer will go here. Spicy Tuna is the best </Typography>
-      </Grid>
-      <Grid item xs={9}>
-        <Typography> A: Answer will go here. I like tempura. </Typography>
-      </Grid>
+      <Answer />
+      <Answer />
     </Grid>
 
 

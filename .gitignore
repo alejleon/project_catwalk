@@ -1,6 +1,8 @@
 .DS_Store
 node_modules/
 .env
-client/secrets.js
 dist/bundle.js
 server/db/config.js
+
+## API KEY ##
+ client/components/qa_components/config/
