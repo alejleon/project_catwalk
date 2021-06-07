@@ -15,19 +15,17 @@ const useStyles = makeStyles((theme) => ({
 
 const QAMain = (props) => {
   // Deal with state
-  const [questionId, setQuestionId] = useState([]);
   const [productId, setProductId] = useState([props.product_id]);
+  const [questionId, setQuestionId] = useState([]); // is this redundant? Check
   const [productQs, setProductQs] = useState([]);    // list of all questions for a product_id
-  const [count, setCount] = useState(1);
+  // const [count, setCount] = useState(1);
 
   // use styles
   const classes = useStyles();
+
+  // useRef to be able to increase the count number without it resetting
   const refCount = useRef(1);
 
-
-
-  // props.product_id  = product id
-  // var productId = props.product_id;
 
   const getQuestions = (pageNum) => {
     const config = {
@@ -35,22 +33,20 @@ const QAMain = (props) => {
       params: {
         product_id: 27188,
         page: pageNum,
-        count: 2
+        count: 4
       }
     }
     // axios request to get the questions based on product_id passed down as props
     axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-atx/qa/questions', config)
       .then((results) => {
-        // console.log(results.data.results);
-        var qid = results.data.results.map((question) => {
+        var qId = results.data.results.map((question) => {
           return question.question_id
         });
-        // console.log('qid', qid);
         setProductQs(productQs => {
           return [...productQs, ...results.data.results];
         });
         setQuestionId(questionId => {
-          return [...questionId, ...qid]
+          return [...questionId, ...qId]
         });
       })
       .catch((err) => {
@@ -80,9 +76,9 @@ const QAMain = (props) => {
             <Typography>SEARCH COMPONENT GOES HERE</Typography>
           </Grid>
           <QACard productQs={productQs} questionId={questionId} />
-          <Grid item xs={9} style={{ background: 'SeaShell' }}>
+          {/* <Grid item xs={9} style={{ background: 'SeaShell' }}>
             <Typography>By Username  | DATE | HELPFUL | REPORT  </Typography>
-          </Grid>
+          </Grid> */}
           <Grid item xs={10}>
             <Button variant="outlined" color="primary" onClick={moreQuestions}>MORE ANSWERED QUESTIONS</Button>
             <Button variant="outlined" color="secondary">ADD A QUESTION</Button>

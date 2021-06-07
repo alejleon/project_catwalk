@@ -22,17 +22,15 @@ const QACard = (props) => {
 
   // Each question needs a QA Card
 
-
+// DO I EVEN NEED QACARD?
 
 
 
   return (
-    <Grid container >
+<React.Fragment>
       <Question productQs={props.productQs} questionId={props.questionId}/>
-      <Grid item xs={3}>
-        <Typography>Helpful? Yes | Add Answer here</Typography>
-      </Grid>
-    </Grid>
+</React.Fragment>
+
 
 
 
