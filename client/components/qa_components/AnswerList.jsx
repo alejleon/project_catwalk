@@ -8,10 +8,7 @@ import Answer from './Answer.jsx';
 const AnswerList = (props) => {
   // will have to deal with local state
   // const [answers, setAnswers] = useState([]);
-
-
-
-
+console.log('answers', props.displayedAnswers)
 
   // show answers on page load
   // useEffect(() => {
@@ -34,7 +31,8 @@ const AnswerList = (props) => {
   return (
     <React.Fragment>
       <Grid item xs={9}>
-       <Answer />
+
+       <Answer displayedAnswers={props.displayedAnswers}/>
       </Grid>
       <Grid item xs={9}>
         {/* <Typography variant="overline">By Username  | DATE | HELPFUL | REPORT  </Typography> */}

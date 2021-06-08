@@ -4,11 +4,20 @@ import { Button, Container, Grid, Typography, Paper, CssBaseline } from '@materi
 
 
 const Answer = (props) => {
+  // props.answers
+
+
+  // if props.answers is empty
 
 
   return (
     <React.Fragment>
-      <p>Answer Body</p>
+      {props.displayedAnswers.map((answer, index) => {
+        return (
+          <p>{answer.body}</p>
+        )
+      })}
+      {/* <p>Answer Body</p> */}
       <Typography variant="overline">By username  | date | HELPFUL | REPORT  </Typography>
     </React.Fragment>
   )
