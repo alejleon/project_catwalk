@@ -1,7 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Button, Container, Grid, Typography, Paper, CssBaseline } from '@material-ui/core';
-import Answer from './Answer.jsx';
+import AnswerList from './AnswerList.jsx';
+import Question from './Question.jsx';
 import axios from 'axios';
 import token from './config/config.js';
 
@@ -77,47 +78,54 @@ const QuestionList = (props) => {
   // console.log('our questions', props.displayedQs);
 
 
-  const QuestionCard = props.displayedQs.map((question) => {
+  // const QuestionCard = props.displayedQs.map((question) => {
+  //   return
+  //   (<Question question={question} />)
     // if question has no anwsers
-    if (Object.keys(question.answers).length === 0) {
-      return (
-        <React.Fragment>
-          <Grid item xs={9} style={{ background: 'SeaShell' }} key={question.question_id}>
-            Q: {question.question_body}
-          </Grid>
-          <Grid item xs={9}>
-           <Answer getAnswers={getAnswers} displayedAnswers={displayedAnswers} questionId={question.question_id} />
-          </Grid>
-        </React.Fragment>
-      )
-    } else {
-      return (
-        <React.Fragment>
-          <Grid item xs={9} style={{ background: 'SeaShell' }} key={question.question_id}>
-            Q: {question.question_body}
-          </Grid>
-          <Grid item xs={3}>
-            <Typography variant="body2">
-              Helpful? Yes | Add Answer Here
-          </Typography>
-          </Grid>
-          <Answer getAnswers={getAnswers} displayedAnswers={displayedAnswers} questionId={question.question_id} /> {/*pass questionID down as props? Does this work? YESSS*/}
-          <Grid item xs={9}>
-            <Button onClick={moreAnswers}>
-              <Typography variant="button">
-                Load More Answers
-              </Typography>
-            </Button>
-          </Grid>
-        </React.Fragment>
-      );
-    }
-  });
+    // if (Object.keys(question.answers).length === 0) {
+    //   return (
+    //     <React.Fragment>
+    //       <Grid item xs={9} style={{ background: 'SeaShell' }} key={question.question_id}>
+    //         Q: {question.question_body}
+    //       </Grid>
+    //       <Grid item xs={9}>
+    //        <Answer getAnswers={getAnswers} displayedAnswers={displayedAnswers} questionId={question.question_id} />
+    //       </Grid>
+    //     </React.Fragment>
+    //   )
+    // } else {
+    //   return (
+    //     <React.Fragment>
+    //       <Grid item xs={9} style={{ background: 'SeaShell' }} key={question.question_id}>
+    //         Q: {question.question_body}
+    //       </Grid>
+    //       <Grid item xs={3}>
+    //         <Typography variant="body2">
+    //           Helpful? Yes | Add Answer Here
+    //       </Typography>
+    //       </Grid>
+    //       <Answer getAnswers={getAnswers} displayedAnswers={displayedAnswers} questionId={question.question_id} /> {/*pass questionID down as props? Does this work? YESSS*/}
+    //       <Grid item xs={9}>
+    //         <Button onClick={moreAnswers}>
+    //           <Typography variant="button">
+    //             Load More Answers
+    //           </Typography>
+    //         </Button>
+    //       </Grid>
+    //     </React.Fragment>
+
+    // }
+
 
 
   return (
     <React.Fragment>
-      {QuestionCard}
+      {/* {QuestionCard} */}
+      {props.displayedQs.map((question) => {
+        return (
+          <Question question={question}/>
+        )
+      })}
     </React.Fragment>
   );
 };
