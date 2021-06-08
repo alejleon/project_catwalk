@@ -6,3 +6,5 @@ server/db/config.js
 
 ## API KEY ##
  client/components/qa_components/config/
+client/components/qa_components/config/config.js
+
