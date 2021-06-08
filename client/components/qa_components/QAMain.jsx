@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
-import Question from './Question.jsx';
+import QuestionList from './QuestionList.jsx';
 import token from './config/config.js';
 import { makeStyles } from '@material-ui/core/styles';
 import { Button, Container, Grid, Typography, CssBaseline } from '@material-ui/core';
@@ -105,7 +105,7 @@ const QAMain = (props) => {
         <Grid item xs={12} style={{ background: 'red' }}>
           <Typography>SEARCH COMPONENT GOES HERE</Typography>
         </Grid>
-        <Question displayedQs={displayedQs} />
+        <QuestionList displayedQs={displayedQs} />
         <Grid item xs={10}>
           <Button variant="outlined" color="primary" onClick={moreQuestions}>MORE ANSWERED QUESTIONS</Button>
           <Button variant="outlined" color="secondary">ADD A QUESTION</Button>

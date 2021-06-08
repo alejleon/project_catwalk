@@ -6,10 +6,10 @@ import axios from 'axios';
 import token from './config/config.js';
 
 
-const Question = (props) => {
+const QuestionList = (props) => {
   // local State here
   const [currentQuestion, setCurrentQuestion] = useState([]);
-  const [allAnswers, setAllAnswers] = useState([]);
+  const [allAnswers, setAllAnswers] = useState([]); // all answers for ONE question
   const [displayedAnswers, setDisplayedAnswers] = useState([]);
   const [allAnswersCount, setAllAnswersCount] = useState([]);
   const [displayedAnswersCount, setDisplayedAnswersCount] = useState([]);
@@ -122,4 +122,4 @@ const Question = (props) => {
   );
 };
 
-export default Question;
+export default QuestionList;
