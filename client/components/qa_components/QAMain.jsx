@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
-import QACard from './QACard.jsx';
+import axios from 'axios';
+import Question from './Question.jsx';
+import token from './config/config.js';
 import { makeStyles } from '@material-ui/core/styles';
 import { Button, Container, Grid, Typography, CssBaseline } from '@material-ui/core';
-import axios from 'axios';
-import token from './config/config.js';
 
 const useStyles = makeStyles((theme) => ({
   // css styles go here
@@ -15,79 +15,106 @@ const useStyles = makeStyles((theme) => ({
 
 const QAMain = (props) => {
   // Deal with state
-  const [productId, setProductId] = useState([props.product_id]);
+  const [productId, setProductId] = useState(27189); //props.product_id
   const [questionId, setQuestionId] = useState([]); // is this redundant? Check
   const [productQs, setProductQs] = useState([]);    // list of all questions for a product_id
-  // const [count, setCount] = useState(1);
+  const [displayedQs, setDisplayedQs] = useState([]);
+  const [countQs, setCountQs] = useState(0);
+  const [displayedCount, setDisplayedCount] = useState(0);
 
   // use styles
   const classes = useStyles();
 
   // useRef to be able to increase the count number without it resetting
-  const refCount = useRef(1);
+  const getCount = useRef(1);
 
+  // Axios
+  const url = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-atx/qa/questions';
 
-  const getQuestions = (pageNum) => {
+  const getAllQuestions = () => {
     const config = {
       headers: { Authorization: token },
-      params: {
-        product_id: 27188,
-        page: pageNum,
-        count: 4
-      }
+      params: { product_id: productId }
     }
-    // axios request to get the questions based on product_id passed down as props
-    axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-atx/qa/questions', config)
+
+    axios.get(url, config)
       .then((results) => {
-        var qId = results.data.results.map((question) => {
-          return question.question_id
-        });
         setProductQs(productQs => {
           return [...productQs, ...results.data.results];
         });
-        setQuestionId(questionId => {
-          return [...questionId, ...qId]
-        });
+        setCountQs(countQs => {
+          return results.data.results.length;
+        })
       })
       .catch((err) => {
         console.error('Error: ', err);
       });
+  }
+
+  const getDisplayedQuestions = (pageNum) => {
+    const config = {
+      headers: { Authorization: token },
+      params: {
+        product_id: productId,
+        page: pageNum,
+        count: 1
+      }
     }
+    // axios request to get the questions based on product_id passed down as props
+    axios.get(url, config)
+      .then((results) => {
+        var qId = results.data.results.map((question) => {
+          return question.question_id
+        });
 
-    const moreQuestions = (e) => {
-      // increase refCount
-      refCount.current++;
-      getQuestions(refCount.current);
-    }
-    // on page load this is like componenetDidMount
-    useEffect(() => {
-      getQuestions(refCount.current);
-    }, []);
-
-
-    return (
-      <div>
-        <CssBaseline />
-        <Grid container spacing={4} className={classes.grid} style={{ background: 'white' }}>
-          <Grid item xs={12}>
-            <Typography>Questions & Answers</Typography>
-          </Grid>
-          <Grid item xs={12} style={{ background: 'red' }}>
-            <Typography>SEARCH COMPONENT GOES HERE</Typography>
-          </Grid>
-          <QACard productQs={productQs} questionId={questionId} />
-          {/* <Grid item xs={9} style={{ background: 'SeaShell' }}>
-            <Typography>By Username  | DATE | HELPFUL | REPORT  </Typography>
-          </Grid> */}
-          <Grid item xs={10}>
-            <Button variant="outlined" color="primary" onClick={moreQuestions}>MORE ANSWERED QUESTIONS</Button>
-            <Button variant="outlined" color="secondary">ADD A QUESTION</Button>
-          </Grid>
-        </Grid>
-      </div >
-
-
-    );
+        // NEEED TO SORT ALL THE DATA BEFORE SETTING STATE
+        setDisplayedQs(displayedQs => {
+          return [...displayedQs, ...results.data.results];
+        });
+        setQuestionId(questionId => {
+          return [...questionId, ...qId]
+        });
+        setDisplayedCount(displayedCount => {
+          return displayedCount + results.data.results.length;
+        })
+      })
+      .catch((err) => {
+        console.error('Error: ', err);
+      });
   };
 
-  export default QAMain;
+
+  const moreQuestions = (e) => {
+    getCount.current++;
+    getDisplayedQuestions(getCount.current);
+  }
+
+  // on page load this is like componenetDidMount
+  useEffect(() => {
+    getDisplayedQuestions(getCount.current);
+    getAllQuestions();
+  }, []);
+
+  return (
+    <div>
+      <CssBaseline />
+      <Grid container spacing={4} className={classes.grid} style={{ background: 'white' }}>
+        <Grid item xs={12}>
+          <Typography>Questions & Answers</Typography>
+        </Grid>
+        <Grid item xs={12} style={{ background: 'red' }}>
+          <Typography>SEARCH COMPONENT GOES HERE</Typography>
+        </Grid>
+        <Question displayedQs={displayedQs} />
+        <Grid item xs={10}>
+          <Button variant="outlined" color="primary" onClick={moreQuestions}>MORE ANSWERED QUESTIONS</Button>
+          <Button variant="outlined" color="secondary">ADD A QUESTION</Button>
+        </Grid>
+      </Grid>
+    </div >
+
+
+  );
+};
+
+export default QAMain;
