@@ -8,7 +8,7 @@ import { Button, Container, Grid, Typography, CssBaseline } from '@material-ui/c
 const useStyles = makeStyles((theme) => ({
   // css styles go here
   grid: {
-    width: '75%',
+    width: '80%',
     margin: '10%'
   }
 }));
@@ -20,7 +20,8 @@ const QAMain = (props) => {
   const [productQs, setProductQs] = useState([]);    // list of all questions for a product_id
   // const [displayedQs, setDisplayedQs] = useState([]);
   const [countQs, setCountQs] = useState(0);
-  const [displayedCount, setDisplayedCount] = useState(1);
+  const [displayedCount, setDisplayedCount] = useState(4);
+
 
   // use styles
   const classes = useStyles();
@@ -46,7 +47,6 @@ const QAMain = (props) => {
         setProductQs(productQs => {
           return [...productQs, ...results.data.results];
         });
-        console.log(productQs);
         setCountQs(countQs => {
           return results.data.results.length;
         })
@@ -56,14 +56,21 @@ const QAMain = (props) => {
       });
   }
 
+  // On "More answered questions" this expands the list to show all questions
   const allQuestions = (e) => {
     setDisplayedCount(countQs);
   }
 
-  // on page load this is like componenetDidMount
+  // Collapse displayed Questions to 1
+  const collapseQuestions = (e) => {
+    setDisplayedCount(1);
+  }
+
   useEffect(() => {
     getAllQuestions();
   }, []);
+
+  console.log('testing', displayedCount);
 
   return (
     <div>
@@ -77,7 +84,9 @@ const QAMain = (props) => {
         </Grid>
         <QuestionList displayedQs={productQs.slice(0, displayedCount)} />
         <Grid item xs={10}>
-          <Button variant="outlined" color="primary" onClick={allQuestions}>MORE ANSWERED QUESTIONS</Button>
+          {displayedCount === countQs ?
+          <Button variant="outlined" color="primary" onClick={collapseQuestions}>COLLAPSE QUESTIONS</Button>
+           : <Button variant="outlined" color="primary" onClick={allQuestions}>MORE ANSWERED QUESTIONS</Button>}
           <Button variant="outlined" color="secondary">ADD A QUESTION</Button>
         </Grid>
       </Grid>
