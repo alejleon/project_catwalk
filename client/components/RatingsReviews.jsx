@@ -90,11 +90,11 @@ const RatingsReviews = (props) => {
   return (
     <Grid container direction="row" spacing={1}>
       <Grid container item xs={12} md={3} lg={3} spacing={1}>
-        <Sidebar metaData={metaData} />
+        {metaData.ratings ? <Sidebar metaData={metaData} /> : null}
       </Grid>
       <Grid container item xs={12} md={9} lg={9} spacing={1} direction="column">
         <Grid container item direction="row" spacing={1}>
-          <p>There are {reviewList.length} reviews, sorted by</p>
+          <p>{reviewList.length} reviews, sorted by</p>
           <FormControl className={classes.formControl}>
             <Select
               labelId="open-select-label"

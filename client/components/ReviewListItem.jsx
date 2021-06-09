@@ -15,7 +15,6 @@ let ReviewListItem = (props) => {
     if (!helpful) {
       axios.put(`${url}${props.data.review_id}/helpful`, null, headers)
         .then(response => {
-          props.data.helpfulness++;
           setHelpful(true);
         })
         .catch((err) => {
@@ -27,7 +26,7 @@ let ReviewListItem = (props) => {
     <div>
       <h3>Here is a review</h3>
       <p>summary: {props.data.summary}</p>
-      <p>Helpfulness: {props.data.helpfulness}</p>
+      <p>Helpful? {helpful ? props.data.helpfulness + 1 : props.data.helpfulness}</p>
       <p>Date: {props.data.date}</p>
 
       <button onClick={helpfulButton}>Helpful</button>
