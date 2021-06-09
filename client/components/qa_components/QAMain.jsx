@@ -18,9 +18,9 @@ const QAMain = (props) => {
   const [productId, setProductId] = useState(27190); //props.product_id
   const [questionId, setQuestionId] = useState([]); // is this redundant? Check
   const [productQs, setProductQs] = useState([]);    // list of all questions for a product_id
-  const [displayedQs, setDisplayedQs] = useState([]);
+  // const [displayedQs, setDisplayedQs] = useState([]);
   const [countQs, setCountQs] = useState(0);
-  const [displayedCount, setDisplayedCount] = useState(0);
+  const [displayedCount, setDisplayedCount] = useState(1);
 
   // use styles
   const classes = useStyles();
@@ -56,60 +56,13 @@ const QAMain = (props) => {
       });
   }
 
-  const getDisplayedQuestions = (pageNum) => {
-    const config = {
-      headers: { Authorization: token },
-      params: {
-        product_id: productId,
-        page: pageNum,
-        count: 1
-      }
-    }
-    // axios request to get the questions based on product_id passed down as props
-    axios.get(url, config)
-      .then((results) => {
-        var qId = results.data.results.map((question) => {
-          return question.question_id
-        });
-
-        // NEEED TO SORT ALL THE DATA BEFORE SETTING STATE
-        setDisplayedQs(displayedQs => {
-          return [...displayedQs, ...results.data.results];
-        });
-        setQuestionId(questionId => {
-          return [...questionId, ...qId]
-        });
-        setDisplayedCount(displayedCount => {
-          return displayedCount + results.data.results.length;
-        })
-      })
-      .catch((err) => {
-        console.error('Error: ', err);
-      });
-  };
-
-  const getQuestions = (numQuestions) => {
-    const allQs = productQs.slice();
-    console.log(allQs);
-    // get two questions
-    // const initialQs = allQs.slice(0, numQuestions-1);
-    // console.log(initialQs)
-  };
-
-
-
-  const moreQuestions = (e) => {
-    getCount.current++;
-    const allQs = productQs.slice();
-    console.log(allQs);
-    getDisplayedQuestions(getCount.current);
+  const allQuestions = (e) => {
+    setDisplayedCount(countQs);
   }
 
   // on page load this is like componenetDidMount
   useEffect(() => {
-    getDisplayedQuestions(getCount.current);
     getAllQuestions();
-    // getQuestions(3);
   }, []);
 
   return (
@@ -122,9 +75,9 @@ const QAMain = (props) => {
         <Grid item xs={12} style={{ background: 'red' }}>
           <Typography>SEARCH COMPONENT GOES HERE</Typography>
         </Grid>
-        <QuestionList displayedQs={displayedQs} />
+        <QuestionList displayedQs={productQs.slice(0, displayedCount)} />
         <Grid item xs={10}>
-          <Button variant="outlined" color="primary" onClick={moreQuestions}>MORE ANSWERED QUESTIONS</Button>
+          <Button variant="outlined" color="primary" onClick={allQuestions}>MORE ANSWERED QUESTIONS</Button>
           <Button variant="outlined" color="secondary">ADD A QUESTION</Button>
         </Grid>
       </Grid>
