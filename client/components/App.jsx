@@ -1,5 +1,8 @@
+
 import React, {useState} from 'react';
-import Overview from './overview/Overview.jsx'
+import RatingsReviews from './RatingsReviews.jsx';
+import QAMain from './qa_components/QAMain.jsx';
+import Overview from './overview/Overview.jsx';
 
 const App = () => {
 
@@ -21,6 +24,8 @@ const App = () => {
     <div>
       <p>Hello From App!!!</p>
       <Overview product={currentProduct}/>
+      <QAMain />
+      <RatingsReviews product_id={27190} />
     </div>
   );
 }
