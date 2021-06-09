@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import QuestionList from './QuestionList.jsx';
+import AddQuestion from './AddQuestion.jsx';
 import token from './config/config.js';
 import { makeStyles } from '@material-ui/core/styles';
 import { Button, Container, Grid, Typography, CssBaseline } from '@material-ui/core';
@@ -18,9 +19,9 @@ const QAMain = (props) => {
   const [productId, setProductId] = useState(27190); //props.product_id
   const [questionId, setQuestionId] = useState([]); // is this redundant? Check
   const [productQs, setProductQs] = useState([]);    // list of all questions for a product_id
-  // const [displayedQs, setDisplayedQs] = useState([]);
   const [countQs, setCountQs] = useState(0);
   const [displayedCount, setDisplayedCount] = useState(4);
+  const [openQuestion, setOpenQuestion] = useState(false); // set dialog to falses
 
 
   // use styles
@@ -70,6 +71,20 @@ const QAMain = (props) => {
     getAllQuestions();
   }, []);
 
+  // Logic for Add Question Dialog
+  const handleQOpen = () => {
+    // handle opening the dialog
+    console.log('open');
+    setOpenQuestion(true);
+
+  }
+
+  const handleQClose = () => {
+    // handle closing the dialog
+    setOpenQuestion(false);
+  }
+
+
   console.log('testing', displayedCount);
 
   return (
@@ -87,7 +102,8 @@ const QAMain = (props) => {
           {displayedCount === countQs ?
           <Button variant="outlined" color="primary" onClick={collapseQuestions}>COLLAPSE QUESTIONS</Button>
            : <Button variant="outlined" color="primary" onClick={allQuestions}>MORE ANSWERED QUESTIONS</Button>}
-          <Button variant="outlined" color="secondary">ADD A QUESTION</Button>
+          <Button variant="outlined" color="secondary" onClick={handleQOpen}>ADD A QUESTION</Button>
+          <AddQuestion open={openQuestion} handleQClose={handleQClose} />
         </Grid>
       </Grid>
     </div >
