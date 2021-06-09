@@ -3,12 +3,11 @@ import ReviewListItem from './ReviewListItem.jsx';
 
 let ReviewList = (props) => {
   let reviews = props.reviews.map((review) => {
-    return <ReviewListItem data={review} />;
+    return <ReviewListItem data={review} key={review.review_id} />;
   });
 
   return (
     <div>
-      <h3>Here is the reviewList</h3>
       {reviews}
     </div>
   );
