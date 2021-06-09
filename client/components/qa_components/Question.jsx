@@ -12,7 +12,8 @@ const Question = (props) => {
   const [allAnswersCount, setAllAnswersCount] = useState([]);
   const [displayedAnswersCount, setDisplayedAnswersCount] = useState([]);
 
-  const questionId = props.question.question_id;
+  const questionId = props.question.question_id; ;
+
   // console.log(questionId);
 
   // get answers
@@ -79,16 +80,16 @@ const Question = (props) => {
 
   return (
     <React.Fragment>
-      <Grid item xs={9} style={{ background: 'SeaShell' }} key={props.question_id}>
-        Q: {props.question.question_body}
+      <Grid item xs={9} key={props.question_id}>
+        <Typography variant="body1">Q: {props.question.question_body}</Typography>
       </Grid>
       <Grid item xs={9}>
-        <AnswerList displayedAnswers={displayedAnswers}/>
+      {allAnswers.length > 0 ? <AnswerList displayedAnswers={displayedAnswers}/> : "" }
       </Grid>
       <Grid item xs={9}>
             <Button>
               <Typography variant="button" onClick={moreAnswers}>
-                Load More Answers
+                {allAnswers.length < 3 ? 'Answer this question' : 'Load More Answers'}
               </Typography>
             </Button>
           </Grid>
