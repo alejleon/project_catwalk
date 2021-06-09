@@ -4,3 +4,5 @@ node_modules/
 client/secrets.js
 dist/bundle.js
 server/db/config.js
+client/components/overview/config/config.jsx
+package.lock.js
