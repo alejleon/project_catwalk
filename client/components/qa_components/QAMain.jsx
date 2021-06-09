@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
 
 const QAMain = (props) => {
   // Deal with state
-  const [productId, setProductId] = useState(27189); //props.product_id
+  const [productId, setProductId] = useState(27190); //props.product_id
   const [questionId, setQuestionId] = useState([]); // is this redundant? Check
   const [productQs, setProductQs] = useState([]);    // list of all questions for a product_id
   const [displayedQs, setDisplayedQs] = useState([]);
@@ -34,7 +34,11 @@ const QAMain = (props) => {
   const getAllQuestions = () => {
     const config = {
       headers: { Authorization: token },
-      params: { product_id: productId }
+      params: {
+        product_id: productId,
+        page: 1,
+        count: 100
+      }
     }
 
     axios.get(url, config)
@@ -42,6 +46,7 @@ const QAMain = (props) => {
         setProductQs(productQs => {
           return [...productQs, ...results.data.results];
         });
+        console.log(productQs);
         setCountQs(countQs => {
           return results.data.results.length;
         })
@@ -83,9 +88,20 @@ const QAMain = (props) => {
       });
   };
 
+  const getQuestions = (numQuestions) => {
+    const allQs = productQs.slice();
+    console.log(allQs);
+    // get two questions
+    // const initialQs = allQs.slice(0, numQuestions-1);
+    // console.log(initialQs)
+  };
+
+
 
   const moreQuestions = (e) => {
     getCount.current++;
+    const allQs = productQs.slice();
+    console.log(allQs);
     getDisplayedQuestions(getCount.current);
   }
 
@@ -93,6 +109,7 @@ const QAMain = (props) => {
   useEffect(() => {
     getDisplayedQuestions(getCount.current);
     getAllQuestions();
+    // getQuestions(3);
   }, []);
 
   return (
