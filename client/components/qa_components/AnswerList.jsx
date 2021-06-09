@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
-import token from './config/config.js';
+import token from '../overview/config/config.jsx';
 import { Button, Container, Grid, Typography, Paper, CssBaseline } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import Answer from './Answer.jsx';

@@ -15,7 +15,7 @@ const Ratings = () => {
 
     axios.get(url, {
       headers: {
-        Authorization: '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'
+        Authorization: API_KEY.API_KEY
       },
       params: {
         product_id: 27189
@@ -32,9 +32,6 @@ const Ratings = () => {
   useEffect(() => {
     getRating()
   })
-
-
-
 
 
 

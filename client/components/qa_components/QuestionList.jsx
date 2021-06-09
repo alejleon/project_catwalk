@@ -4,7 +4,7 @@ import { Button, Container, Grid, Typography, Paper, CssBaseline } from '@materi
 import AnswerList from './AnswerList.jsx';
 import Question from './Question.jsx';
 import axios from 'axios';
-import token from './config/config.js';
+import token from '../overview/config/config.jsx';
 
 
 const QuestionList = (props) => {

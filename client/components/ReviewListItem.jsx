@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import GITHUB_API_TOKEN from '../config.js';
+import GITHUB_API_TOKEN from './overview/config/config.jsx';
 
 let ReviewListItem = (props) => {
   const [helpful, setHelpful] = useState(false);

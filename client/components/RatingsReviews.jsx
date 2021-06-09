@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import ReviewList from './ReviewList.jsx';
 import Sidebar from './Sidebar.jsx';
 import axios from 'axios';
-import GITHUB_API_TOKEN from '../config.js';
+import GITHUB_API_TOKEN from './overview/config/config.jsx';
 import { makeStyles } from '@material-ui/core/styles';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';

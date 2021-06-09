@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
-import KEY from './config/config.jsx';
+import API_KEY from './config/config.jsx';
 import StyleSelector from './StyleSelector.jsx';
 import Rating from './Rating.jsx';
 import getProducts from './utils.jsx';
@@ -19,7 +19,7 @@ const ProductOverview = () => {
     var url = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-atx/products';
 
     axios.get(url, {
-      headers: {'Authorization': KEY.API_KEY}
+      headers: {'Authorization': API_KEY.API_KEY}
     })
     .then((listOfProducts) => {
       console.log(listOfProducts.data[0].slogan)

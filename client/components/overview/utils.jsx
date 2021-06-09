@@ -7,7 +7,7 @@
 //   var url = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-atx/products';
 
 //   axios.get(url, {
-//     headers: {'Authorization': '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'}
+//     headers: {'Authorization': '}
 //   })
 //   .then((listOfProducts) => {
 //     console.log(listOfProducts.data[0].slogan)

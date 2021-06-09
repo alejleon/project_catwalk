@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import QuestionList from './QuestionList.jsx';
-import token from './config/config.js';
+import token from '../overview/config/config.jsx';
 import { makeStyles } from '@material-ui/core/styles';
 import { Button, Container, Grid, Typography, CssBaseline } from '@material-ui/core';
 
