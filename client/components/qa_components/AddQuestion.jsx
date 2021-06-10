@@ -7,16 +7,20 @@ import AddQuestionForm from './AddQuestionForm.jsx'
 
 const AddQuestion = (props) => {
 
-
   return (
 
     <React.Fragment>
-
-   <h1>Test?</h1>
-   <AddQuestionForm />
+      <Dialog open={props.open} onClose={props.handleQClose}>
+        <DialogTitle id="question-dialog-title">Ask Your Question</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            About [Product Name Here]
+          </DialogContentText>
+        <AddQuestionForm open={props.open} handleQClose={props.handleQClose} />
+        </DialogContent>
+      </Dialog>
     </React.Fragment>
-
-  )
+  );
 };
 
 

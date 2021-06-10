@@ -103,7 +103,7 @@ const QAMain = (props) => {
           <Button variant="outlined" color="primary" onClick={collapseQuestions}>COLLAPSE QUESTIONS</Button>
            : <Button variant="outlined" color="primary" onClick={allQuestions}>MORE ANSWERED QUESTIONS</Button>}
           <Button variant="outlined" color="secondary" onClick={handleQOpen}>ADD A QUESTION</Button>
-          <AddQuestion open={openQuestion} handleQClose={handleQClose} />
+          <AddQuestion open={openQuestion} handleQClose={handleQClose}/>
         </Grid>
       </Grid>
     </div >

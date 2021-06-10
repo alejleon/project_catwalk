@@ -6,7 +6,7 @@ import token from './config/config.js';
 
 
 
-const AddQuestionForm = (props) => {
+const AddAnswerForm = (props) => {
 
   const useStyles = makeStyles((theme) => ({
     // styles here
@@ -17,9 +17,8 @@ const AddQuestionForm = (props) => {
 
   }));
 
-  // handle question submission
-  const submitQuestion = (e) => {
-    e.preventDefault();
+  // handle answer submission
+  const submitAnswer = (e) => {
     console.log('submitted')
 
     // fire off POST request
@@ -29,21 +28,22 @@ const AddQuestionForm = (props) => {
   // Axios post Request
 
   return (
+
     <form>
-      <TextField id="question"
-        label="question"
-        placeholder="What would you like to ask?"
-        required={true}
+      <TextField id="answer"
+        label="answer"
+        placeholder="Write your answer here"
+        required= {true}
         inputProps={{ maxLength: 1000 }}
-        multiline={true}
+        multiline= {true}
         rows="8"
-        fullWidth={true}
+        fullWidth= {true}
       />
       <br />
       <TextField id="nickname"
         label="nickname"
-        placeholder="Example: jackson11!"
-        required={true}
+        placeholder="Example: jack543!"
+        required= {true}
         inputProps={{ maxLength: 60 }}
         margin="normal"
       />
@@ -52,23 +52,37 @@ const AddQuestionForm = (props) => {
        </Typography>
       <TextField id="email"
         label="email"
-        placeholder="Why did you like the product or not?"
-        required={true}
-        type="email"
+        placeholder="Example: jack@email.com"
+        required= {true}
         inputProps={{ maxLength: 60 }}
-        margin="normal" />
+        margin="normal"/>
       <Typography>
         For authentication reasons, you will not be emailed
      </Typography>
-      <div>
-        <Button type="submit" variant="contained" onSubmit={submitQuestion}>Submit Question</Button>
-      </div>
-    </form>
+     <br />
+     <Typograpy>Upload your photos</Typograpy>
+    <Input />
+    <Input
+        id="photos"
+        type="file"
+        margin="normal"
+        inputProps={{
+         // input props here
+         //accept
+         multiple: true,
 
+        }} />
+        <br />
+        <Button variant="outlined">Upload Photos</Button>
+        <br />
+        <br />
+      <Button variant="contained">Submit Question</Button>
+
+    </form>
 
   )
 };
 
 
 
-export default AddQuestionForm;
+export default AddAnswerForm;
