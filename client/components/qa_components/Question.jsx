@@ -28,6 +28,7 @@ const Question = (props) => {
 };
 
 export default Question;
+<<<<<<< HEAD
   // Map over each question and create a QuestionCard for each question
   // // console.log('our questions', props.displayedQs);
 
@@ -70,3 +71,5 @@ export default Question;
   //     );
   //   }
   // });
+=======
+>>>>>>> ce0db2ce62915164d546fffdf41d53109a6a72e7

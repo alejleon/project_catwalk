@@ -11,6 +11,7 @@ const AnswerList = (props) => {
 
 
 
+<<<<<<< HEAD
 
 
   // show answers on page load
@@ -31,6 +32,8 @@ const AnswerList = (props) => {
 
 
 
+=======
+>>>>>>> ce0db2ce62915164d546fffdf41d53109a6a72e7
   return (
     <React.Fragment>
       <Grid item xs={9}>
@@ -44,6 +47,7 @@ const AnswerList = (props) => {
 };
 
 export default AnswerList;
+<<<<<<< HEAD
 
   // useRef to be able to increase the count number without it resetting
   // const answerCount = useRef(1);
@@ -91,3 +95,5 @@ export default AnswerList;
 
   //   );
   // })
+=======
+>>>>>>> ce0db2ce62915164d546fffdf41d53109a6a72e7

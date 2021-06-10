@@ -74,6 +74,7 @@ const QuestionList = (props) => {
   }, []);
 
 
+<<<<<<< HEAD
   // Map over each question and create a QuestionCard for each question
   // console.log('our questions', props.displayedQs);
 
@@ -116,6 +117,8 @@ const QuestionList = (props) => {
 
     // }
 
+=======
+>>>>>>> ce0db2ce62915164d546fffdf41d53109a6a72e7
 
 
   return (

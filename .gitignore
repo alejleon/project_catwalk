@@ -8,3 +8,6 @@ server/db/config.js
  client/components/qa_components/config/
 client/components/qa_components/config/config.js
 
+client/components/overview/config/config.jsx
+package.lock.js
+client/config.js
