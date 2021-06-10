@@ -10,6 +10,7 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
+import AddIcon from '@material-ui/icons/Add'
 
 //Should receive the current_item id number from App
 const RatingsReviews = (props) => {
@@ -83,12 +84,16 @@ const RatingsReviews = (props) => {
       margin: theme.spacing(1),
       minWidth: 120,
     },
+    grid: {
+      position: 'fixed',
+      left: '25%'
+    }
   }));
 
   const classes = useStyles();
 
   return (
-    <Grid container direction="row" spacing={1}>
+    <Grid className={classes.grid} container direction="row" spacing={1}>
       <Grid container item xs={12} md={3} lg={3} spacing={1}>
         {metaData.ratings ? <Sidebar metaData={metaData} /> : null}
       </Grid>
@@ -114,6 +119,8 @@ const RatingsReviews = (props) => {
 
         <ReviewList reviews={reviewList.slice(0, addCount * 2)} />
         {reviewList.length > addCount * 2 ? <Button
+          variant="contained"
+          endIcon={<AddIcon />}
           onClick={addReviews}
           id="add-reviews"
           style={{ maxWidth: '200px', maxHeight: '80px', minWidth: '80px', minHeight: '80px' }}

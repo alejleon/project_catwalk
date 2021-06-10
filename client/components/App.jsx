@@ -5,7 +5,7 @@ const App = () => {
   return (
     <div>
       <p>Hello From App!!!</p>
-      <RatingsReviews product_id={27190} />
+      <RatingsReviews product_id={24156} />
     </div>
   );
 }

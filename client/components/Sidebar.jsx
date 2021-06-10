@@ -1,9 +1,19 @@
 import React, { useRef, useEffect, useState } from 'react';
+import LinearProgress from '@material-ui/core/LinearProgress';
+import { makeStyles, createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
+import { green, grey } from '@material-ui/core/colors';
+import Grid from '@material-ui/core/Grid';
 
 let Sidebar = (props) => {
 
   const [averageRating, setAverageRating] = useState(0);
   const [percentRecommend, setPercentRecommend] = useState(0);
+
+  const oneStarRating = useRef(0);
+  const twoStarRating = useRef(0);
+  const threeStarRating = useRef(0);
+  const fourStarRating = useRef(0);
+  const fiveStarRating = useRef(0);
 
   useEffect(() => {
     let totalRatings = 0;
@@ -14,6 +24,13 @@ let Sidebar = (props) => {
         totalPoints += (Number(props.metaData.ratings[starValue]) * Number(starValue));
       }
     }
+    oneStarRating.current = Math.round(Number(props.metaData.ratings['1']) / totalRatings * 100);
+    twoStarRating.current = Math.round(Number(props.metaData.ratings['2']) / totalRatings * 100);
+    threeStarRating.current = Math.round(Number(props.metaData.ratings['3']) / totalRatings * 100);
+    fourStarRating.current = Math.round(Number(props.metaData.ratings['4']) / totalRatings * 100);
+    fiveStarRating.current = Math.round(Number(props.metaData.ratings['5']) / totalRatings * 100);
+
+    console.log(oneStarRating.current);
     setAverageRating(Number(totalPoints / totalRatings).toFixed(1));
   }, []);
 
@@ -23,17 +40,92 @@ let Sidebar = (props) => {
     setPercentRecommend(Math.round((didRecommend / (didRecommend + didNotRecommend)) * 100));
   }, []);
 
+
+  const theme = createMuiTheme({
+    palette: {
+      primary: {
+        main: green[500],
+      },
+      secondary: {
+        main: grey[400],
+      }
+    },
+  });
+
+  const useStyles = makeStyles((theme) => ({
+    LinearProgress: {
+      colorPrimary: {
+        backgroundColor: green[400]
+      },
+      barColorPrimary: {
+        backgroundColor: grey[400]
+      },
+      minWidth: 200,
+      bar: {
+        backgroundColor: grey[400]
+      }
+    }
+  }));
+
+  const classes = useStyles();
+
   return (
-    <div>
-      <p>Ratings and Reviews</p> <br />
-      <p>Average Rating: {averageRating > 0 ? averageRating : 0}</p> <br />
-      <p>{percentRecommend > 0 ? percentRecommend : 0}% of users recommend this product</p>
-      {props.metaData.ratings ? <div><p>1 Star: {props.metaData.ratings["1"] ? props.metaData.ratings["1"] : 0}</p> <br />
-        <p>2 Star: {props.metaData.ratings['2'] ? props.metaData.ratings['2'] : 0}</p> <br />
-        <p>3 Star: {props.metaData.ratings['3'] ? props.metaData.ratings['3'] : 0}</p> <br />
-        <p>4 Star: {props.metaData.ratings['4'] ? props.metaData.ratings['4'] : 0}</p> <br />
-        <p>5 Star: {props.metaData.ratings['5'] ? props.metaData.ratings['5'] : 0}</p> <br /> </div> : null}
-    </div>
+    <Grid container direction="column" spacing={1}>
+      <MuiThemeProvider theme={theme}>
+        <Grid container item spacing={1}>
+          <p>Ratings and Reviews</p>
+        </Grid>
+        <Grid container item spacing={1}>
+          <p>Average Rating: {averageRating > 0 ? averageRating : 0}</p>
+          <p>{percentRecommend > 0 ? percentRecommend : 0}% of users recommend this product</p>
+        </Grid>
+        <Grid container item direction="row" alignItems="center">
+          <p>5 stars</p>
+          {props.metaData.ratings ? <LinearProgress
+            className={classes.LinearProgress}
+            variant="determinate"
+            value={fiveStarRating.current}
+            color="primary"
+          /> : null}
+        </Grid>
+        <Grid container item direction="row" alignItems="center">
+          <p>4 stars</p>
+          {props.metaData.ratings ? <LinearProgress
+            className={classes.LinearProgress}
+            variant="determinate"
+            value={fourStarRating.current}
+            color="primary"
+          /> : null}
+        </Grid>
+        <Grid container item direction="row" alignItems="center">
+          <p>3 stars</p>
+          {props.metaData.ratings ? <LinearProgress
+            className={classes.LinearProgress}
+            variant="determinate"
+            value={threeStarRating.current}
+            color="primary"
+          /> : null}
+        </Grid>
+        <Grid container item direction="row" alignItems="center">
+          <p>2 stars</p>
+          {props.metaData.ratings ? <LinearProgress
+            className={classes.LinearProgress}
+            variant="determinate"
+            value={twoStarRating.current}
+            color="primary"
+          /> : null}
+        </Grid>
+        <Grid container item direction="row" alignItems="center">
+          <p>1 stars</p>
+          {props.metaData.ratings ? <LinearProgress
+            className={classes.LinearProgress}
+            variant="determinate"
+            value={oneStarRating.current}
+            color="primary"
+          /> : null}
+        </Grid>
+      </MuiThemeProvider>
+    </Grid>
   );
 };
 
