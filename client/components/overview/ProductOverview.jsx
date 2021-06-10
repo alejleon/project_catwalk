@@ -6,44 +6,17 @@ import Rating from './Rating.jsx';
 import getProducts from './utils.jsx';
 import {Grid} from '@material-ui/core'
 
-const ProductOverview = () => {
+const ProductOverview = ({currentProduct, currentStyles, ratingsAverage}) => {
 
-  const [products, setProducts] = useState([]);
-
-  useEffect(() => {
-    getProducts();
-  }, [])
-
-
-  var getProducts = function() {
-    var url = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-atx/products';
-
-    axios.get(url, {
-      headers: {'Authorization': API_KEY.API_KEY}
-    })
-    .then((listOfProducts) => {
-      console.log(listOfProducts.data[0].slogan)
-      setProducts(listOfProducts)
-    })
-    .catch((err) => {console.error(err)})
-  }
-
-
-// console.log(products.data)
-
-  if (products === undefined) {
-    return (
-      <div></div>
-    )
-  } else {
+    // console.log(currentStyles.results)
 
     return (
       <Grid container style={{background: 'lavender'}}>
         <Grid item xs={12}>
-        <p>Product Name</p>
+        <p>{currentProduct.name}</p>
         </Grid>
         <Grid item xs={6}>
-        <p>Product Category</p>
+        <p>{currentProduct.category}</p>
         </Grid>
 
         <Grid item xs={6}>
@@ -51,10 +24,10 @@ const ProductOverview = () => {
         </Grid>
 
         <Grid item xs={12}>
-        <p>Product Slogan</p>
+        <p>{currentProduct.slogan}</p>
         </Grid>
         <Grid item xs={12}>
-        <p>Product Description</p>
+        <p>{currentProduct.description}</p>
         </Grid>
         <Grid item xs={4}>
         <p>Product Price</p>
@@ -63,12 +36,12 @@ const ProductOverview = () => {
         <p>Share Buttons</p>
         </Grid>
 
-        <StyleSelector />
+        <StyleSelector currentStyles={currentStyles.results}/>
 
       </Grid>
 
     )
-  }
+
 
 
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ImageGallery = (props) => {
+const ImageGallery = ({currentStyles}) => {
 
 
   //get request with with all the styles for a particular product
@@ -8,12 +8,12 @@ const ImageGallery = (props) => {
   //onto the page. clicking on each style will enlarge the picture.
   //Probably wont need individual image components
 
-
+// console.log(currentStyles)
 
   return (
     <div style={{background: 'orange'}}>
       Hello from ImageGallery
-      {/* <Image /> */}
+      {/* {currentStyles.results.} */}
     </div>
   )
 }
