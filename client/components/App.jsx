@@ -1,13 +1,7 @@
-<<<<<<< HEAD
-import React from 'react';
-import QAMain from './qa_components/QAMain.jsx';
-=======
-
 import React, {useState} from 'react';
 import RatingsReviews from './RatingsReviews.jsx';
 import QAMain from './qa_components/QAMain.jsx';
 import Overview from './overview/Overview.jsx';
->>>>>>> ce0db2ce62915164d546fffdf41d53109a6a72e7
 
 const App = () => {
 
@@ -28,13 +22,9 @@ const App = () => {
   return (
     <div>
       <p>Hello From App!!!</p>
-<<<<<<< HEAD
-      <QAMain />
-=======
       <Overview product={currentProduct}/>
       <QAMain />
       <RatingsReviews product_id={27190} />
->>>>>>> ce0db2ce62915164d546fffdf41d53109a6a72e7
     </div>
   );
 }

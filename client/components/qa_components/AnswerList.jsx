@@ -6,34 +6,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import Answer from './Answer.jsx';
 
 const AnswerList = (props) => {
-  // will have to deal with local state
-  // const [answers, setAnswers] = useState([]);
 
 
-
-<<<<<<< HEAD
-
-
-  // show answers on page load
-  // useEffect(() => {
-  //   props.getAnswers(props.questionId);
-  // }, []);
-
-  // /// map over answers and create a AnswerItem for each answer
-  // const AnswerItem = props.displayedAnswers.map((answer, index) => {
-  //   return (
-  //     <React.Fragment>
-  //     <p>{answer.body}</p>
-  //     <Typography variant="overline">By {answer.answerer_name}  | {answer.date} | HELPFUL | REPORT  </Typography>
-  //     </React.Fragment>
-  //   )
-
-  // });
-
-
-
-=======
->>>>>>> ce0db2ce62915164d546fffdf41d53109a6a72e7
   return (
     <React.Fragment>
       <Grid item xs={9}>
@@ -47,7 +21,6 @@ const AnswerList = (props) => {
 };
 
 export default AnswerList;
-<<<<<<< HEAD
 
   // useRef to be able to increase the count number without it resetting
   // const answerCount = useRef(1);
@@ -95,5 +68,3 @@ export default AnswerList;
 
   //   );
   // })
-=======
->>>>>>> ce0db2ce62915164d546fffdf41d53109a6a72e7
