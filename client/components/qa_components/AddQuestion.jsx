@@ -14,9 +14,9 @@ const AddQuestion = (props) => {
         <DialogTitle id="question-dialog-title">Ask Your Question</DialogTitle>
         <DialogContent>
           <DialogContentText>
-            About [Product Name Here]
+            About {props.currentProduct.name}
           </DialogContentText>
-        <AddQuestionForm open={props.open} handleQClose={props.handleQClose} />
+        <AddQuestionForm open={props.open} handleQClose={props.handleQClose}/>
         </DialogContent>
       </Dialog>
     </React.Fragment>

@@ -33,49 +33,49 @@ const AddAnswerForm = (props) => {
       <TextField id="answer"
         label="answer"
         placeholder="Write your answer here"
-        required= {true}
+        required={true}
         inputProps={{ maxLength: 1000 }}
-        multiline= {true}
+        multiline={true}
         rows="8"
-        fullWidth= {true}
+        fullWidth={true}
       />
       <br />
       <TextField id="nickname"
         label="nickname"
         placeholder="Example: jack543!"
-        required= {true}
+        required={true}
         inputProps={{ maxLength: 60 }}
         margin="normal"
       />
       <Typography>
         For privacy reasons, do not use your full name or email address
-       </Typography>
+      </Typography>
       <TextField id="email"
         label="email"
         placeholder="Example: jack@email.com"
-        required= {true}
+        required={true}
         inputProps={{ maxLength: 60 }}
-        margin="normal"/>
+        margin="normal" />
       <Typography>
         For authentication reasons, you will not be emailed
-     </Typography>
-     <br />
-     <Typograpy>Upload your photos</Typograpy>
-    <Input />
-    <Input
+      </Typography>
+      <br />
+      <Typography>
+        Upload your photos
+      </Typography>
+      <Input
         id="photos"
         type="file"
         margin="normal"
         inputProps={{
-         // input props here
-         //accept
-         multiple: true,
+          // input props here
+          //accept
+          multiple: true,
 
         }} />
-        <br />
-        <Button variant="outlined">Upload Photos</Button>
-        <br />
-        <br />
+      <Button variant="outlined">Upload Photos</Button>
+      <br />
+      <br />
       <Button variant="contained">Submit Question</Button>
 
     </form>

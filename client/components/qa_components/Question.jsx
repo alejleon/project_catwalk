@@ -2,21 +2,18 @@ import React, { useState, useRef, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Button, Container, Grid, Typography, Paper, CssBaseline } from '@material-ui/core';
 import AnswerList from './AnswerList.jsx';
-import AddQuestion from './AddQuestion.jsx';
+import AddAnswer from './AddAnswer.jsx';
 import axios from 'axios';
 import token from './config/config.js';
 
 const Question = (props) => {
-  // local State here
   const [allAnswers, setAllAnswers] = useState([]); // all answers for ONE question
   const [displayedAnswers, setDisplayedAnswers] = useState([]);
   const [allAnswersCount, setAllAnswersCount] = useState([]);
   const [displayedAnswersCount, setDisplayedAnswersCount] = useState(2);
+  const [openAnswer, setOpenAnswer] = useState(false); // set Answer dialog to false
 
   const questionId = props.question.question_id;;
-
-  // get answers
-  const answerPageCount = useRef(1);
 
   const getAnswers = (questionId) => {
     const config = {
@@ -42,9 +39,8 @@ const Question = (props) => {
       })
   }
 
-  // Loads all Answers
+  // Loads all answers to question
   const loadMoreAnswers = (e) => {
-    console.log('clicked')
     setDisplayedAnswersCount(displayedAnswersCount + 2);
   }
 
@@ -52,28 +48,45 @@ const Question = (props) => {
     setDisplayedAnswersCount(2);
   }
 
-  // gets all answers on page load
+  // Gets all answers for a product on page load
   useEffect(() => {
     getAnswers(questionId);
   }, []);
 
-  const answerQuestion = (e) => {
-    console.log('let answer')
-
+  // Logic for opening Add Answer Dialog
+  const handleAOpen = () => {
+    setOpenAnswer(true);
   }
+
+  // Logic for closing Add Answer Dialog
+  const handleAClose = () => {
+    setOpenAnswer(false);
+  }
+
 
   return (
     <React.Fragment>
       <Grid item xs={9} key={props.question_id}>
-        <Typography variant="body1">Q: {props.question.question_body}</Typography>
+        <Typography variant="body1">
+          Q: {props.question.question_body}
+        </Typography>
       </Grid>
-      <Grid item xs={3}>Helpful? <Button style={{ maxWidth: '10x', maxHeight: '15px' }}>Yes ({props.question.question_helpfulness})</Button>
-        <Button style={{ maxWidth: '10x', maxHeight: '15px' }}>Add Answer</Button></Grid>
+      <Grid item xs={3}>
+        Helpful?
+        <Button style={{ maxWidth: '10x', maxHeight: '15px' }}>
+          Yes ({props.question.question_helpfulness})
+        </Button>
+        <Button style={{ maxWidth: '10x', maxHeight: '15px' }} onClick={handleAOpen}>
+          Add Answer
+        </Button>
+        <AddAnswer open={openAnswer} handleAClose={handleAClose} currentProduct={props.currentProduct}
+          question={props.question.question_body} />
+      </Grid>
       <Grid item xs={9}>
         {allAnswers.length > 0 ? <AnswerList displayedAnswers={allAnswers.slice(0, displayedAnswersCount)} /> : "There are no answers for this question"}
       </Grid>
       <Grid item xs={9}>
-        {displayedAnswersCount >= allAnswersCount ? "" : <Button onClick={loadMoreAnswers}>Load More Answers</Button> }
+        {displayedAnswersCount >= allAnswersCount ? "" : <Button onClick={loadMoreAnswers}>Load More Answers</Button>}
         {displayedAnswersCount < 3 ? "" : <Button onClick={collapseAnswers}>Collapse Answers</Button>}
       </Grid>
     </React.Fragment>

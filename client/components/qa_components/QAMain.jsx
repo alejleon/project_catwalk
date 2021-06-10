@@ -16,19 +16,20 @@ const useStyles = makeStyles((theme) => ({
 
 const QAMain = (props) => {
   // Deal with state
+  const [currentProduct, setCurrentProduct] = useState({name: 'Camo Joggers'})
   const [productId, setProductId] = useState(27190); //props.product_id
   const [questionId, setQuestionId] = useState([]); // is this redundant? Check
   const [productQs, setProductQs] = useState([]);    // list of all questions for a product_id
   const [countQs, setCountQs] = useState(0);
   const [displayedCount, setDisplayedCount] = useState(4);
-  const [openQuestion, setOpenQuestion] = useState(false); // set dialog to falses
+  const [openQuestion, setOpenQuestion] = useState(false); // set Question dialog to false
 
 
   // use styles
   const classes = useStyles();
 
-  // useRef to be able to increase the count number without it resetting
-  const getCount = useRef(1);
+  // // useRef to be able to increase the count number without it resetting
+  // const getCount = useRef(1);
 
   // Axios
   const url = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-atx/qa/questions';
@@ -73,19 +74,13 @@ const QAMain = (props) => {
 
   // Logic for Add Question Dialog
   const handleQOpen = () => {
-    // handle opening the dialog
-    console.log('open');
     setOpenQuestion(true);
-
   }
 
   const handleQClose = () => {
     // handle closing the dialog
     setOpenQuestion(false);
   }
-
-
-  console.log('testing', displayedCount);
 
   return (
     <div>
@@ -97,13 +92,13 @@ const QAMain = (props) => {
         <Grid item xs={12} style={{ background: 'red' }}>
           <Typography>SEARCH COMPONENT GOES HERE</Typography>
         </Grid>
-        <QuestionList displayedQs={productQs.slice(0, displayedCount)} />
+        <QuestionList displayedQs={productQs.slice(0, displayedCount)} currentProduct={currentProduct} />
         <Grid item xs={10}>
           {displayedCount === countQs ?
           <Button variant="outlined" color="primary" onClick={collapseQuestions}>COLLAPSE QUESTIONS</Button>
            : <Button variant="outlined" color="primary" onClick={allQuestions}>MORE ANSWERED QUESTIONS</Button>}
           <Button variant="outlined" color="secondary" onClick={handleQOpen}>ADD A QUESTION</Button>
-          <AddQuestion open={openQuestion} handleQClose={handleQClose}/>
+          <AddQuestion open={openQuestion} handleQClose={handleQClose} currentProduct={currentProduct}/>
         </Grid>
       </Grid>
     </div >
