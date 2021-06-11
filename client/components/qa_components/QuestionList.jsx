@@ -81,7 +81,7 @@ const QuestionList = (props) => {
       {/* {QuestionCard} */}
       {props.displayedQs.map((question) => {
         return (
-          <Question question={question}/>
+          <Question question={question} key={question.question_id}/>
         )
       })}
     </React.Fragment>

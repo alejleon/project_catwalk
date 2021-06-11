@@ -5,7 +5,7 @@ import AnswerList from './AnswerList.jsx';
 
 const Question = (props) => {
   // local State here
-  console.log(props.question.answers);
+  // console.log(props.question.answers);
 
 
   return (

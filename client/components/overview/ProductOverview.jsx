@@ -20,7 +20,7 @@ const ProductOverview = ({currentProduct, currentStyles, ratingsAverage}) => {
         </Grid>
 
         <Grid item xs={6}>
-          <Rating />
+          <Rating ratingsAverage={ratingsAverage}/>
         </Grid>
 
         <Grid item xs={12}>

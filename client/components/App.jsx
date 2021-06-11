@@ -61,7 +61,7 @@ const App = () => {
 
   getAverageReviewRating(currentProduct.id)
 
-console.log(ratingsAverage)
+
 
   return (
     <div>

@@ -23,14 +23,13 @@ const Overview = ({currentProduct, ratingsAverage}) => {
         setCurrentStyles(styles.data)
       })
       .catch((err) => {
-        console.err(err)
+        console.error(err)
       })
   }
 
    useEffect(()=> {
      getStyles()
    }, [])
-
 
 
   return (
