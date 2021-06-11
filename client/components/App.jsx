@@ -1,4 +1,5 @@
-import React, {useState} from 'react';
+
+import React, { useState } from 'react';
 import RatingsReviews from './Ratings/RatingsReviews.jsx';
 import QAMain from './qa_components/QAMain.jsx';
 import Overview from './overview/Overview.jsx';
@@ -8,7 +9,6 @@ import GITHUB_API_TOKEN from '../config.js'
 const App = () => {
 
   // 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-atx'
-
 
   const [currentProduct, setCurrentProduct] = useState(
     {
@@ -66,8 +66,9 @@ const App = () => {
     <div>
       <p>Hello From App!!!</p>
       <Overview currentProduct={currentProduct} ratingsAverage={ratingsAverage}/>
+
       <QAMain />
-      <RatingsReviews product_id={24156} />
+      <RatingsReviews product_id={currentProduct.id} />
     </div>
   );
 }

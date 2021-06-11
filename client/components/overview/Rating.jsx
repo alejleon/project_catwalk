@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import {Grid} from '@material-ui/core';
 import StarRatings from 'react-star-ratings';
@@ -22,6 +22,7 @@ const Ratings = ({ratingsAverage}) => {
       <Grid item xs={4}>
         <a >See Reviews</a>
       </Grid>
+
     </Grid>
   )
 

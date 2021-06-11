@@ -11,11 +11,11 @@ import makeStyles from '@material-ui/core/styles';
 let ReviewListItem = (props) => {
   const [helpful, setHelpful] = useState(false);
   const date = useRef(new moment(props.data.date).format("l"));
-  const url = 'https://app-hrsei-api.herokuapp.com/api/fec2/hratx/reviews/';
+  const url = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-atx/reviews/';
   const headers = {
     headers: { Authorization: GITHUB_API_TOKEN }
   };
-  console.log(date);
+
   const helpfulButton = (event) => {
     event.preventDefault();
     if (!helpful) {
