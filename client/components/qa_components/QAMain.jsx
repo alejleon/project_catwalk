@@ -1,46 +1,52 @@
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import QuestionList from './QuestionList.jsx';
+<<<<<<< HEAD
 import token from '../overview/config/config.jsx';
+=======
+import AddQuestion from './AddQuestion.jsx';
+import token from './config/config.js';
+>>>>>>> development
 import { makeStyles } from '@material-ui/core/styles';
 import { Button, Container, Grid, Typography, CssBaseline } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   // css styles go here
   grid: {
-    width: '75%',
+    width: '80%',
     margin: '10%'
   }
 }));
 
 const QAMain = (props) => {
-  // Deal with state
+  const [currentProduct, setCurrentProduct] = useState({name: 'Camo Joggers'})
   const [productId, setProductId] = useState(27189); //props.product_id
   const [questionId, setQuestionId] = useState([]); // is this redundant? Check
   const [productQs, setProductQs] = useState([]);    // list of all questions for a product_id
-  const [displayedQs, setDisplayedQs] = useState([]);
   const [countQs, setCountQs] = useState(0);
-  const [displayedCount, setDisplayedCount] = useState(0);
+  const [displayedCount, setDisplayedCount] = useState(4);
+  const [openQuestion, setOpenQuestion] = useState(false); // set Question dialog to false
 
   // use styles
   const classes = useStyles();
 
-  // useRef to be able to increase the count number without it resetting
-  const getCount = useRef(1);
 
-  // Axios
+  // Axios HTTP GET Request for All Questions
   const url = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-atx/qa/questions';
-
   const getAllQuestions = () => {
     const config = {
       headers: { Authorization: token },
-      params: { product_id: productId }
+      params: {
+        product_id: productId,
+        page: 1,
+        count: 100
+      }
     }
 
     axios.get(url, config)
       .then((results) => {
         setProductQs(productQs => {
-          return [...productQs, ...results.data.results];
+          return [...results.data.results];
         });
         setCountQs(countQs => {
           return results.data.results.length;
@@ -51,49 +57,30 @@ const QAMain = (props) => {
       });
   }
 
-  const getDisplayedQuestions = (pageNum) => {
-    const config = {
-      headers: { Authorization: token },
-      params: {
-        product_id: productId,
-        page: pageNum,
-        count: 1
-      }
-    }
-    // axios request to get the questions based on product_id passed down as props
-    axios.get(url, config)
-      .then((results) => {
-        var qId = results.data.results.map((question) => {
-          return question.question_id
-        });
-
-        // NEEED TO SORT ALL THE DATA BEFORE SETTING STATE
-        setDisplayedQs(displayedQs => {
-          return [...displayedQs, ...results.data.results];
-        });
-        setQuestionId(questionId => {
-          return [...questionId, ...qId]
-        });
-        setDisplayedCount(displayedCount => {
-          return displayedCount + results.data.results.length;
-        })
-      })
-      .catch((err) => {
-        console.error('Error: ', err);
-      });
-  };
-
-
-  const moreQuestions = (e) => {
-    getCount.current++;
-    getDisplayedQuestions(getCount.current);
+  // On "More answered questions" this expands the list to show all questions
+  const allQuestions = (e) => {
+    setDisplayedCount(countQs);
   }
 
-  // on page load this is like componenetDidMount
+  // Collapse displayed Questions to 1
+  const collapseQuestions = (e) => {
+    setDisplayedCount(1);
+  }
+
+  // Logic for opening Add Question Dialog
+  const handleQOpen = () => {
+    setOpenQuestion(true);
+  }
+  // Logic for closing Add Question Dialog
+  const handleQClose = () => {
+    setOpenQuestion(false);
+  }
+
+  // Get all Questions for a product on page load
   useEffect(() => {
-    getDisplayedQuestions(getCount.current);
     getAllQuestions();
   }, []);
+
 
   return (
     <div>
@@ -105,10 +92,13 @@ const QAMain = (props) => {
         <Grid item xs={12} style={{ background: 'red' }}>
           <Typography>SEARCH COMPONENT GOES HERE</Typography>
         </Grid>
-        <QuestionList displayedQs={displayedQs} />
+        <QuestionList displayedQs={productQs.slice(0, displayedCount)} currentProduct={currentProduct} />
         <Grid item xs={10}>
-          <Button variant="outlined" color="primary" onClick={moreQuestions}>MORE ANSWERED QUESTIONS</Button>
-          <Button variant="outlined" color="secondary">ADD A QUESTION</Button>
+          {displayedCount === countQs ?
+          <Button variant="outlined" color="primary" onClick={collapseQuestions}>COLLAPSE QUESTIONS</Button>
+           : <Button variant="outlined" color="primary" onClick={allQuestions}>MORE ANSWERED QUESTIONS</Button>}
+          <Button variant="outlined" color="secondary" onClick={handleQOpen}>ADD A QUESTION</Button>
+          <AddQuestion getAllQuestions={getAllQuestions} open={openQuestion} handleQClose={handleQClose} currentProduct={currentProduct}/>
         </Grid>
       </Grid>
     </div >

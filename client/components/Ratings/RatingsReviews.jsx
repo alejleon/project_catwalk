@@ -2,7 +2,11 @@ import React, { useState, useEffect, useRef } from 'react';
 import ReviewList from './ReviewList.jsx';
 import Sidebar from './Sidebar.jsx';
 import axios from 'axios';
+<<<<<<< HEAD:client/components/RatingsReviews.jsx
 import GITHUB_API_TOKEN from './overview/config/config.jsx';
+=======
+import GITHUB_API_TOKEN from '../../config.js';
+>>>>>>> development:client/components/Ratings/RatingsReviews.jsx
 import { makeStyles } from '@material-ui/core/styles';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -10,6 +14,8 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
+import AddIcon from '@material-ui/icons/Add';
+import Typography from '@material-ui/core/Typography';
 
 //Should receive the current_item id number from App
 const RatingsReviews = (props) => {
@@ -58,7 +64,10 @@ const RatingsReviews = (props) => {
   useEffect(() => {
     axios.get(`${url}meta?product_id=${props.product_id}`, headers)
       .then((response) => {
+<<<<<<< HEAD:client/components/RatingsReviews.jsx
         // console.log(response.data);
+=======
+>>>>>>> development:client/components/Ratings/RatingsReviews.jsx
         setMetaData(response.data);
       })
       .catch((err) => {
@@ -83,18 +92,22 @@ const RatingsReviews = (props) => {
       margin: theme.spacing(1),
       minWidth: 120,
     },
+    grid: {
+      position: 'fixed',
+      left: '25%'
+    }
   }));
 
   const classes = useStyles();
 
   return (
-    <Grid container direction="row" spacing={1}>
+    <Grid className={classes.grid} container direction="row" spacing={1}>
       <Grid container item xs={12} md={3} lg={3} spacing={1}>
         {metaData.ratings ? <Sidebar metaData={metaData} /> : null}
       </Grid>
       <Grid container item xs={12} md={9} lg={9} spacing={1} direction="column">
-        <Grid container item direction="row" spacing={1}>
-          <p>{reviewList.length} reviews, sorted by</p>
+        <Grid container item direction="row" alignItems="center" spacing={1}>
+          <Typography>{reviewList.length} reviews, sorted by</Typography>
           <FormControl className={classes.formControl}>
             <Select
               labelId="open-select-label"
@@ -114,10 +127,11 @@ const RatingsReviews = (props) => {
 
         <ReviewList reviews={reviewList.slice(0, addCount * 2)} />
         {reviewList.length > addCount * 2 ? <Button
+          variant="contained"
           onClick={addReviews}
           id="add-reviews"
-          style={{ maxWidth: '200px', maxHeight: '80px', minWidth: '80px', minHeight: '80px' }}
-        >See More Reviews
+          style={{ maxWidth: '150px', maxHeight: '50px', minWidth: '150px', minHeight: '50px' }}
+        >MORE REVIEWS
         </Button> : null}
       </Grid>
     </Grid >

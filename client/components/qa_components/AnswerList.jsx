@@ -1,23 +1,23 @@
 import React, { useState, useEffect, useRef } from 'react';
+<<<<<<< HEAD
 import axios from 'axios';
 import token from '../overview/config/config.jsx';
+=======
+>>>>>>> development
 import { Button, Container, Grid, Typography, Paper, CssBaseline } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import Answer from './Answer.jsx';
 
 const AnswerList = (props) => {
-  // will have to deal with local state
-  // const [answers, setAnswers] = useState([]);
-
-
 
   return (
     <React.Fragment>
       <Grid item xs={9}>
-       <Answer />
-      </Grid>
-      <Grid item xs={9}>
-        {/* <Typography variant="overline">By Username  | DATE | HELPFUL | REPORT  </Typography> */}
+        {props.displayedAnswers.map((answer) => {
+          return (
+            <Answer answer={answer} />
+          )
+        })}
       </Grid>
     </React.Fragment>
   );
