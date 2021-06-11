@@ -3,6 +3,10 @@ import LinearProgress from '@material-ui/core/LinearProgress';
 import { makeStyles, createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
 import { green, grey } from '@material-ui/core/colors';
 import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
+import Rating from '@material-ui/lab/Rating';
+import StarBorderIcon from '@material-ui/icons/StarBorder';
 
 let Sidebar = (props) => {
 
@@ -73,14 +77,17 @@ let Sidebar = (props) => {
     <Grid container direction="column" spacing={1}>
       <MuiThemeProvider theme={theme}>
         <Grid container item spacing={1}>
-          <p>Ratings and Reviews</p>
+          <Typography variant="caption">RATINGS & REVIEWS</Typography>
         </Grid>
-        <Grid container item spacing={1}>
-          <p>Average Rating: {averageRating > 0 ? averageRating : 0}</p>
-          <p>{percentRecommend > 0 ? percentRecommend : 0}% of users recommend this product</p>
+        <Grid container item direction='column' spacing={1}>
+          <Grid container item direction='row'>
+            <Typography variant='h1'>{averageRating > 0 ? averageRating : 0}</Typography>
+            <Rating name="read-only" precision={0.25} value={averageRating > 0 ? averageRating : 0} readOnly />
+          </Grid>
+          <Typography>{percentRecommend > 0 ? percentRecommend : 0}% of users recommend this product</Typography>
         </Grid>
         <Grid container item direction="row" alignItems="center">
-          <p>5 stars</p>
+          <Typography>5 stars</Typography>
           {props.metaData.ratings ? <LinearProgress
             className={classes.LinearProgress}
             variant="determinate"
@@ -89,7 +96,7 @@ let Sidebar = (props) => {
           /> : null}
         </Grid>
         <Grid container item direction="row" alignItems="center">
-          <p>4 stars</p>
+          <Typography>4 stars</Typography>
           {props.metaData.ratings ? <LinearProgress
             className={classes.LinearProgress}
             variant="determinate"
@@ -98,7 +105,7 @@ let Sidebar = (props) => {
           /> : null}
         </Grid>
         <Grid container item direction="row" alignItems="center">
-          <p>3 stars</p>
+          <Typography>3 stars</Typography>
           {props.metaData.ratings ? <LinearProgress
             className={classes.LinearProgress}
             variant="determinate"
@@ -107,7 +114,7 @@ let Sidebar = (props) => {
           /> : null}
         </Grid>
         <Grid container item direction="row" alignItems="center">
-          <p>2 stars</p>
+          <Typography>2 stars</Typography>
           {props.metaData.ratings ? <LinearProgress
             className={classes.LinearProgress}
             variant="determinate"
@@ -116,7 +123,7 @@ let Sidebar = (props) => {
           /> : null}
         </Grid>
         <Grid container item direction="row" alignItems="center">
-          <p>1 stars</p>
+          <Typography>1 stars</Typography>
           {props.metaData.ratings ? <LinearProgress
             className={classes.LinearProgress}
             variant="determinate"

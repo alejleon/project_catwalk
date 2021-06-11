@@ -1,5 +1,5 @@
 import React from 'react';
-import RatingsReviews from './RatingsReviews.jsx';
+import RatingsReviews from './Ratings/RatingsReviews.jsx';
 
 const App = () => {
   return (
