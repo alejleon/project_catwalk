@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { TextField, Button, Typography, Input } from '@material-ui/core';
 import axios from 'axios';
-import token from './config/config.js';
+import token from '../../config.js';
 
 
 
@@ -23,7 +23,7 @@ const AddAnswerForm = (props) => {
   }
 
   //newAnswer is an object and I need to format it
-  const postAnswer =(newAnswer, question_id) => {
+  const postAnswer = (newAnswer, question_id) => {
     const config = {
       headers: { Authorization: token },
     }
@@ -33,13 +33,13 @@ const AddAnswerForm = (props) => {
       name: newAnswer.name,
       email: newAnswer.email,
       photos: newAnswer.photos //an array of urls
-    }, config )
-    .then((result)=> {
-      console.log(result);
-    })
-    .catch((err) => {
-      console.error('Error: ', err);
-    })
+    }, config)
+      .then((result) => {
+        console.log(result);
+      })
+      .catch((err) => {
+        console.error('Error: ', err);
+      })
   }
 
   return (
@@ -70,7 +70,7 @@ const AddAnswerForm = (props) => {
         placeholder="Example: jack@email.com"
         required={true}
         inputProps={{ maxLength: 60 }}
-         />
+      />
       <Typography>
         For authentication reasons, you will not be emailed
       </Typography>

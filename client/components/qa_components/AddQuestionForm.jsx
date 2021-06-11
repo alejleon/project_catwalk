@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { TextField, Button, Typography, Input } from '@material-ui/core';
 import axios from 'axios';
-import token from './config/config.js';
+import token from '../../config.js';
 
 
 const AddQuestionForm = (props) => {
@@ -39,7 +39,7 @@ const AddQuestionForm = (props) => {
     e.preventDefault();
     // get info from the form submission
     console.log('submitted');
-   newQuestion = {
+    newQuestion = {
       body,
       name,
       email
@@ -58,8 +58,10 @@ const AddQuestionForm = (props) => {
     const config = {
       method: 'post',
       url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-atx/qa/questions',
-      headers: { Authorization: token,
-      ContentType: 'application/json' },
+      headers: {
+        Authorization: token,
+        ContentType: 'application/json'
+      },
       data: newQuestion
     }
 

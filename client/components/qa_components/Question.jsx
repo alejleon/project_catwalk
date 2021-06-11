@@ -4,7 +4,7 @@ import { Button, Container, Grid, Typography, Paper, CssBaseline } from '@materi
 import AnswerList from './AnswerList.jsx';
 import AddAnswer from './AddAnswer.jsx';
 import axios from 'axios';
-import token from './config/config.js';
+import token from '../../config.js';
 
 const Question = (props) => {
   const [allAnswers, setAllAnswers] = useState([]); // all answers for ONE question
