@@ -24,7 +24,7 @@ const App = () => {
       "updated_at": "2021-06-04T21:11:24.988Z"
     }
   )
-  const [ratingsAverage, setRatingsAverage] = useState([])
+  const [ratingsAverage, setRatingsAverage] = useState(0)
 
 
   var getArrayAverage = (array) => {

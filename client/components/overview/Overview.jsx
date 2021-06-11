@@ -11,7 +11,8 @@ const Overview = ({currentProduct, ratingsAverage}) => {
 
   //Will need to do a get request to retrieve all the styles for the current product
   //From here, it will be passed down as props to both the images branch and the styles branch
-  const [currentStyles, setCurrentStyles] = useState([])
+  const [currentStyles, setCurrentStyles] = useState([]);
+  const [currentStyle, setCurrentStyle] = useState(null);
 
   const getStyles = () => {
     let url = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-atx/products/${JSON.stringify(currentProduct.id)}/styles`;
