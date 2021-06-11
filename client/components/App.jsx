@@ -1,4 +1,3 @@
-
 import React, {useState} from 'react';
 import RatingsReviews from './RatingsReviews.jsx';
 import QAMain from './qa_components/QAMain.jsx';
@@ -22,10 +21,9 @@ const App = () => {
 
   return (
     <div>
-      <p>Hello From App!!!</p>
       <Overview product={currentProduct}/>
       <QAMain />
-      <RatingsReviews product_id={27190} />
+      <RatingsReviews product_id={24156} />
     </div>
   );
 }
