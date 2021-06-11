@@ -9,7 +9,6 @@ const Ratings = () => {
 
 
   const [rating, setRating] = useState(0);
-
   var getRating = (id) => {
     let url = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-atx/reviews';
 
