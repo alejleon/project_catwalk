@@ -60,7 +60,6 @@ const RatingsReviews = (props) => {
   useEffect(() => {
     axios.get(`${url}meta?product_id=${props.product_id}`, headers)
       .then((response) => {
-        console.log(response.data);
         setMetaData(response.data);
       })
       .catch((err) => {

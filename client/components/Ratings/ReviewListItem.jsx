@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import axios from 'axios';
+import moment from 'moment';
 import GITHUB_API_TOKEN from '../../config.js';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
@@ -9,12 +10,12 @@ import makeStyles from '@material-ui/core/styles';
 
 let ReviewListItem = (props) => {
   const [helpful, setHelpful] = useState(false);
-
+  const date = useRef(new moment(props.data.date).format("l"));
   const url = 'https://app-hrsei-api.herokuapp.com/api/fec2/hratx/reviews/';
   const headers = {
     headers: { Authorization: GITHUB_API_TOKEN }
   };
-
+  console.log(date);
   const helpfulButton = (event) => {
     event.preventDefault();
     if (!helpful) {
@@ -26,21 +27,18 @@ let ReviewListItem = (props) => {
           console.log('Error setting helpful: ', err);
         })
     }
-  }
+  };
 
 
 
   return (
     <Grid container direction="column" spacing={3}>
-      <Grid container item direction="row" alignItems="center" justify="space-between" style={{ maxWidth: 500 }}>
+      <Grid container item direction="row" alignItems="center" justify="space-between" style={{ maxWidth: 600 }}>
         <Grid item>
           <Rating name="read-only" precision={0.25} value={props.data.rating > 0 ? props.data.rating : 0} readOnly />
         </Grid>
         <Grid item>
-          <Grid container direction="row" spacing={1}>
-            <Grid item>{props.data.date.slice(0, 10)}</Grid>
-            <Grid item>{props.data.reviewer_name}</Grid>
-          </Grid>
+          <Grid item>{props.data.reviewer_name}, {date.current}</Grid>
         </Grid>
       </Grid>
       <Grid item>

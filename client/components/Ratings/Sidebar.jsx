@@ -70,7 +70,6 @@ let Sidebar = (props) => {
       }
     }
   }));
-
   const classes = useStyles();
 
   return (
@@ -82,7 +81,7 @@ let Sidebar = (props) => {
         <Grid container item direction='column' spacing={1}>
           <Grid container item direction='row'>
             <Typography variant='h1'>{averageRating > 0 ? averageRating : 0}</Typography>
-            <Rating name="read-only" precision={0.25} value={averageRating > 0 ? averageRating : 0} readOnly />
+            <Rating name="read-only" precision={0.25} value={Number(averageRating) > 0 ? Number(averageRating) : 0} readOnly />
           </Grid>
           <Typography>{percentRecommend > 0 ? percentRecommend : 0}% of users recommend this product</Typography>
         </Grid>
