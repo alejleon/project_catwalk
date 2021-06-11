@@ -39,7 +39,7 @@ const AddQuestionForm = (props) => {
     e.preventDefault();
     // get info from the form submission
     console.log('submitted');
-   newQuestion = {
+    newQuestion = {
       body,
       name,
       email
@@ -58,8 +58,10 @@ const AddQuestionForm = (props) => {
     const config = {
       method: 'post',
       url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-atx/qa/questions',
-      headers: { Authorization: token,
-      ContentType: 'application/json' },
+      headers: {
+        Authorization: token,
+        ContentType: 'application/json'
+      },
       data: newQuestion
     }
 

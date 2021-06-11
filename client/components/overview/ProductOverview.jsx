@@ -1,17 +1,16 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import GITHUB_API_TOKEN from '../../config.js';
 import StyleSelector from './StyleSelector.jsx';
 import Rating from './Rating.jsx';
 import getProducts from './utils.jsx';
-import {Grid} from '@material-ui/core'
+import { Grid } from '@material-ui/core'
 
 const ProductOverview = ({currentProduct, currentStyles, currentStyle, ratingsAverage, handleStyleClick}) => {
 
-    // console.log(currentStyles.results)
 
     return (
-      <Grid container style={{background: 'lavender'}}>
+      <Grid container style={{ background: 'lavender' }}>
         <Grid item xs={12}>
           <p>{currentProduct.name}</p>
         </Grid>

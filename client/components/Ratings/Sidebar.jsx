@@ -76,7 +76,7 @@ let Sidebar = (props) => {
     <Grid container direction="column" spacing={1}>
       <MuiThemeProvider theme={theme}>
         <Grid container item spacing={1}>
-          <Typography variant="caption">RATINGS & REVIEWS</Typography>
+          <Typography variant="caption">RATINGS  REVIEWS</Typography>
         </Grid>
         <Grid container item direction='column' spacing={1}>
           <Grid container item direction='row'>
