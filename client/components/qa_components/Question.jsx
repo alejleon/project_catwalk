@@ -7,10 +7,7 @@ import axios from 'axios';
 import token from './config/config.js';
 
 const Question = (props) => {
-<<<<<<< HEAD
-  // local State here
-  // console.log(props.question.answers);
-=======
+
   const [allAnswers, setAllAnswers] = useState([]); // all answers for ONE question
   // const [displayedAnswers, setDisplayedAnswers] = useState([]);
   const [allAnswersCount, setAllAnswersCount] = useState([]);
@@ -18,7 +15,7 @@ const Question = (props) => {
   const [openAnswer, setOpenAnswer] = useState(false); // set Answer dialog to false
   const [isHelpful, setIsHelpful] = useState(false);
   const questionId = props.question.question_id;
->>>>>>> development
+
 
 
   // Get all Answers to a particular question base on question_id

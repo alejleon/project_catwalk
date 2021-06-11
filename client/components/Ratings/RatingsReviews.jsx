@@ -2,11 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import ReviewList from './ReviewList.jsx';
 import Sidebar from './Sidebar.jsx';
 import axios from 'axios';
-<<<<<<< HEAD:client/components/RatingsReviews.jsx
-import GITHUB_API_TOKEN from './overview/config/config.jsx';
-=======
 import GITHUB_API_TOKEN from '../../config.js';
->>>>>>> development:client/components/Ratings/RatingsReviews.jsx
 import { makeStyles } from '@material-ui/core/styles';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -64,10 +60,7 @@ const RatingsReviews = (props) => {
   useEffect(() => {
     axios.get(`${url}meta?product_id=${props.product_id}`, headers)
       .then((response) => {
-<<<<<<< HEAD:client/components/RatingsReviews.jsx
-        // console.log(response.data);
-=======
->>>>>>> development:client/components/Ratings/RatingsReviews.jsx
+
         setMetaData(response.data);
       })
       .catch((err) => {
