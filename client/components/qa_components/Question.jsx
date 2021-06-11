@@ -58,7 +58,7 @@ const Question = (props) => {
     setOpenAnswer(false);
   }
 
-  // Logic for marking an answer as helpful
+  // Logic for marking a question as helpful
   const markHelpful = (e) => {
     const queryParam = questionId;
     const config = {
