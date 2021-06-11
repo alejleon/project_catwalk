@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
-import API_KEY from './config/config.jsx';
 import {Grid} from '@material-ui/core';
 import StarRatings from 'react-star-ratings';
 

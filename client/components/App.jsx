@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
-import RatingsReviews from './RatingsReviews.jsx';
+import RatingsReviews from './Ratings/RatingsReviews.jsx';
 import QAMain from './qa_components/QAMain.jsx';
 import Overview from './overview/Overview.jsx';
 import axios from 'axios';
-import API_KEY from './overview/config/config.jsx'
+import GITHUB_API_TOKEN from '../config.js'
 
 const App = () => {
 
@@ -39,7 +39,7 @@ const App = () => {
     let url = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-atx/reviews';
 
     axios.get(url, {
-      headers: {Authorization: API_KEY},
+      headers: {Authorization: GITHUB_API_TOKEN},
       params: {product_id: id}
     })
       .then(response => {

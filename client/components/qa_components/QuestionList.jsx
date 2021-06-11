@@ -4,7 +4,7 @@ import { Button, Container, Grid, Typography, Paper, CssBaseline } from '@materi
 import Question from './Question.jsx';
 
 import axios from 'axios';
-import token from '../overview/config/config.jsx';
+import token from '../../config.js';
 
 
 

@@ -51,3 +51,42 @@ const ProductOverview = ({currentProduct, currentStyles, ratingsAverage, handleS
 
 
 export default ProductOverview
+
+
+
+// const ProductOverview = (props) => {
+
+//   const [products, setProducts] = useState([]);
+
+//   const url = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-atx/products';
+//   const headers = {
+//     headers: {
+//       Authorization: GITHUB_API_TOKEN
+//     }
+//   };
+//   const params = {
+//     product_id: props.currentProduct
+//   }
+
+//   useEffect(() => {
+//     getProducts();
+//   }, [])
+
+
+//   var getProducts = function () {
+//     axios.get(`${url}?product_id=${params.product_id}`, headers)
+//       .then((listOfProducts) => {
+//         console.log(listOfProducts.data[0].slogan)
+//         setProducts(listOfProducts)
+//       })
+//       .catch((err) => { console.error(err) })
+//   }
+
+
+//   // console.log(products.data)
+
+//   if (products === undefined) {
+//     return (
+//       <div></div>
+//     )
+//   } else {

@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
-import API_KEY from './config/config.jsx'
+import API_KEY from '../../config.js'
 import ImageGallery from './ImageGallery.jsx';
 import ProductOverview from './ProductOverview.jsx';
 import {Grid} from '@material-ui/core';
