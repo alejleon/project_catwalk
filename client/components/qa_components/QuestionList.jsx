@@ -3,7 +3,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Button, Container, Grid, Typography, Paper, CssBaseline } from '@material-ui/core';
 import Question from './Question.jsx';
 
-
 const QuestionList = (props) => {
   const [currentQuestion, setCurrentQuestion] = useState([]);
   const [allAnswers, setAllAnswers] = useState([]); // all answers for ONE question

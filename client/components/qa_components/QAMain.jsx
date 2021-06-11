@@ -15,25 +15,20 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const QAMain = (props) => {
-  // Deal with state
   const [currentProduct, setCurrentProduct] = useState({name: 'Camo Joggers'})
-  const [productId, setProductId] = useState(27190); //props.product_id
+  const [productId, setProductId] = useState(27189); //props.product_id
   const [questionId, setQuestionId] = useState([]); // is this redundant? Check
   const [productQs, setProductQs] = useState([]);    // list of all questions for a product_id
   const [countQs, setCountQs] = useState(0);
   const [displayedCount, setDisplayedCount] = useState(4);
   const [openQuestion, setOpenQuestion] = useState(false); // set Question dialog to false
 
-
   // use styles
   const classes = useStyles();
 
-  // // useRef to be able to increase the count number without it resetting
-  // const getCount = useRef(1);
 
-  // Axios
+  // Axios HTTP GET Request for All Questions
   const url = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-atx/qa/questions';
-
   const getAllQuestions = () => {
     const config = {
       headers: { Authorization: token },
@@ -47,7 +42,7 @@ const QAMain = (props) => {
     axios.get(url, config)
       .then((results) => {
         setProductQs(productQs => {
-          return [...productQs, ...results.data.results];
+          return [...results.data.results];
         });
         setCountQs(countQs => {
           return results.data.results.length;
@@ -68,19 +63,20 @@ const QAMain = (props) => {
     setDisplayedCount(1);
   }
 
+  // Logic for opening Add Question Dialog
+  const handleQOpen = () => {
+    setOpenQuestion(true);
+  }
+  // Logic for closing Add Question Dialog
+  const handleQClose = () => {
+    setOpenQuestion(false);
+  }
+
+  // Get all Questions for a product on page load
   useEffect(() => {
     getAllQuestions();
   }, []);
 
-  // Logic for Add Question Dialog
-  const handleQOpen = () => {
-    setOpenQuestion(true);
-  }
-
-  const handleQClose = () => {
-    // handle closing the dialog
-    setOpenQuestion(false);
-  }
 
   return (
     <div>
@@ -98,7 +94,7 @@ const QAMain = (props) => {
           <Button variant="outlined" color="primary" onClick={collapseQuestions}>COLLAPSE QUESTIONS</Button>
            : <Button variant="outlined" color="primary" onClick={allQuestions}>MORE ANSWERED QUESTIONS</Button>}
           <Button variant="outlined" color="secondary" onClick={handleQOpen}>ADD A QUESTION</Button>
-          <AddQuestion open={openQuestion} handleQClose={handleQClose} currentProduct={currentProduct}/>
+          <AddQuestion getAllQuestions={getAllQuestions} open={openQuestion} handleQClose={handleQClose} currentProduct={currentProduct}/>
         </Grid>
       </Grid>
     </div >

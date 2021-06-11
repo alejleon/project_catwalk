@@ -6,6 +6,11 @@ import token from './config/config.js';
 
 
 const AddQuestionForm = (props) => {
+  const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
+  const [body, setBody] = useState("");
+  let newQuestion;
+  let product_id = 27189;
 
   const useStyles = makeStyles((theme) => ({
     // styles here
@@ -16,21 +21,66 @@ const AddQuestionForm = (props) => {
 
   }));
 
-  // handle question submission
+  // Handle form inputs
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value);
+  }
+
+  const handleNicknameChange = (e) => {
+    setName(e.target.value);
+  }
+
+  const handleBodyChange = (e) => {
+    setBody(e.target.value);
+
+  }
+  // handle form submission
   const submitQuestion = (e) => {
     e.preventDefault();
-    console.log('submitted')
+    // get info from the form submission
+    console.log('submitted');
+   newQuestion = {
+      body,
+      name,
+      email
+    }
+    postQuestion(newQuestion, product_id);
 
-    // fire off POST request
+    props.handleQClose();
+
   }
 
 
-  // Axios post Request
+  // Axios POST request - add question to the database
+  const postQuestion = (newQuestion, product_id) => {
+    newQuestion.product_id = product_id;
+
+    const config = {
+      method: 'post',
+      url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-atx/qa/questions',
+      headers: { Authorization: token,
+      ContentType: 'application/json' },
+      data: newQuestion
+    }
+
+    axios(config)
+      .then((result) => {
+        console.log(result);
+        props.getAllQuestions();
+
+      })
+      .catch((err) => {
+        console.error('Error: ', err);
+      })
+  }
+
 
   return (
-    <form>
+    <form className="questionForm" onSubmit={submitQuestion}>
       <TextField id="question"
         label="question"
+        value={body}
+        onChange={handleBodyChange}
         placeholder="What would you like to ask?"
         required={true}
         inputProps={{ maxLength: 1000 }}
@@ -41,6 +91,8 @@ const AddQuestionForm = (props) => {
       <br />
       <TextField id="nickname"
         label="nickname"
+        value={name}
+        onChange={handleNicknameChange}
         placeholder="Example: jackson11!"
         required={true}
         inputProps={{ maxLength: 60 }}
@@ -51,6 +103,8 @@ const AddQuestionForm = (props) => {
        </Typography>
       <TextField id="email"
         label="email"
+        value={email}
+        onChange={handleEmailChange}
         placeholder="Why did you like the product or not?"
         required={true}
         type="email"
@@ -59,9 +113,9 @@ const AddQuestionForm = (props) => {
       <Typography>
         For authentication reasons, you will not be emailed
      </Typography>
-      <div>
-        <Button type="submit" variant="contained" onSubmit={submitQuestion}>Submit Question</Button>
-      </div>
+      <br />
+      <br />
+      <Button type="submit" variant="contained">Submit Question</Button>
     </form>
 
 

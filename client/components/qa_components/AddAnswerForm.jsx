@@ -11,21 +11,36 @@ const AddAnswerForm = (props) => {
   const useStyles = makeStyles((theme) => ({
     // styles here
     form: {
-
     }
-
-
   }));
 
   // handle answer submission
   const submitAnswer = (e) => {
+    // GET INFO FROM THE FORM
     console.log('submitted')
 
     // fire off POST request
   }
 
-
-  // Axios post Request
+  //newAnswer is an object and I need to format it
+  const postAnswer =(newAnswer, question_id) => {
+    const config = {
+      headers: { Authorization: token },
+    }
+    const queryParam = question_id;
+    axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-atx/qa/questions/${queryParam}/answers`, {
+      body: newAnswer.body,
+      name: newAnswer.name,
+      email: newAnswer.email,
+      photos: newAnswer.photos //an array of urls
+    }, config )
+    .then((result)=> {
+      console.log(result);
+    })
+    .catch((err) => {
+      console.error('Error: ', err);
+    })
+  }
 
   return (
 
@@ -55,7 +70,7 @@ const AddAnswerForm = (props) => {
         placeholder="Example: jack@email.com"
         required={true}
         inputProps={{ maxLength: 60 }}
-        margin="normal" />
+         />
       <Typography>
         For authentication reasons, you will not be emailed
       </Typography>
@@ -66,7 +81,6 @@ const AddAnswerForm = (props) => {
       <Input
         id="photos"
         type="file"
-        margin="normal"
         inputProps={{
           // input props here
           //accept

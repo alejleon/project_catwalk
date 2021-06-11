@@ -8,13 +8,15 @@ import token from './config/config.js';
 
 const Question = (props) => {
   const [allAnswers, setAllAnswers] = useState([]); // all answers for ONE question
-  const [displayedAnswers, setDisplayedAnswers] = useState([]);
+  // const [displayedAnswers, setDisplayedAnswers] = useState([]);
   const [allAnswersCount, setAllAnswersCount] = useState([]);
   const [displayedAnswersCount, setDisplayedAnswersCount] = useState(2);
   const [openAnswer, setOpenAnswer] = useState(false); // set Answer dialog to false
+  const [isHelpful, setIsHelpful] = useState(false);
+  const questionId = props.question.question_id;
 
-  const questionId = props.question.question_id;;
 
+  // Get all Answers to a particular question base on question_id
   const getAnswers = (questionId) => {
     const config = {
       headers: { Authorization: token },
@@ -43,26 +45,24 @@ const Question = (props) => {
   const loadMoreAnswers = (e) => {
     setDisplayedAnswersCount(displayedAnswersCount + 2);
   }
-
+  // Logic to collapse Answers down to 2
   const collapseAnswers = (e) => {
     setDisplayedAnswersCount(2);
+  }
+
+  // Logic for opening Add Answer Dialog
+  const handleAOpen = () => {
+    setOpenAnswer(true);
+  }
+  // Logic for closing Add Answer Dialog
+  const handleAClose = () => {
+    setOpenAnswer(false);
   }
 
   // Gets all answers for a product on page load
   useEffect(() => {
     getAnswers(questionId);
   }, []);
-
-  // Logic for opening Add Answer Dialog
-  const handleAOpen = () => {
-    setOpenAnswer(true);
-  }
-
-  // Logic for closing Add Answer Dialog
-  const handleAClose = () => {
-    setOpenAnswer(false);
-  }
-
 
   return (
     <React.Fragment>
@@ -83,11 +83,18 @@ const Question = (props) => {
           question={props.question.question_body} />
       </Grid>
       <Grid item xs={9}>
-        {allAnswers.length > 0 ? <AnswerList displayedAnswers={allAnswers.slice(0, displayedAnswersCount)} /> : "There are no answers for this question"}
+        {allAnswers.length > 0 ? <AnswerList displayedAnswers={allAnswers.slice(0, displayedAnswersCount)} />
+          : "There are no answers for this question"}
       </Grid>
       <Grid item xs={9}>
-        {displayedAnswersCount >= allAnswersCount ? "" : <Button onClick={loadMoreAnswers}>Load More Answers</Button>}
-        {displayedAnswersCount < 3 ? "" : <Button onClick={collapseAnswers}>Collapse Answers</Button>}
+        {displayedAnswersCount >= allAnswersCount ? ""
+          : <Button onClick={loadMoreAnswers}>
+            Load More Answers
+            </Button>}
+        {displayedAnswersCount < 3 ? ""
+          : <Button onClick={collapseAnswers}>
+            Collapse Answers
+            </Button>}
       </Grid>
     </React.Fragment>
   );

@@ -1,8 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from '@material-ui/core';
-import axios from 'axios';
-import token from './config/config.js';
 import AddQuestionForm from './AddQuestionForm.jsx'
 
 const AddQuestion = (props) => {
@@ -16,7 +14,7 @@ const AddQuestion = (props) => {
           <DialogContentText>
             About {props.currentProduct.name}
           </DialogContentText>
-        <AddQuestionForm open={props.open} handleQClose={props.handleQClose}/>
+        <AddQuestionForm open={props.open} handleQClose={props.handleQClose} getAllQuestions={props.getAllQuestions}/>
         </DialogContent>
       </Dialog>
     </React.Fragment>
