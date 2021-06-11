@@ -6,7 +6,7 @@ import Rating from './Rating.jsx';
 import getProducts from './utils.jsx';
 import {Grid} from '@material-ui/core'
 
-const ProductOverview = ({currentProduct, currentStyles, ratingsAverage}) => {
+const ProductOverview = ({currentProduct, currentStyles, ratingsAverage, handleStyleClick}) => {
 
     // console.log(currentStyles.results)
 
@@ -36,7 +36,10 @@ const ProductOverview = ({currentProduct, currentStyles, ratingsAverage}) => {
         <p>Share Buttons</p>
         </Grid>
 
-        <StyleSelector currentStyles={currentStyles.results}/>
+        <StyleSelector
+          currentStyles={currentStyles.results}
+          handleStyleClick={handleStyleClick}
+        />
 
       </Grid>
 

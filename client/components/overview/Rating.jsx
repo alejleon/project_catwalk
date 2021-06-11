@@ -11,6 +11,7 @@ const Ratings = ({ratingsAverage}) => {
     <Grid container style={{background: 'pink'}}>
       <Grid item xs={6}>
         <StarRatings
+          numberOfStars={5}
           rating={ratingsAverage}
           starRatedColor="rgb(171,22,37)"
           starHoverColor="rgb(230, 67, 47)"

@@ -1,20 +1,18 @@
 import React from 'react';
+import {Grid} from '@material-ui/core';
 
-const ImageGallery = ({currentStyles}) => {
+const ImageGallery = ({currentStyle}) => {
 
 
-  //get request with with all the styles for a particular product
-  //and the images for said styles. will map over these and render them
-  //onto the page. clicking on each style will enlarge the picture.
-  //Probably wont need individual image components
-
-// console.log(currentStyles)
+  console.log(currentStyle)
 
   return (
-    <div style={{background: 'orange'}}>
-      Hello from ImageGallery
-      {/* {currentStyles.results.} */}
-    </div>
+    currentStyle
+      ?  <Grid container style={{backgroundImage: `url(${currentStyle.photos[0].url})`, height: "1000px"}}>
+          Hello from ImageGallery
+        </Grid>
+      : <div style={{background: 'orange', height: '1000px'}}>Hello From Image Gallery</div>
+
   )
 }
 

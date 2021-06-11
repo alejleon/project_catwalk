@@ -14,6 +14,19 @@ const Overview = ({currentProduct, ratingsAverage}) => {
   const [currentStyles, setCurrentStyles] = useState([]);
   const [currentStyle, setCurrentStyle] = useState(null);
 
+
+   //this click function will set the current style to the clicked style
+  //and will send the style up so that the imageGallery componenet can render it
+  //Check the binding of this
+  const handleStyleClick = (style) => {
+    alert('clickity Click!')
+      setCurrentStyle(style)
+  }
+
+
+
+
+
   const getStyles = () => {
     let url = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-atx/products/${JSON.stringify(currentProduct.id)}/styles`;
 
@@ -38,10 +51,19 @@ const Overview = ({currentProduct, ratingsAverage}) => {
       Hello from Overview!
       <Grid container style={{background: 'yellow'}}>
         <Grid item xs={8}>
-          <ImageGallery currentProduct={currentProduct} currentStyles={currentStyles}/>
+          <ImageGallery
+            currentProduct={currentProduct}
+            currentStyles={currentStyles}
+            currentStyle={currentStyle}
+          />
         </Grid>
         <Grid item xs={4}>
-          <ProductOverview currentProduct={currentProduct} currentStyles={currentStyles} ratingsAverage={ratingsAverage}/>
+          <ProductOverview
+            currentProduct={currentProduct}
+            currentStyles={currentStyles}
+            ratingsAverage={ratingsAverage}
+            handleStyleClick={handleStyleClick}
+          />
         </Grid>
       </Grid>
     </div>
