@@ -33,21 +33,15 @@ const AddAnswerForm = (props) => {
     setBody(e.target.value);
   }
 
+  // this needs to resolve before we click submit
+  //wrap in function and use async / await???
   const handleImageUpload = (e) => {
-    console.log('testing');
     let img = (e.target.files)
     let imgURL = URL.createObjectURL(img[0])
     setImages([...images, imgURL])
+  };
 
-    console.log('images', images)
-    // const imageReader = new FileReader();
-    // imageReader.readAsDataURL(files[0]);
-    // imageReader.onload = (e) => {
-    //   console.log("img data", e.target.result);
-      // do axios request??
-
-    };
-
+  // Map over images to create thumbnails
     const imageItem = images.map((imageURL, index) => {
       return (
         <img src={imageURL} width="100px" height="100px" />
@@ -55,23 +49,18 @@ const AddAnswerForm = (props) => {
     });
 
 
-
-
   // handle form submission
   const submitAnswer = (e) => {
     e.preventDefault();
-    // get info from the form submission
-    console.log({name, email, body, images});
    newAnswer = {
       body,
       name,
       email,
-      photos
+      photos: images
     }
-
+   console.log("newAnswer", newAnswer);
     // postAnswer(newAnswer, question_id);
     props.handleAClose();
-
   }
 
 

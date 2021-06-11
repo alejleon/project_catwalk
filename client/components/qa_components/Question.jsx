@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Button, Container, Grid, Typography, Paper, CssBaseline } from '@material-ui/core';
+import { Button, Container, Grid, Typography, CssBaseline } from '@material-ui/core';
 import AnswerList from './AnswerList.jsx';
 import AddAnswer from './AddAnswer.jsx';
 import axios from 'axios';
@@ -8,7 +8,6 @@ import token from './config/config.js';
 
 const Question = (props) => {
   const [allAnswers, setAllAnswers] = useState([]); // all answers for ONE question
-  // const [displayedAnswers, setDisplayedAnswers] = useState([]);
   const [allAnswersCount, setAllAnswersCount] = useState([]);
   const [displayedAnswersCount, setDisplayedAnswersCount] = useState(2);
   const [openAnswer, setOpenAnswer] = useState(false); // set Answer dialog to false
@@ -59,6 +58,31 @@ const Question = (props) => {
     setOpenAnswer(false);
   }
 
+  // Logic for marking an answer as helpful
+  const markHelpful = (e) => {
+    const queryParam = questionId;
+    const config = {
+      method: 'put',
+      url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-atx/qa/questions/${queryParam}/helpful`,
+      headers: {
+        Authorization: token,
+        ContentType: 'application/json'
+      },
+      data: null
+    }
+    if (!isHelpful) {
+      console.log('mark this as helpful');
+      axios(config)
+        .then((result) => {
+          setIsHelpful(true);
+        })
+        .catch((err) => {
+          console.error("Error marking as helpful: ", error);
+        })
+    }
+  };
+
+
   // Gets all answers for a product on page load
   useEffect(() => {
     getAnswers(questionId);
@@ -72,9 +96,10 @@ const Question = (props) => {
         </Typography>
       </Grid>
       <Grid item xs={3}>
+        {/* {if isHelpful is true, disable button} */}
         Helpful?
-        <Button style={{ maxWidth: '10x', maxHeight: '15px' }}>
-          Yes ({props.question.question_helpfulness})
+        <Button style={{ maxWidth: '10x', maxHeight: '15px' }} onClick={markHelpful}>
+          Yes ({isHelpful ? props.question.question_helpfulness + 1 : props.question.question_helpfulness})
         </Button>
         <Button style={{ maxWidth: '10x', maxHeight: '15px' }} onClick={handleAOpen}>
           Add Answer
@@ -90,11 +115,11 @@ const Question = (props) => {
         {displayedAnswersCount >= allAnswersCount ? ""
           : <Button onClick={loadMoreAnswers}>
             Load More Answers
-            </Button>}
+          </Button>}
         {displayedAnswersCount < 3 ? ""
           : <Button onClick={collapseAnswers}>
             Collapse Answers
-            </Button>}
+          </Button>}
       </Grid>
     </React.Fragment>
   );
