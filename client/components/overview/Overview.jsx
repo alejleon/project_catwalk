@@ -12,14 +12,13 @@ const Overview = ({currentProduct, ratingsAverage}) => {
   //Will need to do a get request to retrieve all the styles for the current product
   //From here, it will be passed down as props to both the images branch and the styles branch
   const [currentStyles, setCurrentStyles] = useState([]);
-  const [currentStyle, setCurrentStyle] = useState(null);
+  const [currentStyle, setCurrentStyle] = useState(0);
 
 
    //this click function will set the current style to the clicked style
   //and will send the style up so that the imageGallery componenet can render it
   //Check the binding of this
   const handleStyleClick = (style) => {
-    alert('clickity Click!')
       setCurrentStyle(style)
   }
 
@@ -61,6 +60,7 @@ const Overview = ({currentProduct, ratingsAverage}) => {
           <ProductOverview
             currentProduct={currentProduct}
             currentStyles={currentStyles}
+            currentStyle={currentStyle}
             ratingsAverage={ratingsAverage}
             handleStyleClick={handleStyleClick}
           />

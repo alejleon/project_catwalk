@@ -15,7 +15,7 @@ let ReviewListItem = (props) => {
   const headers = {
     headers: { Authorization: GITHUB_API_TOKEN }
   };
-  console.log(date);
+  // console.log(date);
   const helpfulButton = (event) => {
     event.preventDefault();
     if (!helpful) {

@@ -10,7 +10,7 @@ const AnswerList = (props) => {
       <Grid item xs={9}>
         {props.displayedAnswers.map((answer) => {
           return (
-            <Answer answer={answer} />
+            <Answer answer={answer} key={answer.answer_id}/>
           )
         })}
       </Grid>

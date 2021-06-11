@@ -6,17 +6,17 @@ import Rating from './Rating.jsx';
 import getProducts from './utils.jsx';
 import {Grid} from '@material-ui/core'
 
-const ProductOverview = ({currentProduct, currentStyles, ratingsAverage, handleStyleClick}) => {
+const ProductOverview = ({currentProduct, currentStyles, currentStyle, ratingsAverage, handleStyleClick}) => {
 
     // console.log(currentStyles.results)
 
     return (
       <Grid container style={{background: 'lavender'}}>
         <Grid item xs={12}>
-        <p>{currentProduct.name}</p>
+          <p>{currentProduct.name}</p>
         </Grid>
         <Grid item xs={6}>
-        <p>{currentProduct.category}</p>
+          <p>{currentProduct.category}</p>
         </Grid>
 
         <Grid item xs={6}>
@@ -24,16 +24,24 @@ const ProductOverview = ({currentProduct, currentStyles, ratingsAverage, handleS
         </Grid>
 
         <Grid item xs={12}>
-        <p>{currentProduct.slogan}</p>
+          <p>{currentProduct.slogan}</p>
         </Grid>
         <Grid item xs={12}>
-        <p>{currentProduct.description}</p>
+          <p>{currentProduct.description}</p>
         </Grid>
-        <Grid item xs={4}>
-        <p>Product Price</p>
-        </Grid>
+        {currentStyle.sale_price
+          ?  <Grid item xs={4}>
+              <span style={{textDecorationLine: "line-through"}}>{currentStyle.original_price}</span>
+              <span>{currentStyle.sale_price}</span>
+             </Grid>
+
+          :  <Grid item xs={4}>
+              <p>{currentStyle.original_price}</p>
+            </Grid>
+        }
+
         <Grid item xs={8}>
-        <p>Share Buttons</p>
+          <p>Share Buttons</p>
         </Grid>
 
         <StyleSelector

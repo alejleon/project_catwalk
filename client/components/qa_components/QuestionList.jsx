@@ -76,9 +76,10 @@ const QuestionList = (props) => {
   return (
     <React.Fragment>
       {props.displayedQs.map((question) => {
+
         return (
 
-          <Question question={question} currentProduct={props.currentProduct}/>
+          <Question question={question} currentProduct={props.currentProduct} key={question.question_id}/>
         );
 
       })}
