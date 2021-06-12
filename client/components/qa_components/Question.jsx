@@ -82,6 +82,11 @@ const Question = (props) => {
     }
   };
 
+  // Logic for Reporting a Question
+  const reportQuestion = (e) => {
+
+  };
+
 
   // Gets all answers for a product on page load
   useEffect(() => {
@@ -96,7 +101,6 @@ const Question = (props) => {
         </Typography>
       </Grid>
       <Grid item xs={3}>
-        {/* {if isHelpful is true, disable button} */}
         Helpful?
         <Button style={{ maxWidth: '10x', maxHeight: '15px' }} onClick={markHelpful}>
           Yes ({isHelpful ? props.question.question_helpfulness + 1 : props.question.question_helpfulness})
