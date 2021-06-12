@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { TextField, Button, Typography, Input } from '@material-ui/core';
 import axios from 'axios';
-import token from './config/config.js';
+import token from '../../config.js';
 
 
 
@@ -119,7 +119,7 @@ const AddAnswerForm = (props) => {
         placeholder="Example: jack@email.com"
         required={true}
         inputProps={{ maxLength: 60 }}
-         />
+      />
       <Typography>
         For authentication reasons, you will not be emailed
       </Typography>

@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import QuestionList from './QuestionList.jsx';
 import AddQuestion from './AddQuestion.jsx';
-import token from './config/config.js';
+import token from '../../config.js';
 import { makeStyles } from '@material-ui/core/styles';
 import { Button, Container, Grid, Typography, CssBaseline } from '@material-ui/core';
 
@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const QAMain = (props) => {
-  const [currentProduct, setCurrentProduct] = useState({name: 'Camo Joggers'})
+  const [currentProduct, setCurrentProduct] = useState({ name: 'Camo Joggers' })
   const [productId, setProductId] = useState(27189); //props.product_id
   const [questionId, setQuestionId] = useState([]); // is this redundant? Check
   const [productQs, setProductQs] = useState([]);    // list of all questions for a product_id
@@ -91,10 +91,10 @@ const QAMain = (props) => {
         <QuestionList displayedQs={productQs.slice(0, displayedCount)} currentProduct={currentProduct} />
         <Grid item xs={10}>
           {displayedCount === countQs ?
-          <Button variant="outlined" color="primary" onClick={collapseQuestions}>COLLAPSE QUESTIONS</Button>
-           : <Button variant="outlined" color="primary" onClick={allQuestions}>MORE ANSWERED QUESTIONS</Button>}
+            <Button variant="outlined" color="primary" onClick={collapseQuestions}>COLLAPSE QUESTIONS</Button>
+            : <Button variant="outlined" color="primary" onClick={allQuestions}>MORE ANSWERED QUESTIONS</Button>}
           <Button variant="outlined" color="secondary" onClick={handleQOpen}>ADD A QUESTION</Button>
-          <AddQuestion getAllQuestions={getAllQuestions} open={openQuestion} handleQClose={handleQClose} currentProduct={currentProduct}/>
+          <AddQuestion getAllQuestions={getAllQuestions} open={openQuestion} handleQClose={handleQClose} currentProduct={currentProduct} />
         </Grid>
       </Grid>
     </div >

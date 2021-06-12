@@ -1,10 +1,13 @@
+<<<<<<< HEAD
 import React, {useState} from 'react';
+=======
+import React, { useState } from 'react';
+>>>>>>> a540b1603987c7c11dccccee21020b196028d530
 import RatingsReviews from './Ratings/RatingsReviews.jsx';
 import QAMain from './qa_components/QAMain.jsx';
 import Overview from './overview/Overview.jsx';
 
 const App = () => {
-
   const [currentProduct, setCurrentProduct] = useState(
     {
       "id": 27189,
@@ -21,9 +24,9 @@ const App = () => {
 
   return (
     <div>
-      <Overview product={currentProduct}/>
+      <Overview product={currentProduct} />
       <QAMain />
-      <RatingsReviews product_id={24156} />
+      <RatingsReviews product_id={currentProduct.id} />
     </div>
   );
 }

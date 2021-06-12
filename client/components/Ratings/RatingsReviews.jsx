@@ -22,7 +22,7 @@ const RatingsReviews = (props) => {
   const [open, setOpen] = useState(false);
   const [addCount, setAddCount] = useState(1);
 
-  const url = 'https://app-hrsei-api.herokuapp.com/api/fec2/hratx/reviews/';
+  const url = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-atx/reviews/';
   const headers = {
     headers: { Authorization: GITHUB_API_TOKEN }
   };
@@ -85,8 +85,13 @@ const RatingsReviews = (props) => {
       minWidth: 120,
     },
     grid: {
+<<<<<<< HEAD
     //   position: 'fixed',
     //   left: '25%'
+=======
+      width: '80%',
+      margin: '10%'
+>>>>>>> a540b1603987c7c11dccccee21020b196028d530
     }
   }));
 
