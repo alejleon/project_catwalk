@@ -6,8 +6,6 @@ import { Grid } from '@material-ui/core';
 const Ratings = () => {
 
   const [rating, setRating] = useState(0);
-<<<<<<< HEAD
-=======
 
   const url = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-atx/reviews';
   const headers = {
@@ -20,7 +18,6 @@ const Ratings = () => {
   }
 
   //create a function that gets reviews ratings and gets the average of those
->>>>>>> a540b1603987c7c11dccccee21020b196028d530
   var getRating = (id) => {
 
     axios.get(`${url}?product_id=${params.product_id}`, headers)

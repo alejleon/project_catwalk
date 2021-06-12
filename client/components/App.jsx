@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-import React, {useState} from 'react';
-=======
 import React, { useState } from 'react';
->>>>>>> a540b1603987c7c11dccccee21020b196028d530
 import RatingsReviews from './Ratings/RatingsReviews.jsx';
 import QAMain from './qa_components/QAMain.jsx';
 import Overview from './overview/Overview.jsx';

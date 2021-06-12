@@ -85,13 +85,8 @@ const RatingsReviews = (props) => {
       minWidth: 120,
     },
     grid: {
-<<<<<<< HEAD
-    //   position: 'fixed',
-    //   left: '25%'
-=======
       width: '80%',
       margin: '10%'
->>>>>>> a540b1603987c7c11dccccee21020b196028d530
     }
   }));
 

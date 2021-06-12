@@ -1,10 +1,10 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import QuestionList from './QuestionList.jsx';
 import AddQuestion from './AddQuestion.jsx';
 import token from '../../config.js';
 import { makeStyles } from '@material-ui/core/styles';
-import { Button, Container, Grid, Typography, CssBaseline } from '@material-ui/core';
+import { Button, Grid, Typography } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   // css styles go here
@@ -80,7 +80,6 @@ const QAMain = (props) => {
 
   return (
     <div>
-      <CssBaseline />
       <Grid container spacing={4} className={classes.grid} style={{ background: 'white' }}>
         <Grid item xs={12}>
           <Typography>Questions & Answers</Typography>

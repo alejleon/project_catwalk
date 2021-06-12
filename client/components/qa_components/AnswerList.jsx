@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { Button, Container, Grid, Typography, Paper, CssBaseline } from '@material-ui/core';
+import React, { useState } from 'react';
+import { Button, Grid, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import Answer from './Answer.jsx';
 

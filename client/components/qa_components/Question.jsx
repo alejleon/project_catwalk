@@ -1,6 +1,6 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Button, Container, Grid, Typography, CssBaseline } from '@material-ui/core';
+import { Button, Grid, Typography } from '@material-ui/core';
 import AnswerList from './AnswerList.jsx';
 import AddAnswer from './AddAnswer.jsx';
 import axios from 'axios';
