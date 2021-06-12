@@ -5,8 +5,8 @@ import Divider from '@material-ui/core/Divider';
 let ReviewList = (props) => {
   let reviews = props.reviews.map((review) => {
     return (
-      <div>
-        <ReviewListItem data={review} key={review.review_id} />
+      <div key={review.review_id}>
+        <ReviewListItem data={review} />
         <Divider />
       </div>
     );

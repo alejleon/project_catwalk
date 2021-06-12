@@ -20,9 +20,9 @@ const App = () => {
 
   return (
     <div>
-      <Overview product={currentProduct} />
-      <QAMain />
-      <RatingsReviews product_id={currentProduct.id} />
+      {/* <Overview product={currentProduct} /> */}
+      {/* <QAMain /> */}
+      <RatingsReviews product_id={27190} />
     </div>
   );
 }
