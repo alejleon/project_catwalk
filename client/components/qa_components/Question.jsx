@@ -4,7 +4,7 @@ import { Button, Grid, Typography } from '@material-ui/core';
 import AnswerList from './AnswerList.jsx';
 import AddAnswer from './AddAnswer.jsx';
 import axios from 'axios';
-import token from '../../config.js';
+import GITHUB_API_TOKEN from '../../config.js';
 
 const Question = (props) => {
   const [allAnswers, setAllAnswers] = useState([]); // all answers for ONE question
@@ -18,7 +18,7 @@ const Question = (props) => {
   // Get all Answers to a particular question base on question_id
   const getAnswers = (questionId) => {
     const config = {
-      headers: { Authorization: token },
+      headers: { Authorization: GITHUB_API_TOKEN },
       params: {
         page: 1,
         count: 100

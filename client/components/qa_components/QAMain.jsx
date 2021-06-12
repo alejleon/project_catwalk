@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import QuestionList from './QuestionList.jsx';
 import AddQuestion from './AddQuestion.jsx';
-import token from '../../config.js';
+import GITHUB_API_TOKEN from '../../config.js';
 import { makeStyles } from '@material-ui/core/styles';
 import { Button, Grid, Typography } from '@material-ui/core';
 
@@ -31,7 +31,7 @@ const QAMain = (props) => {
   const url = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-atx/qa/questions';
   const getAllQuestions = () => {
     const config = {
-      headers: { Authorization: token },
+      headers: { Authorization: GITHUB_API_TOKEN },
       params: {
         product_id: productId,
         page: 1,

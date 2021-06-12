@@ -14,7 +14,7 @@ const QuestionList = (props) => {
   const answerPageCount = useRef(1);
   const getAnswers = (questionId) => {
     const config = {
-      headers: { Authorization: token },
+      headers: { Authorization: GITHUB_API_TOKEN },
     }
     const queryParam = questionId;
     axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-atx/qa/questions/${queryParam}/answers`, config)

@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { TextField, Button, Typography, Input } from '@material-ui/core';
 import axios from 'axios';
-import token from '../../config.js';
+import GITHUB_API_TOKEN from '../../config.js';
 
 
 
@@ -72,7 +72,7 @@ const AddAnswerForm = (props) => {
   //   const config = {
   //     method: 'post',
   //     url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-atx/qa/questions/${queryParam}/answers`,
-  //     headers: { Authorization: token,
+  //     headers: { Authorization: GITHUB_API_TOKEN,
   //     ContentType: 'application/json' },
   //     data: newAnswer
   //   }
