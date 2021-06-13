@@ -10,9 +10,9 @@ const AnswerList = (props) => {
   return (
     <React.Fragment>
       <Grid item xs={9}>
-        {props.displayedAnswers.map((answer) => {
+        {props.displayedAnswers.map((answer, index) => {
           return (
-            <Answer answer={answer} />
+            <Answer answer={answer} key={index} />
           )
         })}
       </Grid>
