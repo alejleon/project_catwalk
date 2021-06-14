@@ -2,6 +2,7 @@ const path = require('path');
 
 const SRC_DIR = path.join(__dirname, '/client');
 const DIST_DIR = path.join(__dirname, '/dist');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 module.exports = {
   entry: ['babel-polyfill', `${SRC_DIR}/index.jsx`],
@@ -25,5 +26,8 @@ module.exports = {
   },
   resolve: {
     extensions: ['.js', '.jsx', '.json']
-  }
+  },
+  plugins: [
+    new BundleAnalyzerPlugin()
+  ],
 };
