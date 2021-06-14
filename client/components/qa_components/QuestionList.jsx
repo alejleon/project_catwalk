@@ -10,6 +10,25 @@ const QuestionList = (props) => {
   const [allAnswersCount, setAllAnswersCount] = useState([]);
   const [displayedAnswersCount, setDisplayedAnswersCount] = useState([]);
 
+  return (
+    <React.Fragment>
+      {props.displayedQs.map((question, index) => {
+        return (
+          <Question question={question} key={index} currentProduct={props.currentProduct}/>
+          );
+        })}
+    </React.Fragment>
+  );
+};
+
+export default QuestionList;
+
+  // // show answers on page load
+  // useEffect(() => {
+  //   // getAnswers(props.productId);
+  // }, []);
+  /////////////////////////////////////
+
   // // get answers
   // const answerPageCount = useRef(1);
   // const getAnswers = (questionId) => {
@@ -64,22 +83,3 @@ const QuestionList = (props) => {
   //   // answerPageCount.current++;
   //   // getAnswers(answerPageCount.current);
   // }
-
-
-  // show answers on page load
-  useEffect(() => {
-    // getAnswers(props.productId);
-  }, []);
-/////////////////////////////////////
-  return (
-    <React.Fragment>
-      {props.displayedQs.map((question, index) => {
-        return (
-          <Question question={question} key={index} currentProduct={props.currentProduct}/>
-        );
-      })}
-    </React.Fragment>
-  );
-};
-
-export default QuestionList;

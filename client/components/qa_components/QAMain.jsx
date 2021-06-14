@@ -87,6 +87,10 @@ const QAMain = (props) => {
     }
   }
 
+  const handleSearchClear = () => {
+    setSearchInput("");
+  }
+
   useEffect(()=> {
     console.log('searchInput', searchInput);
     if(searchInput.length > 2) {
@@ -120,7 +124,12 @@ const QAMain = (props) => {
         <Grid item xs={12}>
           <Typography>Questions & Answers</Typography>
         </Grid>
-        <Search searchInput={searchInput} handleSearchOnChange={handleSearchOnChange}/>
+        <Grid item xs={12}>
+        <Search searchInput={searchInput} handleSearchOnChange={handleSearchOnChange}
+         handleSearchClear={handleSearchClear} style={{margin: '0 auto', width: 800}}/>
+
+        </Grid>
+
         <QuestionList
           displayedQs={filteredQ.length === 0 ? displayedQuestions : filteredQ} currentProduct={currentProduct} />
 
