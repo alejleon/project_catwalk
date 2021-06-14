@@ -14,7 +14,7 @@ const Question = (props) => {
   const [displayedAnswersCount, setDisplayedAnswersCount] = useState(2);
   const [openAnswer, setOpenAnswer] = useState(false); // set Answer dialog to false
   const [isHelpful, setIsHelpful] = useState(false);
-  const [resportedQ, setReportedQ] = useState(false);
+  const [reportedQ, setReportedQ] = useState(false);
   const questionId = props.question.question_id;
 
 
@@ -87,7 +87,7 @@ const Question = (props) => {
 
   // Logic for Reporting a Question
   const reportQuestion = (e) => {
-    // console.log('reported');
+    console.log('reported');
     const queryParam = questionId;
     const config = {
       method: 'put',
@@ -101,17 +101,14 @@ const Question = (props) => {
     if (!reportedQ) {
       axios(config)
         .then((result) => {
+          console.log(result);
           setReportedQ(true);
-          // props.getAnswers(props.questionId)
         })
         .catch((err) => {
           console.error("Error reporting question: ", error);
         })
     }
   };
-
-
-
 
   // Gets all answers for a product on page load
   useEffect(() => {
@@ -135,8 +132,9 @@ const Question = (props) => {
             question={props.question.question_body} getAnswers={getAnswers} questionId={questionId} />
         </Grid>
         <Grid item xs={9}>
-          <Button style={{ maxWidth: '10x', maxHeight: '15px' }} onClick={handleAOpen}>
-            Report Question
+          <Button style={{ maxWidth: '10x', maxHeight: '15px' }} onClick={reportQuestion}>
+            {reportedQ ? 'Reported' : 'Report Question'}
+            {/* Report Question */}
           </Button>
         </Grid>
         <Grid item xs={3}>

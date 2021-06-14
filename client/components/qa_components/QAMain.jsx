@@ -20,7 +20,6 @@ const useStyles = makeStyles((theme) => ({
 const QAMain = (props) => {
   const [currentProduct, setCurrentProduct] = useState({ name: 'Camo Joggers' })
   const [productId, setProductId] = useState(27189); //props.product_id
-  // const [questionId, setQuestionId] = useState([]); // is this redundant? Check
   const [productQs, setProductQs] = useState([]);    // list of all questions for a product_id
   const [countQs, setCountQs] = useState(0);
   const [displayedCount, setDisplayedCount] = useState(4);
@@ -108,7 +107,6 @@ const QAMain = (props) => {
     setFinalQuestions(filteredQ.length === 0 ? displayedQuestions : filteredQ);
   }, [filteredQ])
 
-
   // Get all Questions for a product on page load
   useEffect(() => {
     getAllQuestions();
@@ -117,10 +115,6 @@ const QAMain = (props) => {
   useEffect(() => {
     setDisplayedQuestions(productQs.slice(0, displayedCount));
   }, [productQs]);
-
-  // useEffect(()=> {
-
-  // }, [displayedCount]);
 
 
   return (
@@ -144,8 +138,6 @@ const QAMain = (props) => {
         </Grid>
       </Grid>
     </div >
-
-
   );
 };
 
