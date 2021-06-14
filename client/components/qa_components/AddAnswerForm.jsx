@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
@@ -15,7 +15,7 @@ const AddAnswerForm = (props) => {
   const [body, setBody] = useState("");
   const [images, setImages] = useState([]);
   let newAnswer;
-  let question_id = 202639;
+  let question_id = props.questionId;
 
   const useStyles = makeStyles((theme) => ({
     // styles here
@@ -47,7 +47,7 @@ const AddAnswerForm = (props) => {
   // Map over images to create thumbnails
     const imageItem = images.map((imageURL, index) => {
       return (
-        <img src={imageURL} width="100px" height="100px" />
+        <img src={imageURL} key={index} width="100px" height="100px" />
       );
     });
 
@@ -62,31 +62,32 @@ const AddAnswerForm = (props) => {
       photos: images
     }
    console.log("newAnswer", newAnswer);
-    // postAnswer(newAnswer, question_id);
+    postAnswer(newAnswer, question_id);
     props.handleAClose();
   }
 
 
 
   //newAnswer is an object and I need to format it
-  // const postAnswer =(newAnswer, question_id) => {
-  //   const queryParam = question_id;
-  //   console.log(newAnswer);
-  //   const config = {
-  //     method: 'post',
-  //     url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-atx/qa/questions/${queryParam}/answers`,
-  //     headers: { Authorization: GITHUB_API_TOKEN,
-  //     ContentType: 'application/json' },
-  //     data: newAnswer
-  //   }
-  //   // axios(config)
-  //   // .then((result)=> {
-  //   //   console.log(result);
-  //   // })
-  //   // .catch((err) => {
-  //   //   console.error('Error: ', err);
-  //   // })
-  // }
+  const postAnswer =(newAnswer, question_id) => {
+    const queryParam = question_id;
+    console.log(newAnswer);
+    const config = {
+      method: 'post',
+      url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-atx/qa/questions/${queryParam}/answers`,
+      headers: { Authorization: GITHUB_API_TOKEN,
+      ContentType: 'application/json' },
+      data: newAnswer
+    }
+    axios(config)
+    .then((result)=> {
+      console.log(result);
+      props.getAnswers(question_id);
+    })
+    .catch((err) => {
+      console.error('Error: ', err);
+    })
+  }
 
   return (
 
@@ -121,6 +122,7 @@ const AddAnswerForm = (props) => {
         onChange={handleEmailChange}
         placeholder="Example: jack@email.com"
         required={true}
+        type="email"
         inputProps={{ maxLength: 60 }}
       />
       <Typography>
@@ -136,7 +138,6 @@ const AddAnswerForm = (props) => {
         onChange={handleImageUpload}
         inputProps={{
           multiple: true,
-
         }} /> : <div></div>}
         {images !== undefined ? <React.Fragment>{imageItem}</React.Fragment> : <div></div>}
       <br />

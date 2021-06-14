@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
@@ -70,9 +70,7 @@ const AddQuestionForm = (props) => {
 
     axios(config)
       .then((result) => {
-        console.log(result);
         props.getAllQuestions();
-
       })
       .catch((err) => {
         console.error('Error: ', err);
