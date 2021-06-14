@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import ReviewList from './ReviewList.jsx';
 import Sidebar from './Sidebar.jsx';
+import NewReviewForm from './NewReviewForm.jsx';
 import axios from 'axios';
 import GITHUB_API_TOKEN from '../../config.js';
 import { makeStyles } from '@material-ui/core/styles';
@@ -34,6 +35,10 @@ const RatingsReviews = (props) => {
     event.preventDefault();
     setAddCount(addCount + 1);
   };
+
+  const newReview = (event) => {
+    console.log('NEW REVIEW');
+  }
 
   //Sort order change button click event handler. Resets the page number to 1 and sets the sort
   //order to the selected option.
@@ -77,8 +82,7 @@ const RatingsReviews = (props) => {
 
   const useStyles = makeStyles((theme) => ({
     button: {
-      display: 'block',
-      marginTop: theme.spacing(2),
+      margin: 5
     },
     formControl: {
       margin: theme.spacing(1),
@@ -86,7 +90,8 @@ const RatingsReviews = (props) => {
     },
     grid: {
       width: '80%',
-      margin: '10%'
+      margin: '10%',
+      backgroundColor: 'aliceblue'
     }
   }));
 
@@ -116,15 +121,18 @@ const RatingsReviews = (props) => {
             </Select>
           </FormControl>
         </Grid>
-
         <ReviewList reviews={reviewList.slice(0, addCount * 2)} />
-        {reviewList.length > addCount * 2 ? <Button
-          variant="contained"
-          onClick={addReviews}
-          id="add-reviews"
-          style={{ maxWidth: '150px', maxHeight: '50px', minWidth: '150px', minHeight: '50px' }}
-        >MORE REVIEWS
-        </Button> : null}
+        <Grid container item direction="row">
+          {reviewList.length > addCount * 2 ? <Button
+            className={classes.button}
+            variant="contained"
+            onClick={addReviews}
+            id="add-reviews"
+            style={{ maxWidth: '150px', maxHeight: '50px', minWidth: '150px', minHeight: '50px' }}
+          >MORE REVIEWS
+          </Button> : null}
+          <NewReviewForm classes={classes} />
+        </Grid>
       </Grid>
     </Grid >
   );
