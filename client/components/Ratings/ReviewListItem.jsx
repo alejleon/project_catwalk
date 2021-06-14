@@ -42,7 +42,7 @@ let ReviewListItem = (props) => {
         </Grid>
       </Grid>
       <Grid item>
-        <Typography noWrap variant="h5">{props.data.summary}</Typography>
+        <Typography noWrap variant="h5">{props.data.summary.length > 60 ? `${props.data.summary.slice(0, 57)}...` : props.data.summary}</Typography>
       </Grid>
       <Grid item>
         <Typography variant="body1">{props.data.body}</Typography>
