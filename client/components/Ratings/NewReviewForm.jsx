@@ -16,8 +16,10 @@ import RadioButtonCheckedRoundedIcon from '@material-ui/icons/RadioButtonChecked
 import RadioButtonUncheckedRoundedIcon from '@material-ui/icons/RadioButtonUncheckedRounded';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
+import TextField from '@material-ui/core/TextField';
 import Slider from '@material-ui/core/Slider';
-
+import Input from '@material-ui/core/Input';
+import FormBody from './FormBody.jsx';
 
 const styles = (theme) => ({
   root: {
@@ -41,7 +43,8 @@ const styles = (theme) => ({
     flexDirection: "column",
     alignItems: "left",
     padding: theme.spacing(2),
-    marginRight: 10
+    marginRight: 10,
+    fontSize: 10
   },
   sameLine: {
     display: "flex",
@@ -49,16 +52,14 @@ const styles = (theme) => ({
     alignItems: "center",
     padding: theme.spacing(2),
     marginRight: 10
+  },
+  textField: {
+    marginLeft: theme.spacing(1),
+    marginRight: theme.spacing(1),
   }
 });
 
 let NewReviewForm = (props) => {
-
-  const [rating, setRating] = useState(3);
-  const [recommend, setRecommend] = useState("");
-  const [comfort, setComfort] = useState("");
-
-  const ratingDescription = useRef("Average");
 
   const DialogTitle = withStyles(styles)((props) => {
     const { children, classes, onClose, ...other } = props;
@@ -74,14 +75,6 @@ let NewReviewForm = (props) => {
     );
   });
 
-  const DialogContent = withStyles((theme) => ({
-    root: {
-      display: "flex",
-      flexDirection: "column",
-      padding: theme.spacing(2),
-    }
-  }))(MuiDialogContent);
-
   const DialogActions = withStyles((theme) => ({
     root: {
       margin: 0,
@@ -96,50 +89,12 @@ let NewReviewForm = (props) => {
   };
   const handleClose = () => {
     setOpen(false);
-    setRecommend("");
   };
 
   const handleFormSubmission = () => {
     console.log('Form submitted');
     handleClose();
-  }
-
-  const handleRecommendRadio = (event) => {
-    setRecommend(event.target.value);
   };
-
-  const handleComfortRadio = (event) => {
-    console.log(comfort);
-    setComfort(event.target.value);
-  }
-
-  const valueText = (value) => {
-    if (value === 1) {
-      return 'Too Tight';
-    } else if (value === 3) {
-      return 'Perfect Fit';
-    } else if (value === 5) {
-      return 'Too Loose';
-    } else {
-      return value;
-    }
-  }
-
-  const handleRatingSelection = (event, newValue) => {
-    if (newValue === 1) {
-      ratingDescription.current = "Poor";
-    } else if (newValue === 2) {
-      ratingDescription.current = "Fair";
-    } else if (newValue === 3) {
-      ratingDescription.current = "Average";
-    } else if (newValue === 4) {
-      ratingDescription.current = "Good";
-    } else if (newValue === 5) {
-      ratingDescription.current = "Great"
-    }
-    setRating(newValue);
-
-  }
   const classes = makeStyles(styles)();
 
   return (
@@ -157,38 +112,14 @@ let NewReviewForm = (props) => {
         <DialogTitle id="customized-dialog-title" onClose={handleClose}>
           ADD REVIEW
         </DialogTitle>
-        <DialogContent dividers >
-          <FormControl component="fieldset" className={props.classes.formControl}>
-            <div className={classes.sameLine}>
-              <Rating name="new-review-rating" onChange={handleRatingSelection} precision={1} value={rating} controlled="true" />
-              <Typography variant="subtitle1">{ratingDescription.current}</Typography>
-            </div>
-            <div className={classes.row}>
-              <Typography variant="subtitle1"> Do you recommend this product? </Typography>
-              <RadioGroup row aria-label="recommend" name="recommend" value={recommend} onChange={handleRecommendRadio}>
-                <FormControlLabel value="yes" control={<Radio />} label="Yes" />
-                <FormControlLabel value="no" control={<Radio />} label="No" />
-              </RadioGroup >
-            </div>
-            <div className={classes.row}>
-              <Typography variant="subtitle1"> Comfort: </Typography>
-              <RadioGroup row aria-label="comfort" name="comfort" value={comfort} onChange={handleComfortRadio}>
-                <FormControlLabel value="1" control={<Radio />} label="A Size Too Small" />
-                <FormControlLabel value="2" control={<Radio />} label="1/2 Size Too Small" />
-                <FormControlLabel value="3" control={<Radio />} label="Perfect" />
-                <FormControlLabel value="4" control={<Radio />} label="1/2 Size Too Large" />
-                <FormControlLabel value="5" control={<Radio />} label="A Size Too Large" />
-              </RadioGroup >
-            </div>
-          </FormControl>
-        </DialogContent>
+        <FormBody classes={props.classes} />
         <DialogActions>
-          <Button autoFocus onClick={handleFormSubmission} color="primary">
+          <Button onClick={handleFormSubmission} color="primary">
             SUBMIT REVIEW
           </Button>
         </DialogActions>
-      </Dialog>
-    </div>
+      </Dialog >
+    </div >
   );
 }
 
