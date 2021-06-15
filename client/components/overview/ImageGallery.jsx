@@ -6,25 +6,20 @@ import ArrowBack from '@material-ui/icons/ArrowBackIos';
 const ImageGallery = ({currentStyle}) => {
 
   const [currentImage, setCurrentImage] = useState(0)
-  const [ArrayLength, setArrayLength] = useState(0)
+  const [ArrayLength, setArrayLength] = useState(currentStyle.photos.length)
 
   useEffect(() => {
       setArrayLength(currentStyle.photos.length)
   }, [currentStyle])
 
 
-
   const handleNextImageClick = () => {
-    console.log(photosArrayLength)
-    // if (photosArrayLength !== undefined) {
-    //   setCurrentImage(currentImage === photosArrayLength -1 ? 0 : current + 1)
-    // } else {
-    //   console.log('oops')
-    // }
+    console.log(ArrayLength)
+
   }
 
   const handlepreviousImageClick = () => {
-
+    console.log(ArrayLength)
   }
 
 
