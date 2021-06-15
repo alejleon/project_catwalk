@@ -119,13 +119,13 @@ const QAMain = (props) => {
 
   return (
     <div>
-      <Grid container spacing={4} className={classes.grid} style={{ background: 'white' }}>
+      <Grid container spacing={4} className={classes.grid} style={{ background: 'white', height: '600px', overflowY: 'auto', overflowX: 'hidden'}}>
         <Grid item xs={12}>
           <Typography>Questions & Answers</Typography>
         </Grid>
         <Grid item xs={12}>
           <Search searchInput={searchInput} handleSearchOnChange={handleSearchOnChange}
-            handleSearchClear={handleSearchClear} style={{ margin: '0 auto', width: 800 }} />
+            handleSearchClear={handleSearchClear} style={{ margin: '0 auto', width: 300 }} />
         </Grid>
         <QuestionList
           displayedQs={filteredQ.length === 0 ? displayedQuestions : filteredQ} currentProduct={currentProduct} />

@@ -30,9 +30,8 @@ const Question = (props) => {
     const queryParam = questionId;
     axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-atx/qa/questions/${queryParam}/answers`, config)
       .then((results) => {
-        // NEED TO SORT THE DATA BEFORE SETTING STATE
         setAllAnswers(allAnswers => {
-          return [...results.data.results]
+          return [...sortAnswers(results.data.results)]
         })
         setAllAnswersCount(allAnswers => {
           return results.data.results.length;
@@ -110,10 +109,22 @@ const Question = (props) => {
     }
   };
 
+  // sort answers
+  const sortAnswers = (answers) => {
+    const seller = answers.filter(answer => answer.answerer_name.toLowerCase() === 'seller');
+    const rest = answers.filter(answer => answer.answerer_name.toLowerCase() !== 'seller');
+    const sortedAnswers = seller.concat(rest);
+    return sortedAnswers;
+  };
+
   // Gets all answers for a product on page load
   useEffect(() => {
     getAnswers(questionId);
   }, []);
+
+  useEffect(() => {
+    sortAnswers(allAnswers);
+  }, [allAnswers]);
 
   return (
     <React.Fragment>

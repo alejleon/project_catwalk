@@ -66,9 +66,6 @@ const AddAnswerForm = (props) => {
     props.handleAClose();
   }
 
-
-
-  //newAnswer is an object and I need to format it
   const postAnswer =(newAnswer, question_id) => {
     const queryParam = question_id;
     console.log(newAnswer);
@@ -143,12 +140,8 @@ const AddAnswerForm = (props) => {
       <br />
       <br />
       <Button type="submit" variant="contained">Submit Question</Button>
-
     </form>
-
   )
 };
-
-
 
 export default AddAnswerForm;
