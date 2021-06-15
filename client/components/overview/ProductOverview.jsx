@@ -4,18 +4,21 @@ import GITHUB_API_TOKEN from '../../config.js';
 import StyleSelector from './StyleSelector.jsx';
 import Rating from './Rating.jsx';
 import getProducts from './utils.jsx';
-import { Grid } from '@material-ui/core'
+import { Grid, Typography } from '@material-ui/core'
 
 const ProductOverview = ({currentProduct, currentStyles, currentStyle, ratingsAverage, handleStyleClick}) => {
 
 
+// console.log(currentStyle)
+
     return (
-      <Grid container style={{ background: 'lavender' }}>
+      <Grid container spacing={3} style={{ background: 'lavender' }}>
         <Grid item xs={12}>
-          <p>{currentProduct.name}</p>
+          <Typography variant="h4">{currentProduct.name}</Typography>
         </Grid>
+
         <Grid item xs={6}>
-          <p>{currentProduct.category}</p>
+          <Typography variant="subtitle1">{currentProduct.category}</Typography>
         </Grid>
 
         <Grid item xs={6}>
@@ -23,28 +26,29 @@ const ProductOverview = ({currentProduct, currentStyles, currentStyle, ratingsAv
         </Grid>
 
         <Grid item xs={12}>
-          <p>{currentProduct.slogan}</p>
+          <Typography variant="h5">{currentProduct.slogan}</Typography>
         </Grid>
         <Grid item xs={12}>
-          <p>{currentProduct.description}</p>
+          <Typography variant="body1" >{currentProduct.description}</Typography>
         </Grid>
         {currentStyle.sale_price
           ?  <Grid item xs={4}>
-              <span style={{textDecorationLine: "line-through"}}>{currentStyle.original_price}</span>
-              <span>{currentStyle.sale_price}</span>
+              <Typography variant="h5" style={{color: 'red'}}>${currentStyle.sale_price}</Typography>
+              <Typography variant="h5" style={{textDecorationLine: "line-through"}}>${currentStyle.original_price}</Typography>
              </Grid>
 
           :  <Grid item xs={4}>
-              <p>{currentStyle.original_price}</p>
+              <Typography variant="h5">${currentStyle.original_price}</Typography>
             </Grid>
         }
 
         <Grid item xs={8}>
-          <p>Share Buttons</p>
+        <Typography>Share Buttons</Typography>
         </Grid>
 
         <StyleSelector
           currentStyles={currentStyles.results}
+          currentStyle={currentStyle}
           handleStyleClick={handleStyleClick}
         />
 

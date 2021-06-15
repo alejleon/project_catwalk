@@ -60,6 +60,10 @@ const App = () => {
 
   getAverageReviewRating(currentProduct.id)
 
+  const handleReviewAdd = (productId) => {
+    getArrayAverageRating(productId)     //TODO///////////////////////////////////
+  }
+
 
 
   return (
