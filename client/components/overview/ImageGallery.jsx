@@ -5,7 +5,7 @@ import ArrowBack from '@material-ui/icons/ArrowBackIos';
 
 const ImageGallery = ({currentStyle}) => {
 
-  const [currentImage, setCurrentImage] = useState(0)
+  const [currentIndex, setCurrentIndex] = useState(0)
   const [ArrayLength, setArrayLength] = useState(currentStyle.photos.length)
 
   useEffect(() => {
@@ -14,29 +14,48 @@ const ImageGallery = ({currentStyle}) => {
 
 
   const handleNextImageClick = () => {
-    console.log(ArrayLength)
-
+    if (currentIndex === ArrayLength - 1) {
+      setCurrentIndex(0)
+    } else {
+      setCurrentIndex(currentIndex + 1)
+    }
+    console.log(currentIndex)
   }
 
+
+
   const handlepreviousImageClick = () => {
-    console.log(ArrayLength)
+    if (currentIndex === 0) {
+      setCurrentIndex(ArrayLength - 1)
+    } else {
+      setCurrentIndex(currentIndex - 1)
+    }
+    console.log(currentIndex)
   }
 
 
   return (
     currentStyle
-      ?  <section >
+      ?  <section id="slider" >
 
               Hello from ImageGallery
           <Grid container >
-        <ArrowBack id="backButton"/>
+        <ArrowBack id="backButton" onClick={handlepreviousImageClick}/>
         <ArrowForward id="forwardButton" onClick={handleNextImageClick}/>
+
+
             <Grid item xs={10}>
               {currentStyle.photos.map((photo, index) => {
                 return (
-                  <img className="image" key= {index} src={[photo.url]} />
+
+                  <div className={index === currentIndex ? 'slide active' : 'slide'} key={index}>
+                    {index === currentIndex && (<img className="image" src={[photo.url]} />)}
+
+                  </div>
                   )
                 })}
+
+
 
             </Grid>
           </Grid>

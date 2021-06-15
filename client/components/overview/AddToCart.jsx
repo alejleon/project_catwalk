@@ -30,7 +30,7 @@ const Checkout = ({currentStyle}) => {
       axios.post(url,
         {'sku_id': id},
         {headers: {
-          Authorization: GITHUB_API_TOKEN
+          "Authorization": GITHUB_API_TOKEN
         }})
     }
   }

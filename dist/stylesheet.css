@@ -4,9 +4,15 @@ body {
 
 .image {
   /* height: 600px; */
-  width: 90%;
+  width: 100%;
   border-radius: 10px;
+}
 
+#slider {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 #forwardButton {
