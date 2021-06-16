@@ -8,12 +8,12 @@ let ReviewList = (props) => {
       <div key={review.review_id}>
         <ReviewListItem data={review} classes={props.classes} />
         <Divider />
-      </div>
+      </div >
     );
   });
 
   return (
-    <div>
+    <div style={{ maxHeight: '60vh', 'overflow-y': 'scroll' }}>
       {reviews}
     </div>
   );

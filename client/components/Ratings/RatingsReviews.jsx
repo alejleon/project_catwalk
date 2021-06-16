@@ -104,11 +104,15 @@ const RatingsReviews = (props) => {
     grid: {
       width: '80%',
       margin: '10%',
-      backgroundColor: 'azure'
+      backgroundColor: 'azure',
     },
     review: {
       width: '100%',
       margin: 10,
+    },
+    reviewList: {
+      maxHeight: '80%',
+      'overflow-y': 'scroll',
     }
   }));
 

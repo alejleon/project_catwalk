@@ -17,7 +17,6 @@ import RadioButtonUncheckedRoundedIcon from '@material-ui/icons/RadioButtonUnche
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import TextField from '@material-ui/core/TextField';
-import Slider from '@material-ui/core/Slider';
 import Input from '@material-ui/core/Input';
 import Alert from '@material-ui/lab/Alert';
 import Card from '@material-ui/core/Card';
