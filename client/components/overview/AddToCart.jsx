@@ -9,6 +9,17 @@ const Checkout = ({currentStyle}) => {
   const [quantitySelected, setQuantitySelected] = useState(0)
 
 
+console.log(currentStyle)
+
+
+useEffect(() => {
+  var skus = Object.entries(currentStyle.skus)
+}, [currentStyle])
+
+
+
+
+
   const renderQtyDropdown = () => {
     if (currentSku !== undefined && currentSku !== 1) {
       var counter = []
@@ -18,28 +29,26 @@ const Checkout = ({currentStyle}) => {
       return counter;
     }
   }
-
   const skuQty = renderQtyDropdown();
 
 
   const handleAddToCart = function(id) {
     const url = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-atx/cart';
-
     for (let i = 0; i < quantitySelected; i++) {
-      console.log(typeof id, id)
       axios.post(url,
-        {'sku_id': id},
+        {sku_id: id},
         {headers: {
-          "Authorization": GITHUB_API_TOKEN
+          Authorization: GITHUB_API_TOKEN
         }})
+        .catch((err) => {
+          console.error(err)
+        })
     }
   }
-
 
   const handleSizeSelect = function(e) {
       setCurrentSku(e.target.value)
   }
-
 
   const handleQuantitySelection = (e) => {
     setQuantitySelected(e.target.value)
@@ -47,48 +56,14 @@ const Checkout = ({currentStyle}) => {
 
 
   if (currentStyle === 0) {
-
-    return (
-      <Grid container spacing={5} style={{background: 'white', height: "400px"}}>
-        <Grid item xs={12}>
-          Hello from the checkout
-        </Grid>
-        <Grid item xs={6}>
-
-          <InputLabel >
-            Size
-          </InputLabel>
-          <Select defaultValue="" variant="outlined" style={{width: "200px"}}>
-            <MenuItem value="" >Select Size</MenuItem>
-          </Select>
-        </Grid>
-
-        <Grid item xs={4}>
-        <InputLabel >
-            Quantity
-          </InputLabel>
-          <Select defaultValue="" variant="outlined" style={{width: "75px"}}>
-            <MenuItem>Select Quantity</MenuItem>
-          </Select>
-        </Grid>
-
-        <Grid item xs={12}>
-          <Button variant="outlined">Add To Cart</Button>
-        </Grid>
-      </Grid>
-    )
+    return (<></>)
 
   } else {
     var skus = Object.entries(currentStyle.skus)
 
 
     return (
-      <Grid container spacing={5} style={{background: 'white', height: "400px"}}>
-        <Grid item xs={12}>
-          Hello from the checkout
-        </Grid>
-
-
+      <Grid container spacing={0} style={{background: 'white', height: "150%", margin: "10px", padding: "10px"}}>
         <Grid item xs={6}>
         <InputLabel >
             Size
@@ -118,13 +93,14 @@ const Checkout = ({currentStyle}) => {
               })
               : <MenuItem>Select a style first</MenuItem>
             }
-
           </Select>
         </Grid>
 
+
+
         <Grid item xs={12}>
           <Button variant="outlined" onClick={() => {
-            handleAddToCart(JSON.stringify(currentSku))
+            handleAddToCart(currentSku)
           }}>Add To Cart</Button>
         </Grid>
       </Grid>

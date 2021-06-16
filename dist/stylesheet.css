@@ -3,9 +3,10 @@ body {
 }
 
 .image {
-  /* height: 600px; */
   width: 100%;
   border-radius: 10px;
+  margin: auto;
+  display: block;
 }
 
 #slider {
@@ -13,6 +14,18 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.slide {
+  opacity: 0;
+  transition-duration: 1s ease;
+  align-content: center;
+}
+
+.slide.active {
+  opacity: 1;
+  transition-duration: 1s;
+  transform: scale(1)
 }
 
 #forwardButton {

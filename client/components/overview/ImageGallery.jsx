@@ -36,14 +36,11 @@ const ImageGallery = ({currentStyle}) => {
 
   return (
     currentStyle
-      ?  <section id="slider" >
+      ?  <section id="slider" style={{height: "100%", border: "5px solid black"}}>
 
-              Hello from ImageGallery
           <Grid container >
-        <ArrowBack id="backButton" onClick={handlepreviousImageClick}/>
-        <ArrowForward id="forwardButton" onClick={handleNextImageClick}/>
-
-
+            <ArrowBack id="backButton" onClick={handlepreviousImageClick}/>
+            <ArrowForward id="forwardButton" onClick={handleNextImageClick}/>
             <Grid item xs={10}>
               {currentStyle.photos.map((photo, index) => {
                 return (
@@ -64,7 +61,7 @@ const ImageGallery = ({currentStyle}) => {
 
 
 
-      : <div style={{background: 'lavender', height: '1000px'}}>Hello From Image Gallery</div>
+      : <div style={{height: '1000px'}}>Hello From Image Gallery</div>
 
   )
 }

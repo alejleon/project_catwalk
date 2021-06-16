@@ -9,24 +9,22 @@ const StyleSelector = ({currentStyles, currentStyle, handleStyleClick}) => {
 
 
 
-
-
   //will render depending on whether props is defined or not
 
   return (
-    <Grid container spacing={3} style={{background: 'white'}}>
-      <Grid item xs={12}>Hello From StyleSelector</Grid>
+    <Grid container spacing={0} style={{background: 'white', margin: "10px", padding: "10px", height: "100%"}}>
+
 
       {currentStyles ?
        currentStyles.map((style) => {
          return (
          <Grid item xs={3} key={style.style_id}>
-           <img src={style.photos[0].thumbnail_url} style={{height: "75px", width: "75px", borderRadius: "50%"}} onClick={() => {handleStyleClick(style)}} />
+           <img src={style.photos[0].thumbnail_url} style={{height: "75px", width: "75px", borderRadius: "50%", border: "2px solid black", margin: "15px"}} onClick={() => {handleStyleClick(style)}} />
          </Grid>
          )
        }) :
        <Grid item xs={3}>
-         <img src={styles[0].photos[0].thumbnail_url}/>                   {/*MOVE THIS INTO THE STYLE COMPONENT (maybe)*/}
+         <img src={styles[0].photos[0].thumbnail_url}/>
       </Grid>}
 
 
