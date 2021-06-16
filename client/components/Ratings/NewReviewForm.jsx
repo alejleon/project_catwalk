@@ -112,7 +112,7 @@ let NewReviewForm = (props) => {
         <DialogTitle id="customized-dialog-title" onClose={handleClose}>
           ADD REVIEW
         </DialogTitle>
-        <FormBody classes={props.classes} />
+        <FormBody classes={props.classes} metaData={props.metaData} />
         <DialogActions>
           <Button onClick={handleFormSubmission} color="primary">
             SUBMIT REVIEW

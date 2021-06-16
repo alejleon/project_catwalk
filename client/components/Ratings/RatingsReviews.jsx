@@ -80,6 +80,19 @@ const RatingsReviews = (props) => {
     setOpen(true);
   };
 
+  const valueText = (value) => {
+    if (value === 1) {
+      return 'Too Tight';
+    } else if (value === 3) {
+      return 'Perfect Fit';
+    } else if (value === 5) {
+      return 'Too Loose';
+    } else {
+      return value;
+    }
+  };
+
+
   const useStyles = makeStyles((theme) => ({
     button: {
       margin: 5
@@ -131,7 +144,7 @@ const RatingsReviews = (props) => {
             style={{ maxWidth: '150px', maxHeight: '50px', minWidth: '150px', minHeight: '50px' }}
           >MORE REVIEWS
           </Button> : null}
-          <NewReviewForm classes={classes} />
+          <NewReviewForm classes={classes} metaData={metaData} />
         </Grid>
       </Grid>
     </Grid >
