@@ -32,6 +32,7 @@ const Question = (props) => {
   const [openAnswer, setOpenAnswer] = useState(false); // set Answer dialog to false
   const [isHelpful, setIsHelpful] = useState(false);
   const [reportedQ, setReportedQ] = useState(false);
+  const [quesId, setQuesId] = useState(props.question.question_id)
   const questionId = props.question.question_id;
 
   // use styles
@@ -139,8 +140,15 @@ const Question = (props) => {
 
   // Gets all answers for a product on page load
   useEffect(() => {
-    getAnswers(questionId);
+    getAnswers(props.question.question_id);
   }, []);
+
+
+  // UPDATE STATE BASED ON CHANGING PROPS
+  useEffect(() => {
+    getAnswers(props.question.question_id);
+  }, [props.question.question_id]);
+
 
   useEffect(() => {
     sortAnswers(allAnswers);
