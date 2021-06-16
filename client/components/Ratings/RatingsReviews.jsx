@@ -104,7 +104,11 @@ const RatingsReviews = (props) => {
     grid: {
       width: '80%',
       margin: '10%',
-      backgroundColor: 'aliceblue'
+      backgroundColor: 'azure'
+    },
+    review: {
+      width: '100%',
+      margin: 10,
     }
   }));
 
@@ -115,7 +119,7 @@ const RatingsReviews = (props) => {
       <Grid container item xs={12} md={3} lg={3} spacing={1}>
         {metaData.ratings ? <Sidebar metaData={metaData} /> : null}
       </Grid>
-      <Grid container item xs={12} md={9} lg={9} spacing={1} direction="column">
+      <Grid container item xs={12} md={7} lg={7} spacing={1} direction="column">
         <Grid container item direction="row" alignItems="center" spacing={1}>
           <Typography>{reviewList.length} reviews, sorted by</Typography>
           <FormControl className={classes.formControl}>
@@ -134,7 +138,7 @@ const RatingsReviews = (props) => {
             </Select>
           </FormControl>
         </Grid>
-        <ReviewList reviews={reviewList.slice(0, addCount * 2)} />
+        <ReviewList reviews={reviewList.slice(0, addCount * 2)} classes={classes} />
         <Grid container item direction="row">
           {reviewList.length > addCount * 2 ? <Button
             className={classes.button}
@@ -146,6 +150,9 @@ const RatingsReviews = (props) => {
           </Button> : null}
           <NewReviewForm classes={classes} metaData={metaData} />
         </Grid>
+      </Grid>
+      <Grid container item xs={12} md={2} lg={2} spacing={1} direction="column">
+
       </Grid>
     </Grid >
   );

@@ -6,7 +6,7 @@ let ReviewList = (props) => {
   let reviews = props.reviews.map((review) => {
     return (
       <div key={review.review_id}>
-        <ReviewListItem data={review} />
+        <ReviewListItem data={review} classes={props.classes} />
         <Divider />
       </div>
     );

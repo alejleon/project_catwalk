@@ -22,7 +22,7 @@ const App = () => {
     <div>
       {/* <Overview product={currentProduct} /> */}
       {/* <QAMain /> */}
-      <RatingsReviews product_id={27189} />
+      <RatingsReviews product_id={27190} />
     </div>
   );
 }

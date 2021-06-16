@@ -326,14 +326,10 @@ const FormBody = (props) => {
           disabled={imageList.length >= 4}>Choose File</Input>
       </FormControl>
       <div className={classes.sameLine} style={{ minHeight: 100, maxHeight: 100, minWidth: 500, maxWidth: 500 }}>
-        {imageList.map((image) => {
-          return <Card classes={{ root: classes.card }}>
+        {imageList.map((image, index) => {
+          return <Card classes={{ root: classes.card }} key={index}>
             <CardMedia
               component="img"
-              minWidth="25%"
-              maxWidth="25%"
-              minHeight="100%"
-              maxHeight="100%"
               image={image}
               variant="outlined"
             />
