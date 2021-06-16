@@ -1,12 +1,21 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { TextField, Button, Typography, Input } from '@material-ui/core';
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
+import Input from '@material-ui/core/Input';
 import axios from 'axios';
-import token from '../../config.js';
+import GITHUB_API_TOKEN from '../../config.js';
 
 
 
 const AddAnswerForm = (props) => {
+  const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
+  const [body, setBody] = useState("");
+  const [images, setImages] = useState([]);
+  let newAnswer;
+  let question_id = props.questionId;
 
   const useStyles = makeStyles((theme) => ({
     // styles here
@@ -14,39 +23,76 @@ const AddAnswerForm = (props) => {
     }
   }));
 
-  // handle answer submission
-  const submitAnswer = (e) => {
-    // GET INFO FROM THE FORM
-    console.log('submitted')
-
-    // fire off POST request
+  // Handle form inputs
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value);
   }
 
-  //newAnswer is an object and I need to format it
-  const postAnswer = (newAnswer, question_id) => {
-    const config = {
-      headers: { Authorization: token },
+  const handleNicknameChange = (e) => {
+    setName(e.target.value);
+  }
+
+  const handleBodyChange = (e) => {
+    setBody(e.target.value);
+  }
+
+  // this needs to resolve before we click submit
+  //wrap in function and use async / await???
+  const handleImageUpload = (e) => {
+    let img = (e.target.files)
+    let imgURL = URL.createObjectURL(img[0])
+    setImages([...images, imgURL])
+  };
+
+  // Map over images to create thumbnails
+    const imageItem = images.map((imageURL, index) => {
+      return (
+        <img src={imageURL} key={index} width="100px" height="100px" />
+      );
+    });
+
+
+  // handle form submission
+  const submitAnswer = (e) => {
+    e.preventDefault();
+   newAnswer = {
+      body,
+      name,
+      email,
+      photos: images
     }
+   console.log("newAnswer", newAnswer);
+    postAnswer(newAnswer, question_id);
+    props.handleAClose();
+  }
+
+  const postAnswer =(newAnswer, question_id) => {
     const queryParam = question_id;
-    axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-atx/qa/questions/${queryParam}/answers`, {
-      body: newAnswer.body,
-      name: newAnswer.name,
-      email: newAnswer.email,
-      photos: newAnswer.photos //an array of urls
-    }, config)
-      .then((result) => {
-        console.log(result);
-      })
-      .catch((err) => {
-        console.error('Error: ', err);
-      })
+    console.log(newAnswer);
+    const config = {
+      method: 'post',
+      url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-atx/qa/questions/${queryParam}/answers`,
+      headers: { Authorization: GITHUB_API_TOKEN,
+      ContentType: 'application/json' },
+      data: newAnswer
+    }
+    axios(config)
+    .then((result)=> {
+      console.log(result);
+      props.getAnswers(question_id);
+    })
+    .catch((err) => {
+      console.error('Error: ', err);
+    })
   }
 
   return (
 
-    <form>
+    <form className="answerForm" onSubmit={submitAnswer}>
       <TextField id="answer"
         label="answer"
+        value ={body}
+        onChange={handleBodyChange}
         placeholder="Write your answer here"
         required={true}
         inputProps={{ maxLength: 1000 }}
@@ -57,6 +103,8 @@ const AddAnswerForm = (props) => {
       <br />
       <TextField id="nickname"
         label="nickname"
+        value={name}
+        onChange={handleNicknameChange}
         placeholder="Example: jack543!"
         required={true}
         inputProps={{ maxLength: 60 }}
@@ -67,8 +115,11 @@ const AddAnswerForm = (props) => {
       </Typography>
       <TextField id="email"
         label="email"
+        value={email}
+        onChange={handleEmailChange}
         placeholder="Example: jack@email.com"
         required={true}
+        type="email"
         inputProps={{ maxLength: 60 }}
       />
       <Typography>
@@ -78,25 +129,19 @@ const AddAnswerForm = (props) => {
       <Typography>
         Upload your photos
       </Typography>
-      <Input
+      {images.length < 5 ? <Input
         id="photos"
         type="file"
+        onChange={handleImageUpload}
         inputProps={{
-          // input props here
-          //accept
           multiple: true,
-
-        }} />
-      <Button variant="outlined">Upload Photos</Button>
+        }} /> : <div></div>}
+        {images !== undefined ? <React.Fragment>{imageItem}</React.Fragment> : <div></div>}
       <br />
       <br />
-      <Button variant="contained">Submit Question</Button>
-
+      <Button type="submit" variant="contained">Submit Question</Button>
     </form>
-
   )
 };
-
-
 
 export default AddAnswerForm;

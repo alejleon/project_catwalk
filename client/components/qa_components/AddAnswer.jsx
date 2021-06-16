@@ -1,6 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from '@material-ui/core';
+import Button from '@material-ui/core/Button';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from'@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
 import AddAnswerForm from './AddAnswerForm.jsx';
 
 const AddAnswer = (props) => {
@@ -13,7 +18,8 @@ const AddAnswer = (props) => {
           <DialogContentText>
             {props.currentProduct.name}: {props.question}
           </DialogContentText>
-          <AddAnswerForm open={props.open} handleAClose={props.handleAClose} />
+          <AddAnswerForm open={props.open} handleAClose={props.handleAClose}
+           getAnswers={props.getAnswers} questionId={props.questionId} />
         </DialogContent>
       </Dialog>
     </React.Fragment>
