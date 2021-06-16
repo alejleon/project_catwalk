@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import {Grid} from '@material-ui/core';
 import Rating from '@material-ui/lab/Rating'
-import StarRatings from 'react-star-ratings';
+
 
 const Ratings = ({ratingsAverage}) => {
 
