@@ -8,9 +8,22 @@ import axios from 'axios';
 import GITHUB_API_TOKEN from '../../config.js';
 
 
+const useStyles = makeStyles((theme) => ({
+  // css styles go here
+  button: {
+    fontSize: 14,
+    textTransform: 'capitalize',
+    padding: 0,
+    cursor: 'pointer',
+    textDecoration: 'underline'
+  },
+}));
+
 const Answer = (props) => {
   const [isHelpful, setIsHelpful] = useState(false);
   const [reported, setReported] = useState(false);
+
+  const classes = useStyles();
 
   //format Date function
   const handleHelpful = (e) => {
@@ -45,7 +58,6 @@ const Answer = (props) => {
 
   // Logic for Reporting an Answer
   const reportAnswer = (e) => {
-    // console.log('reported');
     const queryParam = props.answer.answer_id;
     const config = {
       method: 'put',
@@ -60,7 +72,6 @@ const Answer = (props) => {
       axios(config)
         .then((result) => {
           setReported(true);
-          // props.getAnswers(props.questionId)
         })
         .catch((err) => {
           console.error("Error reporting answer: ", error);
@@ -73,10 +84,15 @@ const Answer = (props) => {
       <Typography component="div">
         <Box fontWeight="fontWeightBold" display="inline" >A: </Box> {props.answer.body}
       </Typography>
-      <Typography variant="overline">By {props.answer.answerer_name}  | {props.answer.date.slice(0, 10)} | helpful  <span onClick={markAnswerHelpful}><u>yes</u> </span>
-        ({isHelpful ? props.answer.helpfulness + 1 : props.answer.helpfulness}) |
-        {reported ? <span> Reported</span> :
-          <span onClick={reportAnswer}> <u>report</u></span>}</Typography>
+      <Typography variant="overline">
+      <Box style={{textIndent: '25px'}}>
+        By {props.answer.answerer_name}  | {props.answer.date.slice(0, 10)}
+        | helpful  <Box className={classes.button} display="inline" onClick={markAnswerHelpful}>
+          yes</Box>  ({isHelpful ? props.answer.helpfulness + 1 : props.answer.helpfulness})
+        |  {reported ? Reported :
+          <Box className={classes.button} display="inline" onClick={reportAnswer}>Report</Box>}
+          </Box>
+          </Typography>
     </React.Fragment>
   )
 };

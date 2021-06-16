@@ -17,6 +17,10 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: '10%',
     marginTop: '15px',
     marginBottom: '15px'
+  },
+
+  btn: {
+    marginRight: '20px'
   }
 }));
 
@@ -135,14 +139,17 @@ const QAMain = (props) => {
         <Grid container item xs={12} style={{ background: 'white', height: '600px', overflowY: 'auto', overflowX: 'hidden' }}>
           <QuestionList
             displayedQs={filteredQ.length === 0 ? displayedQuestions : filteredQ} currentProduct={currentProduct} />
+        </Grid>
+        <Grid item xs={12}>
           <Grid item xs={10}>
             {displayedCount === countQs ?
-              <Button variant="outlined" color="primary" onClick={collapseQuestions}>COLLAPSE QUESTIONS</Button>
-              : <Button variant="outlined" color="primary" onClick={allQuestions}>MORE ANSWERED QUESTIONS</Button>}
-            <Button variant="outlined" color="secondary" onClick={handleQOpen}>ADD A QUESTION</Button>
+              <Button variant="contained" onClick={collapseQuestions}>COLLAPSE QUESTIONS</Button>
+              : <Button className={classes.btn} variant="contained" onClick={allQuestions}>MORE ANSWERED QUESTIONS</Button>}
+            <Button variant="contained" onClick={handleQOpen}>ADD A QUESTION</Button>
             <AddQuestion getAllQuestions={getAllQuestions} open={openQuestion} handleQClose={handleQClose} currentProduct={currentProduct} />
           </Grid>
-        </Grid>
+
+          </Grid>
       </Grid>
     </div >
   );
