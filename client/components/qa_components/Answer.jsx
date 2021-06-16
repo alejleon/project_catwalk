@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
 import axios from 'axios';
 import GITHUB_API_TOKEN from '../../config.js';
 
@@ -69,7 +70,9 @@ const Answer = (props) => {
 
   return (
     <React.Fragment>
-      <Typography>A: {props.answer.body} </Typography>
+      <Typography component="div">
+        <Box fontWeight="fontWeightBold" display="inline" >A: </Box> {props.answer.body}
+      </Typography>
       <Typography variant="overline">By {props.answer.answerer_name}  | {props.answer.date.slice(0, 10)} | helpful  <span onClick={markAnswerHelpful}><u>yes</u> </span>
         ({isHelpful ? props.answer.helpfulness + 1 : props.answer.helpfulness}) |
         {reported ? <span> Reported</span> :
