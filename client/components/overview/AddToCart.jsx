@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {Grid, Select, MenuItem, Button, InputLabel} from '@material-ui/core';
+import {Grid, Select, MenuItem, Button, InputLabel, FormControl} from '@material-ui/core';
 import ShoppingCartOutlinedIcon from '@material-ui/icons/ShoppingCartOutlined';
 import GITHUB_API_TOKEN from '../../config.js';
 import axios from 'axios';
@@ -66,54 +66,59 @@ useEffect(() => {
     return (
       <Grid container spacing={0} style={{background: 'white', height: "150%", margin: "10px", padding: "10px"}}>
         <Grid item xs={6}>
-        <InputLabel >
-            Size
-          </InputLabel>
-          <Select displayEmpty defaultValue="" onChange={handleSizeSelect} variant="outlined" style={{width: "200px"}}>
-            <MenuItem disabled value="">Select Size</MenuItem>
-            {skus.map((sku) => {
-              return(
-                sku[1].quantity && <MenuItem value={sku[0]} key={sku[0]}>{sku[1].size}</MenuItem>
-              )
-            })}
-          </Select>
+          <FormControl>
+            <InputLabel >
+              Select Size
+            </InputLabel>
+            <Select displayEmpty defaultValue="" onChange={handleSizeSelect} variant="outlined" style={{width: "200px"}}>
+              <MenuItem disabled >Select Size</MenuItem>
+                {skus.map((sku) => {
+                  return(
+                    sku[1].quantity && <MenuItem value={sku[0]} key={sku[0]}>{sku[1].size}</MenuItem>
+                  )
+                })}
+            </Select>
+          </FormControl>
         </Grid>
 
 
         <Grid item xs={4}>
-        <InputLabel >
-            Quantity
-          </InputLabel>
+          <FormControl>
+            <InputLabel >
+              Qty
+              </InputLabel>
 
 
           {currentSku !== 1
           ? <Select displayEmpty defaultValue="" onChange={handleQuantitySelection} variant="outlined" style={{width: "75px"}}>
-            <MenuItem value ="" disabled>0</MenuItem>
+            <MenuItem disabled>0</MenuItem>
             { skuQty
               ? skuQty.map((number) => {
                 return (
                 <MenuItem value={number} key={number}>{number}</MenuItem>
                 )
               })
-              :<></>
+              :<MenuItem>Select Size</MenuItem>
             }
             </Select>
           : <Select disabled displayEmpty defaultValue="" variant="outlined" style={{width: "75px"}}>
               <MenuItem>0</MenuItem>
             </Select>
-        }
-
+          }
+          </FormControl>
         </Grid>
 
 
 
         <Grid item xs={12}>
+          <FormControl>
           { currentSku !== 1 && quantitySelected
             ?  <Button variant="outlined" endIcon={<ShoppingCartOutlinedIcon />} size="large" onClick={() => {
               handleAddToCart(currentSku)
             }}>Add To Cart</Button>
             : <Button disabled variant="outlined" endIcon={<ShoppingCartOutlinedIcon />} size="large">Add To Cart</Button>
           }
+          </FormControl>
           </Grid>
       </Grid>
     )

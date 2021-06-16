@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import {FacebookShareButton, PinterestShareButton,TwitterShareButton} from 'react-share';
 import GITHUB_API_TOKEN from '../../config.js';
 import StyleSelector from './StyleSelector.jsx';
 import Rating from './Rating.jsx';
-import getProducts from './utils.jsx';
 import { Grid, Typography } from '@material-ui/core'
 
 const ProductOverview = ({currentProduct, currentStyles, currentStyle, ratingsAverage, handleStyleClick}) => {
@@ -33,8 +33,8 @@ const ProductOverview = ({currentProduct, currentStyles, currentStyle, ratingsAv
         </Grid>
         {currentStyle.sale_price
           ?  <Grid item xs={4}>
-              <Typography variant="h5" style={{color: 'red'}}>${currentStyle.sale_price}</Typography>
               <Typography variant="h5" style={{textDecorationLine: "line-through"}}>${currentStyle.original_price}</Typography>
+              <Typography variant="h5" style={{color: 'red'}}>${currentStyle.sale_price}</Typography>
              </Grid>
 
           :  <Grid item xs={4}>
