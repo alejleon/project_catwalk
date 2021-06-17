@@ -94,7 +94,7 @@ const RatingsReviews = (props) => {
   const classes = useStyles();
 
   return (
-    <Grid className={classes.grid} container direction="row" spacing={1}>
+    <Grid id="reviews"className={classes.grid} container direction="row" spacing={1}>
       <Grid container item xs={12} md={3} lg={3} spacing={1}>
         {metaData.ratings ? <Sidebar metaData={metaData} /> : null}
       </Grid>

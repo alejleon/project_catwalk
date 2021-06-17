@@ -7,7 +7,7 @@ import Rating from './Rating.jsx';
 import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography'
 
-const ProductOverview = ({currentProduct, currentStyles, currentStyle, ratingsAverage, handleStyleClick}) => {
+const ProductOverview = ({currentProduct, currentStyles, currentStyle, ratingsAverage, ratingsTotal, handleStyleClick}) => {
 
 
 // console.log(currentStyle)
@@ -23,7 +23,7 @@ const ProductOverview = ({currentProduct, currentStyles, currentStyle, ratingsAv
         </Grid>
 
         <Grid item xs={6}>
-          <Rating ratingsAverage={ratingsAverage}/>
+          <Rating ratingsAverage={ratingsAverage} ratingsTotal={ratingsTotal}/>
         </Grid>
 
         <Grid item xs={12}>

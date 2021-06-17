@@ -4,7 +4,7 @@ import Grid from '@material-ui/core/Grid';
 import Rating from '@material-ui/lab/Rating'
 
 
-const Ratings = ({ratingsAverage}) => {
+const Ratings = ({ratingsAverage, ratingsTotal}) => {
 
 
   return (
@@ -16,23 +16,11 @@ const Ratings = ({ratingsAverage}) => {
           precision={0.25}
           disabled={true}
           name="unique-rating"
-
-
         />
 
-
-        {/* <StarRatings
-          numberOfStars={5}
-          rating={ratingsAverage}
-          starRatedColor="rgb(171,22,37)"
-          starHoverColor="rgb(230, 67, 47)"
-          starEmptyColor="rgb(240,240,240)"
-          starDimension="20px"
-          starSpacing="2px"
-        /> */}
       </Grid>
       <Grid item xs={4}>
-        <a >See all {} Reviews</a>
+        <a href="#reviews" >See all {ratingsTotal} Reviews</a>
       </Grid>
 
     </Grid>

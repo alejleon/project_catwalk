@@ -8,7 +8,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import Grid from '@material-ui/core/Grid';
 
 
-const Overview = ({currentProduct, ratingsAverage}) => {
+const Overview = ({currentProduct, ratingsAverage, ratingsTotal}) => {
 
   const useStyles = makeStyles((theme) => ({
     // css styles go here
@@ -73,6 +73,7 @@ const Overview = ({currentProduct, ratingsAverage}) => {
             currentStyles={currentStyles}
             currentStyle={currentStyle}
             ratingsAverage={ratingsAverage}
+            ratingsTotal={ratingsTotal}
             handleStyleClick={handleStyleClick}
           />
         </Grid>
