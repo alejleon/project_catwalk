@@ -1,46 +1,40 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import GITHUB_API_TOKEN from '../../config.js';
-import { Grid } from '@material-ui/core';
-
-const Ratings = () => {
-
-  const [rating, setRating] = useState(0);
-
-  const url = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-atx/reviews';
-  const headers = {
-    headers: {
-      Authorization: GITHUB_API_TOKEN
-    }
-  };
-  const params = {
-    product_id: 27189
-  }
-
-  //create a function that gets reviews ratings and gets the average of those
-  var getRating = (id) => {
-
-    axios.get(`${url}?product_id=${params.product_id}`, headers)
-      .then((response => {
-        // console.log(response)
-      }))
-      .catch((err) => {
-        console.error(err)
-      })
-  }
-
-  useEffect(() => {
-    getRating()
-  })
+import Grid from '@material-ui/core/Grid';
+import Rating from '@material-ui/lab/Rating'
 
 
-
-
+const Ratings = ({ratingsAverage}) => {
 
 
   return (
-    <Grid container style={{ background: 'red' }}>
-      <Grid item xs={12} >Hello From Ratings</Grid>
+    <Grid container spacing={5} style={{background: 'lavender'}}>
+      <Grid item xs={6}>
+
+        <Rating
+          value={ratingsAverage}
+          precision={0.25}
+          disabled={true}
+          name="unique-rating"
+
+
+        />
+
+
+        {/* <StarRatings
+          numberOfStars={5}
+          rating={ratingsAverage}
+          starRatedColor="rgb(171,22,37)"
+          starHoverColor="rgb(230, 67, 47)"
+          starEmptyColor="rgb(240,240,240)"
+          starDimension="20px"
+          starSpacing="2px"
+        /> */}
+      </Grid>
+      <Grid item xs={4}>
+        <a >See Reviews</a>
+      </Grid>
+
     </Grid>
   )
 

@@ -9,6 +9,7 @@ import axios from 'axios';
 import GITHUB_API_TOKEN from '../../config.js';
 
 const Question = (props) => {
+
   const [allAnswers, setAllAnswers] = useState([]); // all answers for ONE question
   const [allAnswersCount, setAllAnswersCount] = useState([]);
   const [displayedAnswersCount, setDisplayedAnswersCount] = useState(2);
@@ -16,6 +17,7 @@ const Question = (props) => {
   const [isHelpful, setIsHelpful] = useState(false);
   const [reportedQ, setReportedQ] = useState(false);
   const questionId = props.question.question_id;
+
 
 
   // Get all Answers to a particular question base on question_id
