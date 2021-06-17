@@ -71,7 +71,11 @@ const App = () => {
     <div>
       <Header />
       <Overview currentProduct={currentProduct} ratingsAverage={ratingsAverage}/>
+<<<<<<< HEAD
       <QAMain product={currentProduct.id}/>
+=======
+      <QAMain />
+>>>>>>> 4986dd31274839f98639f9a7772d223139cf3c28
       <RatingsReviews product_id={currentProduct.id} />
     </div>
   );
