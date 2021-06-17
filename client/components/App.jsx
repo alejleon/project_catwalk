@@ -70,7 +70,6 @@ const App = () => {
     <div>
       <p>Hello From App!!!</p>
       <Overview currentProduct={currentProduct} ratingsAverage={ratingsAverage}/>
-
       <QAMain />
       <RatingsReviews product_id={currentProduct.id} />
     </div>

@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import ReviewList from './ReviewList.jsx';
 import Sidebar from './Sidebar.jsx';
+import NewReviewForm from './NewReviewForm.jsx';
 import axios from 'axios';
 import GITHUB_API_TOKEN from '../../config.js';
 import { makeStyles } from '@material-ui/core/styles';
@@ -34,6 +35,10 @@ const RatingsReviews = (props) => {
     event.preventDefault();
     setAddCount(addCount + 1);
   };
+
+  const newReview = (event) => {
+    console.log('NEW REVIEW');
+  }
 
   //Sort order change button click event handler. Resets the page number to 1 and sets the sort
   //order to the selected option.
@@ -76,10 +81,22 @@ const RatingsReviews = (props) => {
     setOpen(true);
   };
 
+  const valueText = (value) => {
+    if (value === 1) {
+      return 'Too Tight';
+    } else if (value === 3) {
+      return 'Perfect Fit';
+    } else if (value === 5) {
+      return 'Too Loose';
+    } else {
+      return value;
+    }
+  };
+
+
   const useStyles = makeStyles((theme) => ({
     button: {
-      display: 'block',
-      marginTop: theme.spacing(2),
+      margin: 5
     },
     formControl: {
       margin: theme.spacing(1),
@@ -87,7 +104,16 @@ const RatingsReviews = (props) => {
     },
     grid: {
       width: '80%',
-      margin: '10%'
+      margin: '10%',
+      backgroundColor: 'azure',
+    },
+    review: {
+      width: '100%',
+      margin: 10,
+    },
+    reviewList: {
+      maxHeight: '80%',
+      'overflow-y': 'scroll',
     }
   }));
 
@@ -98,7 +124,7 @@ const RatingsReviews = (props) => {
       <Grid container item xs={12} md={3} lg={3} spacing={1}>
         {metaData.ratings ? <Sidebar metaData={metaData} /> : null}
       </Grid>
-      <Grid container item xs={12} md={9} lg={9} spacing={1} direction="column">
+      <Grid container item xs={12} md={7} lg={7} spacing={1} direction="column">
         <Grid container item direction="row" alignItems="center" spacing={1}>
           <Typography>{reviewList.length} reviews, sorted by</Typography>
           <FormControl className={classes.formControl}>
@@ -117,15 +143,21 @@ const RatingsReviews = (props) => {
             </Select>
           </FormControl>
         </Grid>
+        <ReviewList reviews={reviewList.slice(0, addCount * 2)} classes={classes} />
+        <Grid container item direction="row">
+          {reviewList.length > addCount * 2 ? <Button
+            className={classes.button}
+            variant="contained"
+            onClick={addReviews}
+            id="add-reviews"
+            style={{ maxWidth: '150px', maxHeight: '50px', minWidth: '150px', minHeight: '50px' }}
+          >MORE REVIEWS
+          </Button> : null}
+          <NewReviewForm classes={classes} metaData={metaData} product_id={props.product_id} />
+        </Grid>
+      </Grid>
+      <Grid container item xs={12} md={2} lg={2} spacing={1} direction="column">
 
-        <ReviewList reviews={reviewList.slice(0, addCount * 2)} />
-        {reviewList.length > addCount * 2 ? <Button
-          variant="contained"
-          onClick={addReviews}
-          id="add-reviews"
-          style={{ maxWidth: '150px', maxHeight: '50px', minWidth: '150px', minHeight: '50px' }}
-        >MORE REVIEWS
-        </Button> : null}
       </Grid>
     </Grid >
   );
