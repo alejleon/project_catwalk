@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import AddToCart from './AddToCart.jsx';
-import {Grid} from '@material-ui/core/Grid';
+import Grid from '@material-ui/core/Grid';
 
 const StyleSelector = ({currentStyles, currentStyle, handleStyleClick}) => {
 
