@@ -8,7 +8,7 @@ const Ratings = ({ratingsAverage}) => {
 
 
   return (
-    <Grid container spacing={5} style={{background: 'lavender'}}>
+    <Grid container spacing={2} style={{background: 'lavender'}}>
       <Grid item xs={6}>
 
         <Rating
@@ -32,7 +32,7 @@ const Ratings = ({ratingsAverage}) => {
         /> */}
       </Grid>
       <Grid item xs={4}>
-        <a >See Reviews</a>
+        <a >See all {} Reviews</a>
       </Grid>
 
     </Grid>

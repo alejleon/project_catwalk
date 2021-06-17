@@ -13,7 +13,7 @@ const ProductOverview = ({currentProduct, currentStyles, currentStyle, ratingsAv
 // console.log(currentStyle)
 
     return (
-      <Grid container spacing={3} style={{ background: 'lavender' }}>
+      <Grid container spacing={5} style={{ background: 'lavender' }}>
         <Grid item xs={12}>
           <Typography variant="h4">{currentProduct.name}</Typography>
         </Grid>

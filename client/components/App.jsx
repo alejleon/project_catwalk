@@ -24,8 +24,9 @@ const App = () => {
     }
   )
   const [ratingsAverage, setRatingsAverage] = useState(0)
+  const [reviewsTotal, setReviewsTotal] = useState(0)
 
-
+console.log(reviewsTotal)
   var getArrayAverage = (array) => {
     let total = 0;
     for (let i = 0; i < array.length; i++) {
@@ -47,6 +48,7 @@ const App = () => {
         for (let i = 0; i < response.data.results.length; i++) {
           ratingsArr.push(response.data.results[i].rating)
         }
+        setReviewsTotal(ratingsArr.length)
         return ratingsArr;
       })
       .then((ratings) => {
