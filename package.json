@@ -4,7 +4,8 @@
   "description": "Client for e-commerce clothing store",
   "main": "webpack.config.js",
   "scripts": {
-    "react-dev": "webpack -d --watch"
+    "react-dev": "webpack -d --watch",
+    "react-p": "webpack -p --watch"
   },
   "repository": {
     "type": "git",
@@ -36,6 +37,7 @@
     "@babel/preset-env": "^7.13.12",
     "@babel/preset-react": "^7.13.13",
     "babel-loader": "^8.2.2",
+    "jest": "^27.0.4",
     "babel-plugin-import": "^1.13.3",
     "path": "^0.12.7",
     "webpack": "^4.46.0",

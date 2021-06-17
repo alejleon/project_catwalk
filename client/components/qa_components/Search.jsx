@@ -5,7 +5,8 @@ const Search = (props) => {
 
   return (
     <SearchBar value={props.searchInput} onChange={props.handleSearchOnChange}
-    onCancelSearch={props.handleSearchClear} cancelOnEscape={true} />
+    onCancelSearch={props.handleSearchClear} cancelOnEscape={true}
+    placeholder="HAVE A QUESTION? SEARCH FOR ANSWERS... " />
   );
 }
 

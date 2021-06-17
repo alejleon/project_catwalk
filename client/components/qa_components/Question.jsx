@@ -3,23 +3,45 @@ import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
 import AnswerList from './AnswerList.jsx';
 import AddAnswer from './AddAnswer.jsx';
 import axios from 'axios';
 import GITHUB_API_TOKEN from '../../config.js';
 
+
+const useStyles = makeStyles((theme) => ({
+  // css styles go here
+  button: {
+    fontSize: 14,
+    textTransform: 'capitalize',
+    padding: 0,
+    cursor: 'pointer',
+    textDecoration: 'underline'
+  },
+
+  test: {
+    cursor: 'pointer',
+    paddingBottom: 0
+  }
+}));
+
 const Question = (props) => {
 
-  const [allAnswers, setAllAnswers] = useState([]); // all answers for ONE question
+  const [allAnswers, setAllAnswers] = useState([]);
   const [allAnswersCount, setAllAnswersCount] = useState([]);
   const [displayedAnswersCount, setDisplayedAnswersCount] = useState(2);
-  const [openAnswer, setOpenAnswer] = useState(false); // set Answer dialog to false
+  const [openAnswer, setOpenAnswer] = useState(false);
   const [isHelpful, setIsHelpful] = useState(false);
   const [reportedQ, setReportedQ] = useState(false);
+  const [quesId, setQuesId] = useState(props.question.question_id)
   const questionId = props.question.question_id;
 
+  // use styles
+  const classes = useStyles();
 
 
+  //*****************START ANSWER LOGIC*************************************/
   // Get all Answers to a particular question base on question_id
   const getAnswers = (questionId) => {
     const config = {
@@ -52,7 +74,19 @@ const Question = (props) => {
   const collapseAnswers = (e) => {
     setDisplayedAnswersCount(2);
   }
+  // Logic to sort answers (seller comes first)
+  const sortAnswers = (answers) => {
+    const seller = answers.filter(answer => answer.answerer_name.toLowerCase() === 'seller');
+    const rest = answers.filter(answer => answer.answerer_name.toLowerCase() !== 'seller');
+    const sortedAnswers = seller.concat(rest);
+    return sortedAnswers;
+  };
+  //*****************END ANSWER LOGIC*************************************/
 
+
+
+
+  //*****************START ANSWER DIALOG LOGIC****************************/
   // Logic for opening Add Answer Dialog
   const handleAOpen = () => {
     setOpenAnswer(true);
@@ -61,7 +95,11 @@ const Question = (props) => {
   const handleAClose = () => {
     setOpenAnswer(false);
   }
+  //*****************END ANSWER DIALOG LOGIC*****************************/
 
+
+
+  //*****************START MARK Q AS HELPFUL ****************************/
   // Logic for marking a question as helpful
   const markHelpful = (e) => {
     const queryParam = questionId;
@@ -85,7 +123,9 @@ const Question = (props) => {
         })
     }
   };
+  //*****************END MARK Q AS HELPFUL ****************************/
 
+  //*****************START REPORT Q ****************************/
   // Logic for Reporting a Question
   const reportQuestion = (e) => {
     console.log('reported');
@@ -110,65 +150,74 @@ const Question = (props) => {
         })
     }
   };
+  //*****************END REPORT Q ****************************/
 
-  // sort answers
-  const sortAnswers = (answers) => {
-    const seller = answers.filter(answer => answer.answerer_name.toLowerCase() === 'seller');
-    const rest = answers.filter(answer => answer.answerer_name.toLowerCase() !== 'seller');
-    const sortedAnswers = seller.concat(rest);
-    return sortedAnswers;
-  };
 
+  //*****************START useEffect LOGIC ****************************/
   // Gets all answers for a product on page load
   useEffect(() => {
-    getAnswers(questionId);
+    getAnswers(props.question.question_id);
   }, []);
+
+  // UPDATE STATE BASED ON CHANGING PROPS
+  useEffect(() => {
+    getAnswers(props.question.question_id);
+  }, [props.question.question_id]);
 
   useEffect(() => {
     sortAnswers(allAnswers);
   }, [allAnswers]);
+  //*****************END useEffect LOGIC ****************************/
+
 
   return (
     <React.Fragment>
-      <Grid container={true} spacing={2}>
-        <Grid item xs={9} key={props.question_id} >
-          <Typography variant="body1">
-            Q: {props.question.question_body}
+      <Grid container={true} spacing={1}>
+        <Grid item xs={10} key={props.question_id} >
+          <Typography variant="h6" >
+            <Box className={classes.test} fontWeight="fontWeightBold" display="inline">
+              Q: {props.question.question_body}
+            </Box>
+            <Box className={classes.button} onClick={reportQuestion} style={{textIndent: '20px'}}>
+              {reportedQ ? 'Reported' : 'Report Question'}
+          </Box>
           </Typography>
         </Grid>
-        <Grid item xs={3}>
-          Helpful?
-          <Button style={{ maxWidth: '10x', maxHeight: '15px' }} onClick={markHelpful}>
-            Yes ({isHelpful ? props.question.question_helpfulness + 1 : props.question.question_helpfulness})
-          </Button>
+        <Grid item xs={1}>
+          <Typography>
+            <Box fontSize={14} >
+              Helpful?    <span className={classes.button} onClick={markHelpful}>
+                Yes</span>  ({isHelpful ? props.question.question_helpfulness + 1 : props.question.question_helpfulness})   |
+            </Box>
+          </Typography>
+        </Grid>
+        <Grid item xs={1}>
+          <Typography>
+            <Box className={classes.button} onClick={handleAOpen}>Add Answer</Box>
+          </Typography>
           <AddAnswer open={openAnswer} handleAClose={handleAClose} currentProduct={props.currentProduct}
             question={props.question.question_body} getAnswers={getAnswers} questionId={questionId} />
         </Grid>
-        <Grid item xs={9}>
-          <Button style={{ maxWidth: '10x', maxHeight: '15px' }} onClick={reportQuestion}>
-            {reportedQ ? 'Reported' : 'Report Question'}
-            {/* Report Question */}
-          </Button>
-        </Grid>
-        <Grid item xs={3}>
-          <Button style={{ maxWidth: '10x', maxHeight: '15px' }} onClick={handleAOpen}>
-            Add Answer
-          </Button>
-        </Grid>
+
+        <Grid item xs={8}></Grid>
         <Grid item xs={9}>
           {allAnswers.length > 0 ? <AnswerList displayedAnswers={allAnswers.slice(0, displayedAnswersCount)}
             getAnswers={getAnswers} questionId={questionId} />
-            : "There are no answers for this question"}
+            : <Button onClick={handleAOpen}>
+              <Typography variant="caption" style={{textIndent: '15px'}}>Add an answer</Typography>
+            </Button>}
         </Grid>
         <Grid item xs={9}>
-          {displayedAnswersCount >= allAnswersCount ? ""
-            : <Button onClick={loadMoreAnswers}>
-              Load More Answers
-            </Button>}
-          {displayedAnswersCount < 3 ? ""
-            : <Button onClick={collapseAnswers}>
-              Collapse Answers
-            </Button>}
+          <Box fontWeight="fontWeightBold">
+            {displayedAnswersCount >= allAnswersCount ? ""
+              : <Button onClick={loadMoreAnswers}>
+                <Typography variant="caption" style={{textIndent: '15px'}}>Load More Answers</Typography>
+              </Button>}
+            {displayedAnswersCount < 3 ? ""
+              : <Button onClick={collapseAnswers}>
+                <Typography variant="caption" style={{textIndent: '15px'}}>Collapse Answers</Typography>
+              </Button>}
+          </Box>
         </Grid>
         <Grid item xs={9}></Grid>
       </Grid>
@@ -177,7 +226,3 @@ const Question = (props) => {
 };
 
 export default Question;
-
-{/* <Button style={{ maxWidth: '10x', maxHeight: '15px' }} onClick={handleAOpen}>
-Report
-</Button> */}
