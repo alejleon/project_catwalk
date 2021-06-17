@@ -1,5 +1,10 @@
 import React, {useState, useEffect} from 'react';
-import {Grid, Select, MenuItem, Button, InputLabel, FormControl} from '@material-ui/core';
+import Grid from '@material-ui/core/Grid';
+import Select from '@material-ui/core/Select'
+import MenuItem from '@material-ui/core/MenuItem'
+import Button from '@material-ui/core/Button'
+import InputLabel from '@material-ui/core/InputLabel'
+import FormControl from '@material-ui/core/FormControl'
 import ShoppingCartOutlinedIcon from '@material-ui/icons/ShoppingCartOutlined';
 import GITHUB_API_TOKEN from '../../config.js';
 import axios from 'axios';

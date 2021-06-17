@@ -3,9 +3,9 @@ import axios from 'axios';
 import API_KEY from '../../config.js'
 import ImageGallery from './ImageGallery.jsx';
 import ProductOverview from './ProductOverview.jsx';
-import {makeStyles} from '@material-ui/core/styles'
+import makeStyles from '@material-ui/core/styles/makeStyles'
 import CssBaseline from '@material-ui/core/CssBaseline';
-import {Grid} from '@material-ui/core';
+import Grid from '@material-ui/core/Grid';
 
 
 const Overview = ({currentProduct, ratingsAverage}) => {

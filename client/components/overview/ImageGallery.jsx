@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import ImageNav from './ImageNav.jsx'
-import {Grid} from '@material-ui/core';
+import Grid from '@material-ui/core/Grid';
 import ArrowForward from '@material-ui/icons/ArrowForwardIos';
 import ArrowBack from '@material-ui/icons/ArrowBackIos';
 

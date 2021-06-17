@@ -4,7 +4,8 @@ import {FacebookShareButton, PinterestShareButton,TwitterShareButton} from 'reac
 import GITHUB_API_TOKEN from '../../config.js';
 import StyleSelector from './StyleSelector.jsx';
 import Rating from './Rating.jsx';
-import { Grid, Typography } from '@material-ui/core'
+import Grid from '@material-ui/core/Grid'
+import Typography from '@material-ui/core/Typography'
 
 const ProductOverview = ({currentProduct, currentStyles, currentStyle, ratingsAverage, handleStyleClick}) => {
 
