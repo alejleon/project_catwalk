@@ -87,7 +87,6 @@ const AddAnswerForm = (props) => {
   }
 
   return (
-
     <form className="answerForm" onSubmit={submitAnswer}>
       <TextField id="answer"
         label="answer"
