@@ -152,7 +152,7 @@ const RatingsReviews = (props) => {
             style={{ maxWidth: '150px', maxHeight: '50px', minWidth: '150px', minHeight: '50px' }}
           >MORE REVIEWS
           </Button> : null}
-          <NewReviewForm classes={classes} metaData={metaData} />
+          <NewReviewForm classes={classes} metaData={metaData} product_id={props.product_id} />
         </Grid>
       </Grid>
       <Grid container item xs={12} md={2} lg={2} spacing={1} direction="column">

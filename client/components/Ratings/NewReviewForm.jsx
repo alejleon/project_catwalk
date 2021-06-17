@@ -75,13 +75,6 @@ let NewReviewForm = (props) => {
     );
   });
 
-  const DialogActions = withStyles((theme) => ({
-    root: {
-      margin: 0,
-      padding: theme.spacing(1),
-    },
-  }))(MuiDialogActions);
-
   const [open, setOpen] = useState(false);
 
   const handleClickOpen = () => {
@@ -91,10 +84,6 @@ let NewReviewForm = (props) => {
     setOpen(false);
   };
 
-  const handleFormSubmission = () => {
-    console.log('Form submitted');
-    handleClose();
-  };
   const classes = makeStyles(styles)();
 
   return (
@@ -107,17 +96,12 @@ let NewReviewForm = (props) => {
         id="add-reviews"
         style={{ maxWidth: '150px', maxHeight: '50px', minWidth: '150px', minHeight: '50px' }}
       >ADD REVIEW
-          </Button>
+      </Button>
       <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" maxWidth="md" classes={{ paper: classes.paper }} open={open}>
         <DialogTitle id="customized-dialog-title" onClose={handleClose}>
           ADD REVIEW
         </DialogTitle>
-        <FormBody classes={props.classes} metaData={props.metaData} />
-        <DialogActions>
-          <Button onClick={handleFormSubmission} color="primary">
-            SUBMIT REVIEW
-          </Button>
-        </DialogActions>
+        <FormBody classes={props.classes} product_id={props.product_id} metaData={props.metaData} />
       </Dialog >
     </div >
   );

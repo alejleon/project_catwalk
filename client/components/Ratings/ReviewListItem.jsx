@@ -11,6 +11,7 @@ import CheckIcon from '@material-ui/icons/Check';
 import Paper from "@material-ui/core/Paper";
 import Card from '@material-ui/core/Card';
 import CardMedia from '@material-ui/core/CardMedia';
+import Divider from '@material-ui/core/Divider';
 
 const styles = (theme) => ({
   root: {
@@ -61,7 +62,7 @@ const styles = (theme) => ({
   review: {
     padding: 8,
     margin: 10,
-    backgroundColor: 'azure',
+    backgroundColor: 'beige',
     // boxShadow: '10px 10px 5px black'
   }
 });
@@ -69,7 +70,7 @@ const styles = (theme) => ({
 let ReviewListItem = (props) => {
 
   const [helpful, setHelpful] = useState(false);
-
+  const [reported, setReported] = useState(false);
   const [showMoreBody, setShowMoreBody] = useState(false);
 
   const date = useRef(new moment(props.data.date).format("l"));
@@ -94,6 +95,20 @@ let ReviewListItem = (props) => {
         })
     }
   };
+
+  const reportButton = (event) => {
+    event.preventDefault();
+    if (!reported) {
+      axios.put(`${url}${props.data.review_id}/report`, null, headers)
+        .then(response => {
+          setReport(true);
+        })
+        .catch((err) => {
+          console.log('Error report review: ', err);
+        })
+    }
+
+  }
 
   const handleImageClick = (event) => {
 
@@ -154,6 +169,8 @@ let ReviewListItem = (props) => {
         <Grid container item direction="row" alignItems="center">
           <Typography>Helpful? ({helpful ? props.data.helpfulness + 1 : props.data.helpfulness})</Typography>
           <Button onClick={helpfulButton}>Helpful</Button>
+          <Divider orientation="vertical" flexItem />
+          <Button onClick={reportButton}>Report</Button>
         </Grid>
       </Grid >
     </Paper>

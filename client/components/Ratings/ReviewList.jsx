@@ -13,7 +13,7 @@ let ReviewList = (props) => {
   });
 
   return (
-    <div style={{ maxHeight: '60vh', 'overflow-y': 'scroll' }}>
+    <div style={{ maxHeight: '60vh', overflowY: 'scroll' }}>
       {reviews}
     </div>
   );
