@@ -2,3 +2,50 @@ body {
   font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
   background-color: azure;
 }
+
+.image {
+  width: 100%;
+  border-radius: 10px;
+  margin: auto;
+  display: block;
+  text-align: center;
+}
+
+#slider {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.slide {
+  opacity: 0;
+  transition-duration: 1s ease;
+  align-content: center;
+}
+
+.slide.active {
+  opacity: 1;
+  transition-duration: 1s;
+  transform: scale(1)
+}
+
+#forwardButton {
+  position: absolute;
+  top: 50%;
+  right: 32px;
+  font-size: 3rem;
+  z-index: 10;
+  cursor: pointer;
+  user-select: none;
+}
+
+#backButton {
+  position: absolute;
+  top: 50%;
+  left: 32px;
+  font-size: 3rem;
+  z-index: 10;
+  cursor: pointer;
+  user-select: none;
+}

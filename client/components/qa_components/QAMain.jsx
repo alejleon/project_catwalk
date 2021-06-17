@@ -20,7 +20,6 @@ const useStyles = makeStyles((theme) => ({
 const QAMain = (props) => {
   const [currentProduct, setCurrentProduct] = useState({ name: 'Camo Joggers' })
   const [productId, setProductId] = useState(27189); //props.product_id
-  const [questionId, setQuestionId] = useState([]); // is this redundant? Check
   const [productQs, setProductQs] = useState([]);    // list of all questions for a product_id
   const [countQs, setCountQs] = useState(0);
   const [displayedCount, setDisplayedCount] = useState(4);
@@ -64,11 +63,12 @@ const QAMain = (props) => {
   // On "More answered questions" this expands the list to show all questions
   const allQuestions = (e) => {
     setDisplayedCount(countQs);
+    setDisplayedQuestions(productQs);
   }
 
   // Collapse displayed Questions to 1
   const collapseQuestions = (e) => {
-    setDisplayedCount(1);
+    setDisplayedQuestions(productQs.slice(0, 4));
   }
 
   // Logic for opening Add Question Dialog
@@ -82,14 +82,18 @@ const QAMain = (props) => {
 
   const handleSearchOnChange = (newValue) => {
     setSearchInput(newValue);
-    if(newValue.length < 2) {
+    if (newValue.length < 2) {
       setSearchInput("");
     }
   }
 
-  useEffect(()=> {
+  const handleSearchClear = () => {
+    setSearchInput("");
+  }
+
+  useEffect(() => {
     console.log('searchInput', searchInput);
-    if(searchInput.length > 2) {
+    if (searchInput.length > 2) {
       setFilteredQ(productQs.filter((question) => {
         return question.question_body.toLowerCase().includes(searchInput.toLowerCase())
       }));
@@ -99,10 +103,9 @@ const QAMain = (props) => {
     }
   }, [searchInput]);
 
-  useEffect(()=> {
+  useEffect(() => {
     setFinalQuestions(filteredQ.length === 0 ? displayedQuestions : filteredQ);
   }, [filteredQ])
-
 
   // Get all Questions for a product on page load
   useEffect(() => {
@@ -110,21 +113,22 @@ const QAMain = (props) => {
   }, []);
 
   useEffect(() => {
-  setDisplayedQuestions(productQs.slice(0, displayedCount));
+    setDisplayedQuestions(productQs.slice(0, displayedCount));
   }, [productQs]);
 
 
   return (
     <div>
-      <Grid container spacing={4} className={classes.grid} style={{ background: 'white' }}>
+      <Grid container spacing={4} className={classes.grid} style={{ background: 'white', height: '600px', overflowY: 'auto', overflowX: 'hidden'}}>
         <Grid item xs={12}>
           <Typography>Questions & Answers</Typography>
         </Grid>
-        <Search searchInput={searchInput} handleSearchOnChange={handleSearchOnChange}/>
+        <Grid item xs={12}>
+          <Search searchInput={searchInput} handleSearchOnChange={handleSearchOnChange}
+            handleSearchClear={handleSearchClear} style={{ margin: '0 auto', width: 300 }} />
+        </Grid>
         <QuestionList
           displayedQs={filteredQ.length === 0 ? displayedQuestions : filteredQ} currentProduct={currentProduct} />
-
-          {/* {productQs.slice(0, displayedCount)} */}
         <Grid item xs={10}>
           {displayedCount === countQs ?
             <Button variant="outlined" color="primary" onClick={collapseQuestions}>COLLAPSE QUESTIONS</Button>
@@ -134,8 +138,6 @@ const QAMain = (props) => {
         </Grid>
       </Grid>
     </div >
-
-
   );
 };
 
