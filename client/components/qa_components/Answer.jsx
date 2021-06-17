@@ -5,6 +5,7 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import axios from 'axios';
+import moment from 'moment';
 import GITHUB_API_TOKEN from '../../config.js';
 
 
@@ -24,6 +25,7 @@ const Answer = (props) => {
   const [reported, setReported] = useState(false);
 
   const classes = useStyles();
+  const date = new moment(props.answer.date).format("l");
 
   //format Date function
   const handleHelpful = (e) => {
@@ -79,22 +81,35 @@ const Answer = (props) => {
     }
   };
 
+  const photoItem = props.answer.photos.map((photo, index) => {
+    console.log(photo);
+    return (
+      <img src={photo.url} width="250px" height="auto" style={{margin: '5px'}} />
+      );
+  });
+
+  console.log('photoItem', props.answer.photos)
+
   return (
     <React.Fragment>
       <Typography component="div">
         <Box fontWeight="fontWeightBold" display="inline" >A: </Box> {props.answer.body}
       </Typography>
+      <Box>
+        {photoItem}
+
+      </Box>
       <Typography variant="overline">
-      <Box style={{textIndent: '25px'}}>
-        By {props.answer.answerer_name}  | {props.answer.date.slice(0, 10)}
-        | helpful  <Box className={classes.button} display="inline" onClick={markAnswerHelpful}>
-          yes</Box>  ({isHelpful ? props.answer.helpfulness + 1 : props.answer.helpfulness})
-        |  {reported ? Reported :
-          <Box className={classes.button} display="inline" onClick={reportAnswer}>Report</Box>}
-          </Box>
-          </Typography>
+        <Box style={{ textIndent: '25px' }}>
+          By {props.answer.answerer_name}  |  {date}  |  helpful  <Box className={classes.button} display="inline" onClick={markAnswerHelpful}>
+            yes</Box>  ({isHelpful ? props.answer.helpfulness + 1 : props.answer.helpfulness})
+          |  {reported ? Reported :
+            <Box className={classes.button} display="inline" onClick={reportAnswer}>Report</Box>}
+        </Box>
+      </Typography>
     </React.Fragment>
   )
 };
 
 export default Answer;
+// {props.answer.date.slice(0, 10)}

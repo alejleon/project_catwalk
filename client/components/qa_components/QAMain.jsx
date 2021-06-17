@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
 
 const QAMain = (props) => {
   const [currentProduct, setCurrentProduct] = useState({ name: 'Camo Joggers' })
-  const [productId, setProductId] = useState(27189); //props.product_id
+  const [productId, setProductId] = useState(27288); //props.product_id
   const [productQs, setProductQs] = useState([]);    // list of all questions for a product_id
   const [countQs, setCountQs] = useState(0);
   const [displayedCount, setDisplayedCount] = useState(4);
@@ -128,14 +128,14 @@ const QAMain = (props) => {
   return (
     <div>
       <Grid container spacing={1} className={classes.grid}>
-          <Grid item xs={12}>
-            <Typography variant="h5">Questions & Answers</Typography>
-          </Grid>
-          <Grid item xs={12}>
-            <Search searchInput={searchInput} handleSearchOnChange={handleSearchOnChange}
-              handleSearchClear={handleSearchClear} />
-          </Grid>
-          <Grid item xs={12}></Grid>
+        <Grid item xs={12}>
+          <Typography variant="h5">Questions & Answers</Typography>
+        </Grid>
+        <Grid item xs={12}>
+          <Search searchInput={searchInput} handleSearchOnChange={handleSearchOnChange}
+            handleSearchClear={handleSearchClear} />
+        </Grid>
+        <Grid item xs={12}></Grid>
         <Grid container item xs={12} style={{ background: 'white', height: '600px', overflowY: 'auto', overflowX: 'hidden' }}>
           <QuestionList
             displayedQs={filteredQ.length === 0 ? displayedQuestions : filteredQ} currentProduct={currentProduct} />
@@ -143,13 +143,22 @@ const QAMain = (props) => {
         <Grid item xs={12}>
           <Grid item xs={10}>
             {displayedCount === countQs ?
-              <Button variant="contained" onClick={collapseQuestions}>COLLAPSE QUESTIONS</Button>
-              : <Button className={classes.btn} variant="contained" onClick={allQuestions}>MORE ANSWERED QUESTIONS</Button>}
-            <Button variant="contained" onClick={handleQOpen}>ADD A QUESTION</Button>
-            <AddQuestion getAllQuestions={getAllQuestions} open={openQuestion} handleQClose={handleQClose} currentProduct={currentProduct} />
+              <Button variant="contained" className={classes.btn}
+                onClick={collapseQuestions}>COLLAPSE QUESTIONS</Button>
+              : <Button className={classes.btn} variant="contained"
+                onClick={allQuestions}>MORE ANSWERED QUESTIONS</Button>}
+            <Button
+              variant="contained"
+              onClick={handleQOpen}>
+              ADD A QUESTION
+            </Button>
+            <AddQuestion
+              getAllQuestions={getAllQuestions}
+              open={openQuestion}
+              handleQClose={handleQClose}
+              currentProduct={currentProduct} />
           </Grid>
-
-          </Grid>
+        </Grid>
       </Grid>
     </div >
   );

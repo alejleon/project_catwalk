@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import RatingsReviews from './Ratings/RatingsReviews.jsx';
 import QAMain from './qa_components/QAMain.jsx';
 import Overview from './overview/Overview.jsx';
+import Header from './qa_components/AppBar.jsx';
 
 const App = () => {
   const [currentProduct, setCurrentProduct] = useState(
@@ -20,8 +21,9 @@ const App = () => {
 
   return (
     <div>
+      <Header />
       <Overview product={currentProduct} />
-      <QAMain />
+      <QAMain product={currentProduct.id}/>
       <RatingsReviews product_id={currentProduct.id} />
     </div>
   );
