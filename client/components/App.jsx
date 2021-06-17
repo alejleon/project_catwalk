@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import RatingsReviews from './Ratings/RatingsReviews.jsx';
 import QAMain from './qa_components/QAMain.jsx';
 import Overview from './overview/Overview.jsx';
-import Header from './qa_components/AppBar.jsx';
+import Header from './AppBar.jsx';
 import axios from 'axios';
 import GITHUB_API_TOKEN from '../config.js'
 
@@ -71,7 +71,7 @@ const App = () => {
     <div>
       <Header />
       <Overview currentProduct={currentProduct} ratingsAverage={ratingsAverage}/>
-      <QAMain product={currentProduct.id}/>
+      <QAMain product_id={currentProduct.id} product={currentProduct}/>
       <RatingsReviews product_id={currentProduct.id} />
     </div>
   );

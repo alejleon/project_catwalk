@@ -7,10 +7,9 @@ import Box from '@material-ui/core/Box';
 import axios from 'axios';
 import moment from 'moment';
 import GITHUB_API_TOKEN from '../../config.js';
-
+import Divider from '@material-ui/core/Divider';
 
 const useStyles = makeStyles((theme) => ({
-  // css styles go here
   button: {
     fontSize: 14,
     textTransform: 'capitalize',
@@ -23,18 +22,12 @@ const useStyles = makeStyles((theme) => ({
 const Answer = (props) => {
   const [isHelpful, setIsHelpful] = useState(false);
   const [reported, setReported] = useState(false);
-
-  const classes = useStyles();
   const date = new moment(props.answer.date).format("l");
 
-  //format Date function
-  const handleHelpful = (e) => {
-    console.log('clicked');
-  }
-
+  const classes = useStyles();
   //ANSWER ID = props.answer.answer_id
 
-  // Logic for marking an answer as helpful
+  //*****************START MARK ANSWER AS HELPFUL *********************************/
   const markAnswerHelpful = (e) => {
     const queryParam = props.answer.answer_id;
     const config = {
@@ -57,8 +50,9 @@ const Answer = (props) => {
         })
     }
   };
+  //*****************END MARK ANSWER AS HELPFUL *********************************/
 
-  // Logic for Reporting an Answer
+  //*****************START REPORT ANSWER *********************************/
   const reportAnswer = (e) => {
     const queryParam = props.answer.answer_id;
     const config = {
@@ -80,32 +74,33 @@ const Answer = (props) => {
         })
     }
   };
+  //*****************END REPORT ANSWER *********************************/
 
+
+  //*****************HANDLE IMAGES *********************************/
   const photoItem = props.answer.photos.map((photo, index) => {
     console.log(photo);
     return (
-      <img src={photo.url} width="250px" height="auto" style={{margin: '5px'}} />
-      );
+      <img src={photo.url} width="250px" height="auto" style={{ margin: '5px' }} />
+    );
   });
-
-  console.log('photoItem', props.answer.photos)
+  //*****************END IMAGES *********************************/
 
   return (
     <React.Fragment>
       <Typography component="div">
-        <Box fontWeight="fontWeightBold" display="inline" >A: </Box> {props.answer.body}
+        <Box fontWeight="fontWeightBold" display="inline">A: </Box> {props.answer.body}
       </Typography>
-      <Box>
-        {photoItem}
-
-      </Box>
+      {props.answer.photos.length === 0 ? <div></div> : <Box>{photoItem}</Box>}
       <Typography variant="overline">
-        <Box style={{ textIndent: '25px' }}>
-          By {props.answer.answerer_name}  |  {date}  |  helpful  <Box className={classes.button} display="inline" onClick={markAnswerHelpful}>
+        <Box style={{ textIndent: '25px', bottomMargin: '0px' }}>
+          By {props.answer.answerer_name}  |  {date}  |  helpful  <Box className={classes.button}
+            display="inline" onClick={markAnswerHelpful}>
             yes</Box>  ({isHelpful ? props.answer.helpfulness + 1 : props.answer.helpfulness})
           |  {reported ? Reported :
-            <Box className={classes.button} display="inline" onClick={reportAnswer}>Report</Box>}
-        </Box>
+            <Box className={classes.button} display="inline"
+              onClick={reportAnswer}>Report</Box>}</Box>
+        <Divider />
       </Typography>
     </React.Fragment>
   )

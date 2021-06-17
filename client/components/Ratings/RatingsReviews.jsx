@@ -105,7 +105,7 @@ const RatingsReviews = (props) => {
     grid: {
       width: '80%',
       margin: '10%',
-      backgroundColor: 'azure',
+      backgroundColor: '#fafafa',
     },
     review: {
       width: '100%',
