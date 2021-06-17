@@ -414,7 +414,7 @@ const FormBody = (props) => {
           <Input
             type="file"
             onChange={handleNewImage}
-            disabled={imageList.length >= 4}>Choose File</Input>
+            disabled={imageList.length >= 5}>Choose File</Input>
         </FormControl>
         <div className={classes.sameLine} style={{ minHeight: 100, maxHeight: 100, minWidth: 500, maxWidth: 500 }}>
           {imageList.map((image, index) => {
