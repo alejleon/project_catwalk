@@ -163,7 +163,7 @@ let ReviewListItem = (props) => {
               return <Card classes={{ root: classes.card }} key={image.id} onClick={handleImageClick}>
                 <CardMedia
                   component="img"
-                  image={image.url}
+                  image={image}
                   variant="outlined"
                 />
               </Card>

@@ -188,7 +188,7 @@ const FormBody = (props) => {
   };
 
   const handleNewImage = (event) => {
-    console.log(event.target.files);
+    console.log(URL.createObjectURL(event.target.files[0]));
     setImageList([...imageList, URL.createObjectURL(event.target.files[0])]);
   }
 
