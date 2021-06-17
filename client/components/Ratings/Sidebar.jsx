@@ -34,7 +34,7 @@ let Sidebar = (props) => {
     fourStarRating.current = Math.round(Number(props.metaData.ratings['4']) / totalRatings * 100);
     fiveStarRating.current = Math.round(Number(props.metaData.ratings['5']) / totalRatings * 100);
 
-    console.log(oneStarRating.current);
+    // console.log(oneStarRating.current);
     setAverageRating(Number(totalPoints / totalRatings).toFixed(1));
   }, []);
 

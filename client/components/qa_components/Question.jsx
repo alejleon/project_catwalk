@@ -27,6 +27,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Question = (props) => {
+
   const [allAnswers, setAllAnswers] = useState([]);
   const [allAnswersCount, setAllAnswersCount] = useState([]);
   const [displayedAnswersCount, setDisplayedAnswersCount] = useState(2);
@@ -38,6 +39,7 @@ const Question = (props) => {
 
   // use styles
   const classes = useStyles();
+
 
   //*****************START ANSWER LOGIC*************************************/
   // Get all Answers to a particular question base on question_id
