@@ -5,6 +5,7 @@ import ModalImage from "react-modal-image";
 import Grid from '@material-ui/core/Grid';
 import ArrowForward from '@material-ui/icons/ArrowForwardIos';
 import ArrowBack from '@material-ui/icons/ArrowBackIos';
+import Modal from "@material-ui/core/Modal"
 
 const ImageGallery = ({currentStyle}) => {
 
@@ -33,7 +34,11 @@ const ImageGallery = ({currentStyle}) => {
   }
 
   const handleImageClick = () => {
-    return (<div>hello!</div>)
+    return (
+      <Modal open={true}>
+        alert('ooops')
+      </Modal>
+    )
   }
 
 
@@ -45,7 +50,7 @@ const ImageGallery = ({currentStyle}) => {
             <ArrowBack id="backButton" onClick={handlepreviousImageClick}/>
             <ArrowForward id="forwardButton" onClick={handleNextImageClick}/>
             <Grid item xs={12}>
-              <ExpandedViewModal />
+
               {currentStyle.photos.map((photo, index) => {
                 return (
 
@@ -54,6 +59,7 @@ const ImageGallery = ({currentStyle}) => {
                     {index === currentIndex && (<img className="image" src={[photo.url]} onClick={handleImageClick} />)}
 
                   </div>
+
                   )
                 })}
 

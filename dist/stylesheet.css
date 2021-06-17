@@ -1,6 +1,12 @@
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
 }
+
+
 
 .image {
   width: 80%;

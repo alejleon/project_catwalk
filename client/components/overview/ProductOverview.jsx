@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import {FacebookShareButton, PinterestShareButton,TwitterShareButton} from 'react-share';
+import {FacebookShareButton, PinterestShareButton, TwitterShareButton} from 'react-share';
+import {FacebookIcon, TwitterIcon, PinterestIcon} from 'react-share';
 import GITHUB_API_TOKEN from '../../config.js';
 import StyleSelector from './StyleSelector.jsx';
 import Rating from './Rating.jsx';
@@ -33,18 +34,31 @@ const ProductOverview = ({currentProduct, currentStyles, currentStyle, ratingsAv
           <Typography variant="body1" >{currentProduct.description}</Typography>
         </Grid>
         {currentStyle.sale_price
-          ?  <Grid item xs={4}>
+          ?  <Grid item xs={6}>
               <Typography variant="h5" style={{textDecorationLine: "line-through"}}>${currentStyle.original_price}</Typography>
               <Typography variant="h5" style={{color: 'red'}}>${currentStyle.sale_price}</Typography>
              </Grid>
 
-          :  <Grid item xs={4}>
+          :  <Grid item xs={6}>
               <Typography variant="h5">${currentStyle.original_price}</Typography>
             </Grid>
         }
+{console.log(document.location.href)}
+        <Grid item xs={6}>
+          <Grid container>
+            <Grid item xs={4}>
+              <FacebookShareButton url={document.location.href}><FacebookIcon size={52} round={true}/></FacebookShareButton>
+            </Grid>
+            <Grid item xs={4}>
+              <TwitterShareButton url={document.location.href}><TwitterIcon size={52} round={true}/></TwitterShareButton>
+            </Grid>
+            <Grid item xs={4}>
+              <PinterestShareButton url={document.location.href} media={currentStyle.photos[0].url}><PinterestIcon size={52} round={true}/></PinterestShareButton>
+            </Grid>
+          </Grid>
 
-        <Grid item xs={8}>
-        <Typography>Share Buttons</Typography>
+
+
         </Grid>
 
         <StyleSelector

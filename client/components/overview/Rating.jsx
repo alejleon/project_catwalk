@@ -22,7 +22,6 @@ const Ratings = ({ratingsAverage, ratingsTotal}) => {
       <Grid item xs={4}>
         <a href="#reviews" >See all {ratingsTotal} Reviews</a>
       </Grid>
-
     </Grid>
   )
 
