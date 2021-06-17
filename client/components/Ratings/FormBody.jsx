@@ -153,6 +153,7 @@ const FormBody = (props) => {
     } else if (rating === 0 || recommend === "") {
       validForm.current = false;
     } else if (
+      //Validate characteristics have all been rated if they are valid matrics for the product
       characteristics.Size && size === "" ||
       characteristics.Width && width === "" ||
       characteristics.Comfort && comfort === "" ||
