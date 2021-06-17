@@ -69,7 +69,8 @@ const Header =(props) => {
 
   return (
     <div className={classes.root}>
-      <AppBar position="static" style={{background: '#81C784'}}>
+      <AppBar position="static" style={{background: '#81C784', width: '80%', marginRight: '10%',
+    marginLeft: '10%',}}>
         <Toolbar>
           <EcoIcon fontSize="large"/>
           <Typography className={classes.title} variant="h4" noWrap>

@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
 
 const QAMain = (props) => {
   const [currentProduct, setCurrentProduct] = useState({ name: 'Camo Joggers' })
-  const [productId, setProductId] = useState(27288); //props.product_id
+  const [productId, setProductId] = useState(props.product); //props.product_id
   const [productQs, setProductQs] = useState([]);    // list of all questions for a product_id
   const [countQs, setCountQs] = useState(0);
   const [displayedCount, setDisplayedCount] = useState(4);

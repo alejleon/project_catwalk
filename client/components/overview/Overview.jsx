@@ -57,7 +57,7 @@ const Overview = ({currentProduct, ratingsAverage}) => {
   return (
     <div>
       <CssBaseline />
-      Hello from Overview!
+      {/* Hello from Overview! */}
       <Grid container  className={classes.grid} >
         <Grid item xs={7}>
           <ImageGallery
