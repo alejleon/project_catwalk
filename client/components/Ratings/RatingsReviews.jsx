@@ -105,7 +105,7 @@ const RatingsReviews = (props) => {
     grid: {
       width: '80%',
       margin: '10%',
-      backgroundColor: 'azure',
+      backgroundColor: '#fafafa',
     },
     review: {
       width: '100%',
@@ -121,7 +121,7 @@ const RatingsReviews = (props) => {
 
   return (
     <Grid className={classes.grid} container direction="row" spacing={1}>
-      <Grid container item xs={12} md={3} lg={3} spacing={1}>
+      <Grid container item xs={12} md={4} lg={4} spacing={1}>
         {metaData.ratings ? <Sidebar metaData={metaData} /> : null}
       </Grid>
       <Grid container item xs={12} md={7} lg={7} spacing={1} direction="column">
@@ -156,7 +156,7 @@ const RatingsReviews = (props) => {
           <NewReviewForm classes={classes} metaData={metaData} product_id={props.product_id} />
         </Grid>
       </Grid>
-      <Grid container item xs={12} md={2} lg={2} spacing={1} direction="column">
+      <Grid container item xs={12} md={1} lg={1} spacing={1} direction="column">
 
       </Grid>
     </Grid >

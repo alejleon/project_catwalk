@@ -62,7 +62,7 @@ const styles = (theme) => ({
   review: {
     padding: 8,
     margin: 10,
-    backgroundColor: 'beige',
+    backgroundColor: 'lavender',
     // boxShadow: '10px 10px 5px black'
   }
 });
@@ -130,9 +130,14 @@ let ReviewListItem = (props) => {
             <Grid item>{props.data.reviewer_name}, {date.current}</Grid>
           </Grid>
         </Grid>
-        <Grid item>
-          <Typography noWrap variant="h5">{props.data.summary.length > 60 ? `${props.data.summary.slice(0, 60)}...` : props.data.summary}</Typography>
-        </Grid>
+        {props.data.summary
+          ? <Grid item>
+            <Typography noWrap variant="h5">{props.data.summary.length > 60
+              ? `${props.data.summary.slice(0, 60)}...`
+              : props.data.summary}
+            </Typography>
+          </Grid>
+          : null}
         <Grid item>
           {props.data.body.length > 250
             ? <Typography variant="body1">{showMoreBody
@@ -140,19 +145,18 @@ let ReviewListItem = (props) => {
               : `${props.data.body.slice(0, 250)} ${<Button onClick={handleShowMoreBody}>'Show more...'</Button>}`}
             </Typography>
             : <Typography variant="body1">{props.data.body}</Typography>}
-
         </Grid>
-        <Grid item>
-          {props.data.response
-            ? <div style={{ backgroundColor: '#E4E6EB' }}>
-              <Typography variant="h6" >Response:</Typography>
-              <Typography variant="body1">{props.data.response}</Typography>
-            </div>
-            : null}
-        </Grid>
-        <Grid item>
-          {props.data.recommend ? <Typography variant="body1"><CheckIcon /> {'I recommend this product'}</Typography> : null}
-        </Grid>
+        {props.data.response
+          ? <div style={{ backgroundColor: '#E4E6EB' }}>
+            <Typography variant="h6" >Response:</Typography>
+            <Typography variant="body1">{props.data.response}</Typography>
+          </div>
+          : null}
+        {props.data.recommend
+          ? <Grid item>
+            <Typography variant="body1"><CheckIcon /> {'I recommend this product'}</Typography>
+          </Grid>
+          : null}
         {props.data.photos.length > 0
           ? <div className={classes.sameLine} style={{ minHeight: 100, maxHeight: 100, minWidth: 500, maxWidth: 500 }}>
             {props.data.photos.map((image) => {
@@ -173,7 +177,7 @@ let ReviewListItem = (props) => {
           <Button onClick={reportButton}>Report</Button>
         </Grid>
       </Grid >
-    </Paper>
+    </Paper >
   );
 };
 

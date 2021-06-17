@@ -79,7 +79,7 @@ let Sidebar = (props) => {
         },
         mark: {
           padding: 4,
-          backgroundColor: 'azure'
+          backgroundColor: '#fafafa'
         },
         markLabel: {
           fontWeight: 'bold'
@@ -120,12 +120,12 @@ let Sidebar = (props) => {
   const classes = useStyles();
 
   return (
-    <Grid container direction="column" spacing={1}>
+    <Grid container direction="column" alignItems="center" >
       <MuiThemeProvider theme={theme}>
-        <Grid container item spacing={1}>
+        <Grid container item >
           <Typography variant="caption">RATINGS  REVIEWS</Typography>
         </Grid>
-        <Grid container item direction='column' spacing={1}>
+        <Grid container item direction='column' >
           <Grid container item direction='row'>
             <Typography variant='h1'>{averageRating > 0 ? averageRating : 0}</Typography>
             <Rating name="read-only" precision={0.25} value={Number(averageRating) > 0 ? Number(averageRating) : 0} readOnly />
