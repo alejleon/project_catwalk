@@ -12,13 +12,16 @@ import GITHUB_API_TOKEN from '../../config.js';
 
 
 const useStyles = makeStyles((theme) => ({
-  // css styles go here
   button: {
     fontSize: 14,
     textTransform: 'capitalize',
     padding: 0,
     cursor: 'pointer',
     textDecoration: 'underline'
+  },
+
+  indent: {
+    textIndent: '20px',
   }
 }));
 
@@ -174,7 +177,7 @@ const Question = (props) => {
             <Box fontWeight="fontWeightBold" display="inline">
               Q: {props.question.question_body}
             </Box>
-            <Box className={classes.button} onClick={reportQuestion} style={{ textIndent: '20px' }}>
+            <Box className={classes.button} onClick={reportQuestion} style={{textIndent: '30px'}}>
               {reportedQ ? 'Reported' : 'Report Question'}
             </Box>
           </Typography>
@@ -182,24 +185,35 @@ const Question = (props) => {
         <Grid item xs={1}>
           <Typography>
             <Box fontSize={14} >
-              Helpful?    <span className={classes.button} onClick={markHelpful}>
-                Yes</span>  ({isHelpful ? props.question.question_helpfulness + 1 :
-                  props.question.question_helpfulness})
+              Helpful?&nbsp;
+              <span className={classes.button} onClick={markHelpful}>
+                Yes&nbsp;
+              </span>
+              ({isHelpful ? props.question.question_helpfulness + 1
+                : props.question.question_helpfulness})
             </Box>
           </Typography>
         </Grid>
         <Grid item xs={1}>
           <Typography>
-            <Box className={classes.button} onClick={handleAOpen}>Add Answer</Box>
+            <Box className={classes.button} onClick={handleAOpen}>
+              Add Answer
+            </Box>
           </Typography>
-          <AddAnswer open={openAnswer} handleAClose={handleAClose} currentProduct={props.currentProduct}
-            question={props.question.question_body} getAnswers={getAnswers} questionId={questionId} />
+          <AddAnswer open={openAnswer}
+            handleAClose={handleAClose}
+            currentProduct={props.currentProduct}
+            question={props.question.question_body}
+            getAnswers={getAnswers}
+            questionId={questionId}
+          />
         </Grid>
         <Grid item xs={9}>
-          {allAnswers.length > 0 ? <AnswerList displayedAnswers={allAnswers.slice(0, displayedAnswersCount)}
-            getAnswers={getAnswers} questionId={questionId} />
+          {allAnswers.length > 0 ?
+            <AnswerList displayedAnswers={allAnswers.slice(0, displayedAnswersCount)}
+              getAnswers={getAnswers} questionId={questionId} />
             : <Button onClick={handleAOpen}>
-              <Typography variant="caption" style={{ textIndent: '15px' }}>
+              <Typography variant="caption" className={classes.indent}>
                 Add an answer
               </Typography>
             </Button>}
@@ -208,13 +222,13 @@ const Question = (props) => {
           <Box fontWeight="fontWeightBold">
             {displayedAnswersCount >= allAnswersCount ? ""
               : <Button onClick={loadMoreAnswers}>
-                <Typography variant="caption" style={{ textIndent: '15px' }}>
+                <Typography variant="caption" className={classes.indent}>
                   Load More Answers
                 </Typography>
               </Button>}
             {displayedAnswersCount < 3 ? ""
               : <Button onClick={collapseAnswers}>
-                <Typography variant="caption" style={{ textIndent: '15px' }}>
+                <Typography variant="caption" className={classes.indent}>
                   Collapse Answers
                 </Typography>
               </Button>}

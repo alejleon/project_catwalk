@@ -94,17 +94,25 @@ const Answer = (props) => {
       {props.answer.photos.length === 0 ? <div></div> : <Box>{photoItem}</Box>}
       <Typography variant="overline">
         <Box style={{ textIndent: '25px', bottomMargin: '0px' }}>
-          By {props.answer.answerer_name}  |  {date}  |  helpful  <Box className={classes.button}
-            display="inline" onClick={markAnswerHelpful}>
-            yes</Box>  ({isHelpful ? props.answer.helpfulness + 1 : props.answer.helpfulness})
+          By {props.answer.answerer_name.toLowerCase() === 'seller' ?
+            <Box fontWeight="fontWeightBold" display="inline">{props.answer.answerer_name}</Box>
+            : props.answer.answerer_name}&nbsp;&nbsp;
+          |  {date}  |  helpful&nbsp;
+          <Box className={classes.button} display="inline" onClick={markAnswerHelpful}>
+            yes
+          </Box>
+          &nbsp;({isHelpful ? props.answer.helpfulness + 1 : props.answer.helpfulness})
           |  {reported ? Reported :
-            <Box className={classes.button} display="inline"
-              onClick={reportAnswer}>Report</Box>}</Box>
+            <Box className={classes.button} display="inline" onClick={reportAnswer}>
+              Report
+            </Box>}
+        </Box>
         <Divider />
       </Typography>
     </React.Fragment>
   )
 };
 
+// By {props.answer.answerer_name}  |  {date}  |  helpful  <Box className={classes.button}
+
 export default Answer;
-// {props.answer.date.slice(0, 10)}

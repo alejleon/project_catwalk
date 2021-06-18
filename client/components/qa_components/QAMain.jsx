@@ -1,17 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import axios from 'axios';
-import QuestionList from './QuestionList.jsx';
-import AddQuestion from './AddQuestion.jsx';
 import Search from './Search.jsx';
-import GITHUB_API_TOKEN from '../../config.js';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import axios from 'axios';
+import GITHUB_API_TOKEN from '../../config.js';
+import QuestionList from './QuestionList.jsx';
+import AddQuestion from './AddQuestion.jsx';
+
+const color='#81C784';
 
 
 const useStyles = makeStyles((theme) => ({
-  // css styles go here
   grid: {
     width: '80%',
     marginRight: '10%',
@@ -22,23 +23,28 @@ const useStyles = makeStyles((theme) => ({
 
   btn: {
     marginRight: '20px'
+  },
+
+  mainGrid: {
+    background: '#fafafa',
+    maxHeight: '600px',
+    overflowY: 'auto',
+    overflowX: 'hidden'
   }
 }));
 
 const QAMain = (props) => {
   const [currentProduct, setCurrentProduct] = useState(props.product);
-  const [productId, setProductId] = useState(props.product_id); //props.product_id
-  const [productQs, setProductQs] = useState([]);    // list of all questions for a product_id
+  const [productId, setProductId] = useState(props.product_id);
+  const [productQs, setProductQs] = useState([]);
   const [countQs, setCountQs] = useState(0);
   const [displayedCount, setDisplayedCount] = useState(4);
-  const [openQuestion, setOpenQuestion] = useState(false); // set Question dialog to false
+  const [openQuestion, setOpenQuestion] = useState(false);
   const [searchInput, setSearchInput] = useState("");
   const [filteredQ, setFilteredQ] = useState([]);
   const [displayedQuestions, setDisplayedQuestions] = useState([]);
   const [finalQuestions, setFinalQuestions] = useState([]);
 
-
-  // use styles
   const classes = useStyles();
 
   //***************** START GET QUESTIONS LOGIC *************************************/
@@ -106,7 +112,6 @@ const QAMain = (props) => {
 
   //***************** START useEffect LOGIC *********************************/
   useEffect(() => {
-    // console.log('searchInput', searchInput);
     if (searchInput.length > 2) {
       setFilteredQ(productQs.filter((question) => {
         return question.question_body.toLowerCase().includes(searchInput.toLowerCase())
@@ -141,7 +146,6 @@ const QAMain = (props) => {
 
 
   return (
-
     <div>
       <Grid container spacing={0} className={classes.grid}>
         <Grid item xs={12}>
@@ -153,8 +157,7 @@ const QAMain = (props) => {
           <br />
         </Grid>
         <Grid item xs={12}></Grid>
-        <Grid container item xs={12} style={
-          { background: '#fafafa', maxHeight: '600px', overflowY: 'auto', overflowX: 'hidden' }}>
+        <Grid container item xs={12} className={classes.mainGrid}>
           <QuestionList
             displayedQs={filteredQ.length === 0 ? displayedQuestions : filteredQ}
             currentProduct={currentProduct} />
@@ -162,17 +165,18 @@ const QAMain = (props) => {
         <Grid item xs={12}>
           <Grid item xs={10}>
             {displayedCount === countQs ?
-              <Button variant="contained" className={classes.btn}
+              <Button variant="contained"
+                className={classes.btn}
                 onClick={collapseQuestions}>
                 COLLAPSE QUESTIONS
               </Button>
-              : <Button className={classes.btn} variant="contained"
-              color="primary"
-                onClick={allQuestions}
-              >MORE ANSWERED QUESTIONS
+              : <Button className={classes.btn}
+                variant="contained"
+                color="primary"
+                onClick={allQuestions}>
+                MORE ANSWERED QUESTIONS
               </Button>}
-            <Button
-              variant="contained"
+            <Button variant="contained"
               onClick={handleQOpen}>
               ADD A QUESTION
             </Button>
@@ -185,7 +189,6 @@ const QAMain = (props) => {
         </Grid>
       </Grid>
     </div >
-
   );
 };
 
