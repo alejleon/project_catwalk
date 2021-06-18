@@ -8,9 +8,7 @@ import GITHUB_API_TOKEN from '../../config.js';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import green from '@material-ui/core/colors/green';
 
-const primary = green[500];
 
 const useStyles = makeStyles((theme) => ({
   // css styles go here
@@ -143,6 +141,7 @@ const QAMain = (props) => {
 
 
   return (
+
     <div>
       <Grid container spacing={0} className={classes.grid}>
         <Grid item xs={12}>
@@ -168,6 +167,7 @@ const QAMain = (props) => {
                 COLLAPSE QUESTIONS
               </Button>
               : <Button className={classes.btn} variant="contained"
+              color="primary"
                 onClick={allQuestions}
               >MORE ANSWERED QUESTIONS
               </Button>}
@@ -185,6 +185,7 @@ const QAMain = (props) => {
         </Grid>
       </Grid>
     </div >
+
   );
 };
 

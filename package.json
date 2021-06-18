@@ -26,10 +26,11 @@
     "babel-polyfill": "^6.26.0",
     "material-ui-search-bar": "^1.0.0",
     "moment": "^2.29.1",
-    "react-icons": "^4.2.0",
-    "react-share": "^4.4.0",
     "react": "^16.8.0",
     "react-dom": "^16.8.0",
+    "react-icons": "^4.2.0",
+    "react-share": "^4.4.0",
+    "react-tracker": "0.0.8",
     "webpack-bundle-analyzer": "^4.4.2"
   },
   "devDependencies": {

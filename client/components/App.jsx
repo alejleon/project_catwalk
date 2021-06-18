@@ -6,6 +6,10 @@ import Overview from './overview/Overview.jsx';
 import Header from './AppBar.jsx';
 import axios from 'axios';
 import GITHUB_API_TOKEN from '../config.js'
+import { on, trackEvent, getHistory } from 'react-tracker'
+import { Tracker, TracerProvider } from 'react-tracker';
+
+const tracker = new Tracker();
 
 const App = () => {
 
