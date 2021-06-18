@@ -11,6 +11,7 @@ import AddQuestion from './AddQuestion.jsx';
 
 const color='#81C784';
 
+const hello =() => 'hello';
 
 const useStyles = makeStyles((theme) => ({
   grid: {
@@ -44,6 +45,7 @@ const QAMain = (props) => {
   const [filteredQ, setFilteredQ] = useState([]);
   const [displayedQuestions, setDisplayedQuestions] = useState([]);
   const [finalQuestions, setFinalQuestions] = useState([]);
+
 
   const classes = useStyles();
 
@@ -172,7 +174,6 @@ const QAMain = (props) => {
               </Button>
               : <Button className={classes.btn}
                 variant="contained"
-                color="primary"
                 onClick={allQuestions}>
                 MORE ANSWERED QUESTIONS
               </Button>}
@@ -193,3 +194,4 @@ const QAMain = (props) => {
 };
 
 export default QAMain;
+export {hello};
