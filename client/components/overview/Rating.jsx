@@ -9,17 +9,18 @@ const Ratings = ({ratingsAverage, ratingsTotal}) => {
 
   return (
     <Grid container spacing={2} style={{background: 'lavender'}}>
-      <Grid item xs={6}>
-
+      <Grid item xs={3}>
+      {ratingsTotal &&
         <Rating
           value={ratingsAverage}
           precision={0.25}
           disabled={true}
           name="unique-rating"
         />
+      }
 
       </Grid>
-      <Grid item xs={4}>
+      <Grid item xs={5}>
         <a href="#reviews" >See all {ratingsTotal} Reviews</a>
       </Grid>
     </Grid>

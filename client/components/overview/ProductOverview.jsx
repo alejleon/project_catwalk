@@ -11,40 +11,47 @@ import Typography from '@material-ui/core/Typography'
 const ProductOverview = ({currentProduct, currentStyles, currentStyle, ratingsAverage, ratingsTotal, handleStyleClick}) => {
 
 
-// console.log(currentStyle)
-
     return (
       <Grid container spacing={5} style={{ background: 'lavender' }}>
+        {/* Category and Title */}
+        <Grid item xs={6}>
+          <Typography variant="h6">{currentProduct.category}</Typography>
+        </Grid>
         <Grid item xs={12}>
-          <Typography variant="h4">{currentProduct.name}</Typography>
+          <Typography variant="h3">{currentProduct.name}</Typography>
         </Grid>
 
-        <Grid item xs={6}>
-          <Typography variant="subtitle1">{currentProduct.category}</Typography>
-        </Grid>
-
-        <Grid item xs={6}>
+      {/* Ratings */}
+        <Grid item xs={12}>
           <Rating ratingsAverage={ratingsAverage} ratingsTotal={ratingsTotal}/>
         </Grid>
 
-        <Grid item xs={12}>
-          <Typography variant="h5">{currentProduct.slogan}</Typography>
-        </Grid>
-        <Grid item xs={12}>
-          <Typography variant="body1" >{currentProduct.description}</Typography>
-        </Grid>
+      {/* Sale Price/Regular Price */}
         {currentStyle.sale_price
-          ?  <Grid item xs={6}>
-              <Typography variant="h5" style={{textDecorationLine: "line-through"}}>${currentStyle.original_price}</Typography>
-              <Typography variant="h5" style={{color: 'red'}}>${currentStyle.sale_price}</Typography>
+          ?  <Grid item xs={12}>
+               <Grid container>
+                 <Grid item xs={2}>
+                    <Typography variant="h6" style={{textDecorationLine: "line-through"}}>${currentStyle.original_price}</Typography>
+                  </Grid>
+                  <Grid item xs={10}>
+                    <Typography variant="h6" style={{color: 'red'}}>${currentStyle.sale_price}</Typography>
+                  </Grid>
+               </Grid>
              </Grid>
 
-          :  <Grid item xs={6}>
-              <Typography variant="h5">${currentStyle.original_price}</Typography>
+          :  <Grid item xs={12}>
+              <Typography variant="h6">${currentStyle.original_price}</Typography>
             </Grid>
         }
-{console.log(document.location.href)}
-        <Grid item xs={6}>
+
+        <Grid item xs={12}>
+          <Typography><b>STYLE ></b> {currentStyle.name}</Typography>
+        </Grid>
+
+
+        {/* Social Media Share */}
+        <Grid item xs={7}></Grid>
+        <Grid item xs={5}>
           <Grid container>
             <Grid item xs={4}>
               <FacebookShareButton url={document.location.href}><FacebookIcon size={52} round={true}/></FacebookShareButton>
@@ -79,40 +86,3 @@ const ProductOverview = ({currentProduct, currentStyles, currentStyle, ratingsAv
 export default ProductOverview
 
 
-
-// const ProductOverview = (props) => {
-
-//   const [products, setProducts] = useState([]);
-
-//   const url = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-atx/products';
-//   const headers = {
-//     headers: {
-//       Authorization: GITHUB_API_TOKEN
-//     }
-//   };
-//   const params = {
-//     product_id: props.currentProduct
-//   }
-
-//   useEffect(() => {
-//     getProducts();
-//   }, [])
-
-
-//   var getProducts = function () {
-//     axios.get(`${url}?product_id=${params.product_id}`, headers)
-//       .then((listOfProducts) => {
-//         console.log(listOfProducts.data[0].slogan)
-//         setProducts(listOfProducts)
-//       })
-//       .catch((err) => { console.error(err) })
-//   }
-
-
-//   // console.log(products.data)
-
-//   if (products === undefined) {
-//     return (
-//       <div></div>
-//     )
-//   } else {

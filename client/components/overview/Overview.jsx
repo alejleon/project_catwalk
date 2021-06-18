@@ -41,7 +41,6 @@ const Overview = ({currentProduct, ratingsAverage, ratingsTotal}) => {
       headers: {Authorization: API_KEY}
     })
       .then((styles) => {
-        console.log(styles.data.results[0])
         setCurrentStyles(styles.data)
         setCurrentStyle(styles.data.results[0])
       })
@@ -53,12 +52,11 @@ const Overview = ({currentProduct, ratingsAverage, ratingsTotal}) => {
    useEffect(()=> {
      getStyles()
    }, [])
-  console.log(currentStyle)
+
   if (currentStyle) {
   return (
     <div>
       <CssBaseline />
-      Hello from Overview!
       <Grid container  className={classes.grid} >
         <Grid item xs={7}>
           <ImageGallery

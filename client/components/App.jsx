@@ -1,8 +1,9 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import RatingsReviews from './Ratings/RatingsReviews.jsx';
 import QAMain from './qa_components/QAMain.jsx';
 import Overview from './overview/Overview.jsx';
+import SimpleReactLightbox from 'simple-react-lightbox'
 import axios from 'axios';
 import GITHUB_API_TOKEN from '../config.js'
 
@@ -60,22 +61,28 @@ const App = () => {
       })
   }
 
-  getAverageReviewRating(currentProduct.id)
+  useEffect(() => {
+    getAverageReviewRating(currentProduct.id)
+  }, [currentProduct])
 
-  const handleReviewAdd = (productId) => {
-    getArrayAverageRating(productId)     //TODO///////////////////////////////////
+  const handleReviewAdd = (ProductId) => {
+    // setRatingsTotal(ratingsTotal + 1)
+    getAverageReviewRating(id)
+
+    //TODO///////////////////////////////////
   }
 
 
 
   return (
+    <SimpleReactLightbox>
     <div>
-      <p>Hello From App!!!</p>
       <Overview currentProduct={currentProduct} ratingsAverage={ratingsAverage} ratingsTotal={ratingsTotal}/>
 
       <QAMain />
       <RatingsReviews product_id={currentProduct.id} />
     </div>
+    </SimpleReactLightbox>
   );
 }
 
