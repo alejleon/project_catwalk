@@ -8,7 +8,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import Grid from '@material-ui/core/Grid';
 
 
-const Overview = ({currentProduct, ratingsAverage}) => {
+const Overview = ({currentProduct, ratingsAverage, ratingsTotal}) => {
 
   const useStyles = makeStyles((theme) => ({
     // css styles go here
@@ -17,6 +17,7 @@ const Overview = ({currentProduct, ratingsAverage}) => {
       margin: '10%'
     }
   }));
+
 
   //Will need to do a get request to retrieve all the styles for the current product
   //From here, it will be passed down as props to both the images branch and the styles branch
@@ -40,7 +41,6 @@ const Overview = ({currentProduct, ratingsAverage}) => {
       headers: {Authorization: API_KEY}
     })
       .then((styles) => {
-        console.log(styles.data.results[0])
         setCurrentStyles(styles.data)
         setCurrentStyle(styles.data.results[0])
       })
@@ -52,14 +52,14 @@ const Overview = ({currentProduct, ratingsAverage}) => {
    useEffect(()=> {
      getStyles()
    }, [])
-  console.log(currentStyle)
+
   if (currentStyle) {
   return (
-    <div>
+    <div >
       <CssBaseline />
-      {/* Hello from Overview! */}
+
       <Grid container  className={classes.grid} >
-        <Grid item xs={7}>
+        <Grid item xs={8}>
           <ImageGallery
             currentProduct={currentProduct}
             currentStyles={currentStyles}
@@ -72,6 +72,7 @@ const Overview = ({currentProduct, ratingsAverage}) => {
             currentStyles={currentStyles}
             currentStyle={currentStyle}
             ratingsAverage={ratingsAverage}
+            ratingsTotal={ratingsTotal}
             handleStyleClick={handleStyleClick}
           />
         </Grid>
