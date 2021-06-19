@@ -31,7 +31,11 @@
     "react-dom": "^16.8.0",
     "react-icons": "^4.2.0",
     "react-share": "^4.4.0",
+<<<<<<< HEAD
     "react-tracker": "0.0.8",
+=======
+    "simple-react-lightbox": "^3.6.6",
+>>>>>>> e66e595ddd90cce6f831ed4f429abeac0b8af7bc
     "webpack-bundle-analyzer": "^4.4.2"
   },
   "devDependencies": {
