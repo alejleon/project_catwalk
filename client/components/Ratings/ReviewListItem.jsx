@@ -132,7 +132,7 @@ let ReviewListItem = (props) => {
         </Grid>
         {props.data.summary
           ? <Grid item>
-            <Typography noWrap variant="h5">{props.data.summary.length > 60
+            <Typography noWrap style={{ fontSize: 28, fontWeight: 'bold' }}>{props.data.summary.length > 60
               ? `${props.data.summary.slice(0, 60)}...`
               : props.data.summary}
             </Typography>
@@ -140,11 +140,11 @@ let ReviewListItem = (props) => {
           : null}
         <Grid item>
           {props.data.body.length > 250
-            ? <Typography variant="body1">{showMoreBody
+            ? <Typography style={{ fontSize: 20 }}>{showMoreBody
               ? `${props.data.body} ${<Button onClick={handleShowMoreBody}>'Show less...'</Button>}`
               : `${props.data.body.slice(0, 250)} ${<Button onClick={handleShowMoreBody}>'Show more...'</Button>}`}
             </Typography>
-            : <Typography variant="body1">{props.data.body}</Typography>}
+            : <Typography style={{ fontSize: 20 }}>{props.data.body}</Typography>}
         </Grid>
         {props.data.response
           ? <div style={{ backgroundColor: '#E4E6EB' }}>
