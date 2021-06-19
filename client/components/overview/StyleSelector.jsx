@@ -13,7 +13,7 @@ const StyleSelector = ({currentStyles, currentStyle, handleStyleClick}) => {
   //
 
   return (
-    <Grid container spacing={0} style={{ padding: "20px", height: "100%", borderTop: "1px solid gray"}}>
+    <Grid container spacing={0} style={{margin: "10px", padding: "20px", height: "100%", borderTop: "1px solid gray"}}>
 
 
       {currentStyles ?
