@@ -101,7 +101,7 @@ let NewReviewForm = (props) => {
         <DialogTitle id="customized-dialog-title" onClose={handleClose}>
           ADD REVIEW
         </DialogTitle>
-        <FormBody classes={props.classes} product_id={props.product_id} metaData={props.metaData} />
+        <FormBody classes={props.classes} product_id={props.product_id} metaData={props.metaData} addReview={props.addReview} close={handleClose} />
       </Dialog >
     </div >
   );

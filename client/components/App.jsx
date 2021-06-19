@@ -34,7 +34,7 @@ const App = () => {
     for (let i = 0; i < array.length; i++) {
       total += array[i]
     }
-    return total/array.length;
+    return total / array.length;
   }
 
 
@@ -42,8 +42,8 @@ const App = () => {
     let url = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-atx/reviews';
 
     axios.get(url, {
-      headers: {Authorization: GITHUB_API_TOKEN},
-      params: {product_id: id}
+      headers: { Authorization: GITHUB_API_TOKEN },
+      params: { product_id: id }
     })
       .then(response => {
         let ratingsArr = []
@@ -66,11 +66,9 @@ const App = () => {
     getAverageReviewRating(currentProduct.id)
   }, [currentProduct])
 
-  const handleReviewAdd = (ProductId) => {
-    // setRatingsTotal(ratingsTotal + 1)
-    getAverageReviewRating(id)
 
-    //TODO///////////////////////////////////
+  const handleReviewAdd = (productId) => {
+    getAverageReviewRating(productId)     
   }
 
 
@@ -80,9 +78,10 @@ const App = () => {
     <div>
 
       <Header />
+
       <Overview currentProduct={currentProduct} ratingsAverage={ratingsAverage} ratingsTotal={ratingsTotal}/>
-      <QAMain product={currentProduct.id}/>
-      <RatingsReviews product_id={currentProduct.id} />
+      <QAMain product={currentProduct.id} />
+      <RatingsReviews product_id={currentProduct.id} addReview={handleReviewAdd} />
     </div>
     </SimpleReactLightbox>
   );
