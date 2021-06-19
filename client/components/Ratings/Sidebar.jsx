@@ -79,15 +79,20 @@ let Sidebar = (props) => {
         },
         mark: {
           padding: 4,
-          backgroundColor: 'azure'
+          backgroundColor: '#fafafa'
         },
         markLabel: {
           fontWeight: 'bold'
         }
       },
       MuiLinearProgress: {
+        root: {
+          width: '75%',
+          marginLeft: '5%',
+          minHeight: 10
+        },
         bar: {
-          color: "green"
+          color: "green",
         },
         colorPrimary: {
           color: "green",
@@ -112,28 +117,28 @@ let Sidebar = (props) => {
     },
     slider: {
       root: {
-        maxWidth: '40%',
-        fontSize: 10,
+        maxWidth: '100%',
+        fontSize: 18,
       },
     }
   }));
   const classes = useStyles();
 
   return (
-    <Grid container direction="column" spacing={1}>
+    <Grid container direction="column">
       <MuiThemeProvider theme={theme}>
-        <Grid container item spacing={1}>
-          <Typography variant="caption">RATINGS  REVIEWS</Typography>
+        <Grid container item >
+          <Typography style={{ fontSize: 20, fontWeight: 'bold', marginBottom: 5 }}>RATINGS  REVIEWS</Typography>
         </Grid>
-        <Grid container item direction='column' spacing={1}>
+        <Grid container item direction='column' >
           <Grid container item direction='row'>
             <Typography variant='h1'>{averageRating > 0 ? averageRating : 0}</Typography>
             <Rating name="read-only" precision={0.25} value={Number(averageRating) > 0 ? Number(averageRating) : 0} readOnly />
           </Grid>
-          <Typography>{percentRecommend > 0 ? percentRecommend : 0}% of users recommend this product</Typography>
+          <Typography style={{ fontSize: 20 }}>{percentRecommend > 0 ? percentRecommend : 0}% of users recommend this product</Typography>
         </Grid>
         <Grid container item direction="row" alignItems="center">
-          <Typography>5 stars</Typography>
+          <Typography style={{ fontSize: 20 }}>5 stars</Typography>
           {props.metaData.ratings ? <LinearProgress
             className={classes.LinearProgress}
             variant="determinate"
@@ -142,7 +147,7 @@ let Sidebar = (props) => {
           /> : null}
         </Grid>
         <Grid container item direction="row" alignItems="center">
-          <Typography>4 stars</Typography>
+          <Typography style={{ fontSize: 20 }}>4 stars</Typography>
           {props.metaData.ratings ? <LinearProgress
             className={classes.LinearProgress}
             variant="determinate"
@@ -151,7 +156,7 @@ let Sidebar = (props) => {
           /> : null}
         </Grid>
         <Grid container item direction="row" alignItems="center">
-          <Typography>3 stars</Typography>
+          <Typography style={{ fontSize: 20 }}> 3 stars</Typography>
           {props.metaData.ratings ? <LinearProgress
             className={classes.LinearProgress}
             variant="determinate"
@@ -160,7 +165,7 @@ let Sidebar = (props) => {
           /> : null}
         </Grid>
         <Grid container item direction="row" alignItems="center">
-          <Typography>2 stars</Typography>
+          <Typography style={{ fontSize: 20 }}>2 stars</Typography>
           {props.metaData.ratings ? <LinearProgress
             className={classes.LinearProgress}
             variant="determinate"
@@ -169,7 +174,7 @@ let Sidebar = (props) => {
           /> : null}
         </Grid>
         <Grid container item direction="row" alignItems="center">
-          <Typography>1 stars</Typography>
+          <Typography style={{ fontSize: 20 }}>1 stars</Typography>
           {props.metaData.ratings ? <LinearProgress
             className={classes.LinearProgress}
             variant="determinate"
@@ -177,97 +182,98 @@ let Sidebar = (props) => {
             color="primary"
           /> : null}
         </Grid>
-        {props.metaData.characteristics.Size
-          ? <Grid container item direction="column" alignItems="center" style={{ maxWidth: '80%' }}>
-            <Typography>Size</Typography>
-            <Slider
-              classes={{ root: classes.slider.root }}
-              value={Number(props.metaData.characteristics.Size.value)}
-              disabled={true}
-              marks={[{ value: 1, label: "A size too small" }, { value: 2 }, { value: 3, label: "Perfect" },
-              { value: 4 }, { value: 5, label: "A size too large" }]}
-              min={1}
-              max={5}
-              step={1}
-              aria-labelledby="continuous-slider" />
-          </Grid>
-          : null}
-        {props.metaData.characteristics.Width
-          ? <Grid container item direction="column" alignItems="center" style={{ maxWidth: '80%' }}>
-            <Typography>Width</Typography>
-            <Slider
-              classes={{ root: classes.slider.root }}
-              value={Number(props.metaData.characteristics.Width.value)}
-              disabled={true}
-              marks={[{ value: 1, label: "Too Narrow" }, { value: 2 }, { value: 3, label: "Perfect" },
-              { value: 4 }, { value: 5, label: "Too Wide" }]}
-              min={1}
-              max={5}
-              step={1}
-              aria-labelledby="continuous-slider" />
-          </Grid>
-          : null}
-        {props.metaData.characteristics.Comfort
-          ? <Grid container item direction="column" alignItems="center" style={{ maxWidth: '80%' }}>
-            <Typography>Comfort</Typography>
-            <Slider
-              classes={{ root: classes.slider.root }}
-              value={Number(props.metaData.characteristics.Comfort.value)}
-              disabled={true}
-              marks={[{ value: 1, label: "Uncomfortable" }, { value: 2 }, { value: 3 },
-              { value: 4 }, { value: 5, label: "Perfect" }]}
-              min={1}
-              max={5}
-              step={1}
-              aria-labelledby="continuous-slider" />
-          </Grid>
-          : null}
-        {props.metaData.characteristics.Quality
-          ? <Grid container item direction="column" alignItems="center" style={{ maxWidth: '80%' }}>
-            <Typography>Quality</Typography>
-            <Slider
-              classes={{ root: classes.slider.root }}
-              value={Number(props.metaData.characteristics.Quality.value)}
-              disabled={true}
-              marks={[{ value: 1, label: "Poor" }, { value: 2 }, { value: 3, label: "What I expected" },
-              { value: 4 }, { value: 5, label: "Perfect" }]}
-              min={1}
-              max={5}
-              step={1}
-              aria-labelledby="continuous-slider" />
-          </Grid>
-          : null}
-        {props.metaData.characteristics.Length
-          ? <Grid container item direction="column" alignItems="center" style={{ maxWidth: '80%' }}>
-            <Typography>Length</Typography>
-            <Slider
-              classes={{ root: classes.slider.root }}
-              value={Number(props.metaData.characteristics.Length.value)}
-              disabled={true}
-              marks={[{ value: 1, label: "Runs Short" }, { value: 2 }, { value: 3, label: "Perfect" },
-              { value: 4 }, { value: 5, label: "Runs Long" }]}
-              min={1}
-              max={5}
-              step={1}
-              aria-labelledby="continuous-slider" />
-          </Grid>
-          : null}
-        {props.metaData.characteristics.Fit
-          ? <Grid container item direction="column" alignItems="center" style={{ maxWidth: '80%' }}>
-            <Typography>Fit</Typography>
-            <Slider
-              classes={{ root: classes.slider.root }}
-              value={Number(props.metaData.characteristics.Fit.value)}
-              disabled={true}
-              marks={[{ value: 1, label: "Runs Tight" }, { value: 2 }, { value: 3, label: "Perfect" },
-              { value: 4 }, { value: 5, label: "Runs Long" }]}
-              min={1}
-              max={5}
-              step={1}
-              aria-labelledby="continuous-slider" />
-          </Grid>
-          : null}
-
+        <Grid container direction="column" alignItems="center" style={{}}>
+          {props.metaData.characteristics.Size
+            ? <Grid container item direction="column" alignItems="center" style={{ maxWidth: '80%' }}>
+              <Typography style={{ fontSize: 20, fontWeight: 'bold' }}>Size</Typography>
+              <Slider
+                classes={{ root: classes.slider.root }}
+                value={Number(props.metaData.characteristics.Size.value)}
+                disabled={true}
+                marks={[{ value: 1, label: "A size too small" }, { value: 2 }, { value: 3, label: "Perfect" },
+                { value: 4 }, { value: 5, label: "A size too large" }]}
+                min={1}
+                max={5}
+                step={1}
+                aria-labelledby="continuous-slider" />
+            </Grid>
+            : null}
+          {props.metaData.characteristics.Width
+            ? <Grid container item direction="column" alignItems="center" style={{ maxWidth: '80%' }}>
+              <Typography style={{ fontSize: 20, fontWeight: 'bold' }}>Width</Typography>
+              <Slider
+                classes={{ root: classes.slider.root }}
+                value={Number(props.metaData.characteristics.Width.value)}
+                disabled={true}
+                marks={[{ value: 1, label: "Too Narrow" }, { value: 2 }, { value: 3, label: "Perfect" },
+                { value: 4 }, { value: 5, label: "Too Wide" }]}
+                min={1}
+                max={5}
+                step={1}
+                aria-labelledby="continuous-slider" />
+            </Grid>
+            : null}
+          {props.metaData.characteristics.Comfort
+            ? <Grid container item direction="column" alignItems="center" style={{ maxWidth: '80%' }}>
+              <Typography style={{ fontSize: 20, fontWeight: 'bold' }}>Comfort</Typography>
+              <Slider
+                classes={{ root: classes.slider.root }}
+                value={Number(props.metaData.characteristics.Comfort.value)}
+                disabled={true}
+                marks={[{ value: 1, label: "Uncomfortable" }, { value: 2 }, { value: 3 },
+                { value: 4 }, { value: 5, label: "Perfect" }]}
+                min={1}
+                max={5}
+                step={1}
+                aria-labelledby="continuous-slider" />
+            </Grid>
+            : null}
+          {props.metaData.characteristics.Quality
+            ? <Grid container item direction="column" alignItems="center" style={{ maxWidth: '80%' }}>
+              <Typography style={{ fontSize: 20, fontWeight: 'bold' }}>Quality</Typography>
+              <Slider
+                classes={{ root: classes.slider.root }}
+                value={Number(props.metaData.characteristics.Quality.value)}
+                disabled={true}
+                marks={[{ value: 1, label: "Poor" }, { value: 2 }, { value: 3, label: "What I expected" },
+                { value: 4 }, { value: 5, label: "Perfect" }]}
+                min={1}
+                max={5}
+                step={1}
+                aria-labelledby="continuous-slider" />
+            </Grid>
+            : null}
+          {props.metaData.characteristics.Length
+            ? <Grid container item direction="column" alignItems="center" style={{ maxWidth: '80%' }}>
+              <Typography style={{ fontSize: 20, fontWeight: 'bold' }}>Length</Typography>
+              <Slider
+                classes={{ root: classes.slider.root }}
+                value={Number(props.metaData.characteristics.Length.value)}
+                disabled={true}
+                marks={[{ value: 1, label: "Runs Short" }, { value: 2 }, { value: 3, label: "Perfect" },
+                { value: 4 }, { value: 5, label: "Runs Long" }]}
+                min={1}
+                max={5}
+                step={1}
+                aria-labelledby="continuous-slider" />
+            </Grid>
+            : null}
+          {props.metaData.characteristics.Fit
+            ? <Grid container item direction="column" alignItems="center" style={{ maxWidth: '80%' }}>
+              <Typography style={{ fontSize: 20, fontWeight: 'bold' }}>Fit</Typography>
+              <Slider
+                classes={{ root: classes.slider.root }}
+                value={Number(props.metaData.characteristics.Fit.value)}
+                disabled={true}
+                marks={[{ value: 1, label: "Runs Tight" }, { value: 2 }, { value: 3, label: "Perfect" },
+                { value: 4 }, { value: 5, label: "Runs Long" }]}
+                min={1}
+                max={5}
+                step={1}
+                aria-labelledby="continuous-slider" />
+            </Grid>
+            : null}
+        </Grid>
       </MuiThemeProvider >
     </Grid >
   );

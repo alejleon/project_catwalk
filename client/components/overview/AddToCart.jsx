@@ -69,13 +69,13 @@ useEffect(() => {
     var skus = Object.entries(currentStyle.skus)
 
     return (
-      <Grid container spacing={0} style={{background: 'white', height: "150%", margin: "10px", padding: "10px"}}>
-        <Grid item xs={6}>
+      <Grid container spacing={4} style={{height: "100%", margin: "5px", padding: "20px"}}>
+        <Grid item xs={6} style={{width: "200px", minWidth: "200px"}}>
           <FormControl>
             <InputLabel >
               Select Size
             </InputLabel>
-            <Select displayEmpty defaultValue="" onChange={handleSizeSelect} variant="outlined" style={{width: "200px"}}>
+            <Select displayEmpty defaultValue="" onChange={handleSizeSelect} color="primary" variant="outlined" style={{width: "180px"}}>
               <MenuItem disabled >Select Size</MenuItem>
                 {skus.map((sku) => {
                   return(
@@ -106,7 +106,7 @@ useEffect(() => {
               :<MenuItem>Select Size</MenuItem>
             }
             </Select>
-          : <Select disabled displayEmpty defaultValue="" variant="outlined" style={{width: "75px"}}>
+          : <Select disabled displayEmpty color="primary" defaultValue="" variant="outlined" style={{width: "75px"}}>
               <MenuItem>0</MenuItem>
             </Select>
           }
@@ -118,10 +118,10 @@ useEffect(() => {
         <Grid item xs={12}>
           <FormControl>
           { currentSku !== 1 && quantitySelected
-            ?  <Button variant="outlined" endIcon={<ShoppingCartOutlinedIcon />} size="large" onClick={() => {
+            ?  <Button variant="outlined" color="secondary" endIcon={<ShoppingCartOutlinedIcon />} style={{width: "100%"}} size="large" onClick={() => {
               handleAddToCart(currentSku)
             }}>Add To Cart</Button>
-            : <Button disabled variant="outlined" endIcon={<ShoppingCartOutlinedIcon />} size="large">Add To Cart</Button>
+            : <Button disabled variant="outlined" endIcon={<ShoppingCartOutlinedIcon />} style={{width: "100%"}} size="large">Add To Cart</Button>
           }
           </FormControl>
           </Grid>

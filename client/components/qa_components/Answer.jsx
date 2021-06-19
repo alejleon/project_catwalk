@@ -15,8 +15,11 @@ const useStyles = makeStyles((theme) => ({
     textTransform: 'capitalize',
     padding: 0,
     cursor: 'pointer',
-    textDecoration: 'underline'
-  },
+    textDecoration: 'underline',
+    '&:hover': {
+      color: '#94bfa2'
+    }
+  }
 }));
 
 const Answer = (props) => {

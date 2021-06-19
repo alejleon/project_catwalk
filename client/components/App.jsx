@@ -1,9 +1,10 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import RatingsReviews from './Ratings/RatingsReviews.jsx';
 import QAMain from './qa_components/QAMain.jsx';
 import Overview from './overview/Overview.jsx';
 import Header from './AppBar.jsx';
+import SimpleReactLightbox from 'simple-react-lightbox'
 import axios from 'axios';
 import GITHUB_API_TOKEN from '../config.js'
 import { on, trackEvent, getHistory } from 'react-tracker'
@@ -29,6 +30,7 @@ const App = () => {
     }
   )
   const [ratingsAverage, setRatingsAverage] = useState(0)
+  const [ratingsTotal, setRatingsTotal] = useState(0)
 
 
   var getArrayAverage = (array) => {
@@ -36,7 +38,7 @@ const App = () => {
     for (let i = 0; i < array.length; i++) {
       total += array[i]
     }
-    return total/array.length;
+    return total / array.length;
   }
 
 
@@ -44,14 +46,15 @@ const App = () => {
     let url = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-atx/reviews';
 
     axios.get(url, {
-      headers: {Authorization: GITHUB_API_TOKEN},
-      params: {product_id: id}
+      headers: { Authorization: GITHUB_API_TOKEN },
+      params: { product_id: id }
     })
       .then(response => {
         let ratingsArr = []
         for (let i = 0; i < response.data.results.length; i++) {
           ratingsArr.push(response.data.results[i].rating)
         }
+        setRatingsTotal(ratingsArr.length)
         return ratingsArr;
       })
       .then((ratings) => {
@@ -63,21 +66,27 @@ const App = () => {
       })
   }
 
-  getAverageReviewRating(currentProduct.id)
+  useEffect(() => {
+    getAverageReviewRating(currentProduct.id)
+  }, [currentProduct])
+
 
   const handleReviewAdd = (productId) => {
-    getArrayAverageRating(productId)     //TODO///////////////////////////////////
+    getAverageReviewRating(productId)
   }
 
 
 
   return (
+    // <SimpleReactLightbox>
     <div>
+
       <Header />
-      <Overview currentProduct={currentProduct} ratingsAverage={ratingsAverage}/>
-      <QAMain product_id={currentProduct.id} product={currentProduct}/>
-      <RatingsReviews product_id={currentProduct.id} />
+      <Overview currentProduct={currentProduct} ratingsAverage={ratingsAverage} ratingsTotal={ratingsTotal} />
+      <QAMain product_id={currentProduct.id} product={currentProduct} />
+      <RatingsReviews product_id={currentProduct.id} addReview={handleReviewAdd} />
     </div>
+    // </SimpleReactLightbox>
   );
 }
 

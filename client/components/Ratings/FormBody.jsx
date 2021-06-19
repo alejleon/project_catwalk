@@ -153,6 +153,7 @@ const FormBody = (props) => {
     } else if (rating === 0 || recommend === "") {
       validForm.current = false;
     } else if (
+      //Validate characteristics have all been rated if they are valid matrics for the product
       characteristics.Size && size === "" ||
       characteristics.Width && width === "" ||
       characteristics.Comfort && comfort === "" ||
@@ -187,12 +188,26 @@ const FormBody = (props) => {
   };
 
   const handleNewImage = (event) => {
-    console.log(event.target.files);
+    event.preventDefault();
+    // console.log(URL.createObjectURL(event.target.files[0]));
+    // let newImage = new FormData()
+    // newImage.append('image', event.target.files[0]);
+
+    // const imgurHeaders = {
+    //   Authorization: 'Bearer 7d7e1049e4f0cc07170520b3a49ea492f9c488e6',
+    //   host: '0.0.0.0'
+    // }
+    // axios.post('https://api.imgur.com/3/image', '', imgurHeaders)
+    //   .then((response) => {
+    //     console.log(response);
+    //   })
+    //   .catch((err) => {
+    //     console.log('failed: ', err);
+    //   })
     setImageList([...imageList, URL.createObjectURL(event.target.files[0])]);
   }
 
   const handleFormSubmission = () => {
-    console.log('Form submitted');
     validateForm();
 
     if (validForm.current) {
@@ -236,9 +251,11 @@ const FormBody = (props) => {
       axios.post(`${url}`, newReview, headers)
         .then((response) => {
           console.log('Successfully Posted Form');
+          props.close();
+          props.addReview();
         })
         .catch((err) => {
-          console.log('Error posting form')
+          console.log('Error posting form, ', err);
         })
     } else {
       alert('Form not valid');
@@ -413,7 +430,7 @@ const FormBody = (props) => {
           <Input
             type="file"
             onChange={handleNewImage}
-            disabled={imageList.length >= 4}>Choose File</Input>
+            disabled={imageList.length >= 5}>Choose File</Input>
         </FormControl>
         <div className={classes.sameLine} style={{ minHeight: 100, maxHeight: 100, minWidth: 500, maxWidth: 500 }}>
           {imageList.map((image, index) => {
