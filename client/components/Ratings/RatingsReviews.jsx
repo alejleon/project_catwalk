@@ -105,7 +105,7 @@ const RatingsReviews = (props) => {
     grid: {
       width: '80%',
       margin: '10%',
-      backgroundColor: 'azure',
+      backgroundColor: '#fafafa',
     },
     review: {
       width: '100%',
@@ -113,7 +113,7 @@ const RatingsReviews = (props) => {
     },
     reviewList: {
       maxHeight: '80%',
-      'overflow-y': 'scroll',
+      overflowY: 'scroll',
     }
   }));
 
@@ -121,12 +121,12 @@ const RatingsReviews = (props) => {
 
   return (
     <Grid className={classes.grid} container direction="row" spacing={1}>
-      <Grid container item xs={12} md={3} lg={3} spacing={1}>
+      <Grid container item xs={12} md={3} lg={3}>
         {metaData.ratings ? <Sidebar metaData={metaData} /> : null}
       </Grid>
       <Grid container item xs={12} md={7} lg={7} spacing={1} direction="column">
-        <Grid container item direction="row" alignItems="center" spacing={1}>
-          <Typography>{reviewList.length} reviews, sorted by</Typography>
+        <Grid container item direction="row" alignItems="center">
+          <Typography style={{ margin: 4 }}>{reviewList.length} reviews, sorted by</Typography>
           <FormControl className={classes.formControl}>
             <Select
               labelId="open-select-label"
@@ -153,10 +153,10 @@ const RatingsReviews = (props) => {
             style={{ maxWidth: '150px', maxHeight: '50px', minWidth: '150px', minHeight: '50px' }}
           >MORE REVIEWS
           </Button> : null}
-          <NewReviewForm classes={classes} metaData={metaData} product_id={props.product_id} />
+          <NewReviewForm classes={classes} metaData={metaData} product_id={props.product_id} addReview={props.addReview} />
         </Grid>
       </Grid>
-      <Grid container item xs={12} md={2} lg={2} spacing={1} direction="column">
+      <Grid container item xs={12} md={1} lg={1} spacing={1} direction="column">
 
       </Grid>
     </Grid >
