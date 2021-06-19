@@ -4,7 +4,9 @@
   "description": "Client for e-commerce clothing store",
   "main": "webpack.config.js",
   "scripts": {
-    "react-dev": "webpack -d --watch"
+    "react-dev": "webpack -d --watch",
+    "react-p": "webpack -p --watch",
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -18,15 +20,29 @@
   "homepage": "http://www.github.com",
   "dependencies": {
     "@material-ui/core": "^4.11.4",
-    "babel-polyfill": "^6.26.0",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "@material-ui/icons": "^4.11.2",
+    "@material-ui/lab": "^4.0.0-alpha.58",
+    "@material-ui/styles": "^4.11.4",
+    "axios": "^0.21.1",
+    "express": "^4.17.1",
+    "material-ui-search-bar": "^1.0.0",
+    "moment": "^2.29.1",
+    "react": "^16.8.0",
+    "react-dom": "^16.8.0",
+    "react-icons": "^4.2.0",
+    "react-share": "^4.4.0",
+    "react-tracker": "0.0.8",
+    "webpack-bundle-analyzer": "^4.4.2"
   },
   "devDependencies": {
     "@babel/core": "^7.13.14",
     "@babel/preset-env": "^7.13.12",
     "@babel/preset-react": "^7.13.13",
+    "babel-jest": "^27.0.2",
     "babel-loader": "^8.2.2",
+    "babel-plugin-import": "^1.13.3",
+    "babel-polyfill": "^6.26.0",
+    "jest": "^27.0.4",
     "path": "^0.12.7",
     "webpack": "^4.46.0",
     "webpack-cli": "^3.3.12"
