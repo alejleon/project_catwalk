@@ -1,12 +1,10 @@
 import React, {useState, useEffect} from 'react';
 import ImageModal from './ImageModal.jsx'
 import ImageMenu from './ImageMenu.jsx'
-import ModalImage from "react-modal-image";
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography'
 import ArrowForward from '@material-ui/icons/ArrowForwardIos';
 import ArrowBack from '@material-ui/icons/ArrowBackIos';
-import Modal from "@material-ui/core/Modal"
 import {SRLWrapper} from 'simple-react-lightbox'
 
 const ImageGallery = ({currentStyle, currentProduct}) => {
