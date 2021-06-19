@@ -13,16 +13,16 @@ const StyleSelector = ({currentStyles, currentStyle, handleStyleClick}) => {
   //
 
   return (
-    <Grid container spacing={0} style={{margin: "10px", padding: "20px", height: "100%", borderTop: "1px solid gray"}}>
+    <Grid container spacing={0} style={{ padding: "20px", height: "100%", borderTop: "1px solid gray"}}>
 
 
       {currentStyles ?
        currentStyles.map((style) => {
          return (
-         <Grid item xs={3} key={style.style_id}>
+         <Grid item xs={3} key={style.style_id} style={{minWidth: "90px"}}>
 
            <div >
-             <img className="styleThumb" src={style.photos[0].thumbnail_url} style={style.style_id === currentStyle.style_id ? {border: "4px solid orange" } : {}} onClick={() => {handleStyleClick(style)}} />
+             <img className="styleThumb" src={style.photos[0].thumbnail_url} style={style.style_id === currentStyle.style_id ? {border: "4px solid #94bfa2" } : {}} onClick={() => {handleStyleClick(style)}} />
            </div>
 
          </Grid>

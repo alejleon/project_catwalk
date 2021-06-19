@@ -17,19 +17,19 @@ const ProductOverview = ({currentProduct, currentStyles, currentStyle, ratingsAv
   }))
 
   const classes = useStyles();
-
+  // backgroundColor: "#cbd6cf"
     return (
-      <Grid container spacing={5} style={{borderLeft: "2px solid gray", padding: "60px"}}>
+      <Grid container spacing={5} style={{borderLeft: "2px solid gray", padding: "60px", margin: "30px"}}>
         {/* Category and Title */}
-        <Grid item xs={6}>
+        <Grid item xs={6} style={{height: "15px"}}>
           <Typography variant="h6">{currentProduct.category}</Typography>
         </Grid>
-        <Grid item xs={12}>
+        <Grid item xs={12} style={{height: "60px", minHeight: "65px", minWidth: "500px"}}>
           <Typography variant="h3">{currentProduct.name}</Typography>
         </Grid>
 
       {/* Ratings */}
-        <Grid item xs={12}>
+        <Grid item xs={12} style={{}}>
           <Rating ratingsAverage={ratingsAverage} ratingsTotal={ratingsTotal}/>
         </Grid>
 
@@ -38,7 +38,7 @@ const ProductOverview = ({currentProduct, currentStyles, currentStyle, ratingsAv
           ?  <Grid item xs={12}>
                <Grid container>
                  <Grid item xs={2}>
-                    <Typography variant="h6" style={{textDecorationLine: "line-through"}}>${currentStyle.original_price}</Typography>
+                    <Typography variant="h6" style={{textDecorationLine: "line-through"}}>${currentStyle.original_price} </Typography>
                   </Grid>
                   <Grid item xs={10}>
                     <Typography variant="h6" style={{color: 'red'}}>${currentStyle.sale_price}</Typography>
@@ -60,13 +60,13 @@ const ProductOverview = ({currentProduct, currentStyles, currentStyle, ratingsAv
         {/* <Grid item xs={7}></Grid> */}
         <Grid item xs={5}>
           <Grid container space={1}>
-            <Grid item xs={4}>
+            <Grid item xs={4} className="shareButtons">
               <FacebookShareButton url={document.location.href}><FacebookIcon size={40} round={true}/></FacebookShareButton>
             </Grid>
-            <Grid item xs={4}>
+            <Grid item xs={4} className="shareButtons">
               <TwitterShareButton url={document.location.href}><TwitterIcon size={40} round={true}/></TwitterShareButton>
             </Grid>
-            <Grid item xs={4}>
+            <Grid item xs={4} className="shareButtons">
               <PinterestShareButton url={document.location.href} media={currentStyle.photos[0].url}><PinterestIcon size={40} round={true}/></PinterestShareButton>
             </Grid>
           </Grid>
