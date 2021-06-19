@@ -7,6 +7,8 @@ import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import Rating from '@material-ui/lab/Rating';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
+import Slider from '@material-ui/core/Slider';
+
 
 let Sidebar = (props) => {
 
@@ -34,7 +36,6 @@ let Sidebar = (props) => {
     fourStarRating.current = Math.round(Number(props.metaData.ratings['4']) / totalRatings * 100);
     fiveStarRating.current = Math.round(Number(props.metaData.ratings['5']) / totalRatings * 100);
 
-    // console.log(oneStarRating.current);
     setAverageRating(Number(totalPoints / totalRatings).toFixed(1));
   }, []);
 
@@ -54,20 +55,66 @@ let Sidebar = (props) => {
         main: grey[400],
       }
     },
+    overrides: {
+      MuiSlider: {
+        root: {
+          "&$disabled": {
+            color: '#bdbdbd',
+            mark: {
+              backgroundColor: 'azure'
+            }
+          },
+          height: 4
+        },
+        thumb: {
+          color: 'black'
+        },
+        track: {
+          color: '#bdbdbd',
+          height: 4
+        },
+        rail: {
+          color: '#bdbdbd',
+          height: 4,
+        },
+        mark: {
+          padding: 4,
+          backgroundColor: 'azure'
+        },
+        markLabel: {
+          fontWeight: 'bold'
+        }
+      },
+      MuiLinearProgress: {
+        bar: {
+          color: "green"
+        },
+        colorPrimary: {
+          color: "green",
+          backgroundColor: '#bdbdbd'
+        },
+        bar1Determinate: {
+          color: 'gray'
+        }
+      },
+      MuiTypography: {
+        root: {
+          marginRight: 10,
+          fontWeight: 'bold'
+        }
+      }
+    }
   });
 
   const useStyles = makeStyles((theme) => ({
     LinearProgress: {
-      colorPrimary: {
-        backgroundColor: green[400]
-      },
-      barColorPrimary: {
-        backgroundColor: grey[400]
-      },
       minWidth: 200,
-      bar: {
-        backgroundColor: grey[400]
-      }
+    },
+    slider: {
+      root: {
+        maxWidth: '40%',
+        fontSize: 10,
+      },
     }
   }));
   const classes = useStyles();
@@ -130,8 +177,99 @@ let Sidebar = (props) => {
             color="primary"
           /> : null}
         </Grid>
-      </MuiThemeProvider>
-    </Grid>
+        {props.metaData.characteristics.Size
+          ? <Grid container item direction="column" alignItems="center" style={{ maxWidth: '80%' }}>
+            <Typography>Size</Typography>
+            <Slider
+              classes={{ root: classes.slider.root }}
+              value={Number(props.metaData.characteristics.Size.value)}
+              disabled={true}
+              marks={[{ value: 1, label: "A size too small" }, { value: 2 }, { value: 3, label: "Perfect" },
+              { value: 4 }, { value: 5, label: "A size too large" }]}
+              min={1}
+              max={5}
+              step={1}
+              aria-labelledby="continuous-slider" />
+          </Grid>
+          : null}
+        {props.metaData.characteristics.Width
+          ? <Grid container item direction="column" alignItems="center" style={{ maxWidth: '80%' }}>
+            <Typography>Width</Typography>
+            <Slider
+              classes={{ root: classes.slider.root }}
+              value={Number(props.metaData.characteristics.Width.value)}
+              disabled={true}
+              marks={[{ value: 1, label: "Too Narrow" }, { value: 2 }, { value: 3, label: "Perfect" },
+              { value: 4 }, { value: 5, label: "Too Wide" }]}
+              min={1}
+              max={5}
+              step={1}
+              aria-labelledby="continuous-slider" />
+          </Grid>
+          : null}
+        {props.metaData.characteristics.Comfort
+          ? <Grid container item direction="column" alignItems="center" style={{ maxWidth: '80%' }}>
+            <Typography>Comfort</Typography>
+            <Slider
+              classes={{ root: classes.slider.root }}
+              value={Number(props.metaData.characteristics.Comfort.value)}
+              disabled={true}
+              marks={[{ value: 1, label: "Uncomfortable" }, { value: 2 }, { value: 3 },
+              { value: 4 }, { value: 5, label: "Perfect" }]}
+              min={1}
+              max={5}
+              step={1}
+              aria-labelledby="continuous-slider" />
+          </Grid>
+          : null}
+        {props.metaData.characteristics.Quality
+          ? <Grid container item direction="column" alignItems="center" style={{ maxWidth: '80%' }}>
+            <Typography>Quality</Typography>
+            <Slider
+              classes={{ root: classes.slider.root }}
+              value={Number(props.metaData.characteristics.Quality.value)}
+              disabled={true}
+              marks={[{ value: 1, label: "Poor" }, { value: 2 }, { value: 3, label: "What I expected" },
+              { value: 4 }, { value: 5, label: "Perfect" }]}
+              min={1}
+              max={5}
+              step={1}
+              aria-labelledby="continuous-slider" />
+          </Grid>
+          : null}
+        {props.metaData.characteristics.Length
+          ? <Grid container item direction="column" alignItems="center" style={{ maxWidth: '80%' }}>
+            <Typography>Length</Typography>
+            <Slider
+              classes={{ root: classes.slider.root }}
+              value={Number(props.metaData.characteristics.Length.value)}
+              disabled={true}
+              marks={[{ value: 1, label: "Runs Short" }, { value: 2 }, { value: 3, label: "Perfect" },
+              { value: 4 }, { value: 5, label: "Runs Long" }]}
+              min={1}
+              max={5}
+              step={1}
+              aria-labelledby="continuous-slider" />
+          </Grid>
+          : null}
+        {props.metaData.characteristics.Fit
+          ? <Grid container item direction="column" alignItems="center" style={{ maxWidth: '80%' }}>
+            <Typography>Fit</Typography>
+            <Slider
+              classes={{ root: classes.slider.root }}
+              value={Number(props.metaData.characteristics.Fit.value)}
+              disabled={true}
+              marks={[{ value: 1, label: "Runs Tight" }, { value: 2 }, { value: 3, label: "Perfect" },
+              { value: 4 }, { value: 5, label: "Runs Long" }]}
+              min={1}
+              max={5}
+              step={1}
+              aria-labelledby="continuous-slider" />
+          </Grid>
+          : null}
+
+      </MuiThemeProvider >
+    </Grid >
   );
 };
 

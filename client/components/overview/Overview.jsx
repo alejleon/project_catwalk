@@ -57,6 +57,7 @@ const Overview = ({currentProduct, ratingsAverage, ratingsTotal}) => {
   return (
     <div >
       <CssBaseline />
+
       <Grid container  className={classes.grid} >
         <Grid item xs={8}>
           <ImageGallery

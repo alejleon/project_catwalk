@@ -4,6 +4,7 @@ import RatingsReviews from './Ratings/RatingsReviews.jsx';
 import QAMain from './qa_components/QAMain.jsx';
 import Overview from './overview/Overview.jsx';
 import SimpleReactLightbox from 'simple-react-lightbox'
+import Header from './qa_components/AppBar.jsx';
 import axios from 'axios';
 import GITHUB_API_TOKEN from '../config.js'
 
@@ -77,9 +78,10 @@ const App = () => {
   return (
     <SimpleReactLightbox>
     <div>
-      <Overview currentProduct={currentProduct} ratingsAverage={ratingsAverage} ratingsTotal={ratingsTotal}/>
 
-      <QAMain />
+      <Header />
+      <Overview currentProduct={currentProduct} ratingsAverage={ratingsAverage} ratingsTotal={ratingsTotal}/>
+      <QAMain product={currentProduct.id}/>
       <RatingsReviews product_id={currentProduct.id} />
     </div>
     </SimpleReactLightbox>

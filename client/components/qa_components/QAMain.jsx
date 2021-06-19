@@ -13,13 +13,20 @@ const useStyles = makeStyles((theme) => ({
   // css styles go here
   grid: {
     width: '80%',
-    margin: '10%'
+    marginRight: '10%',
+    marginLeft: '10%',
+    marginTop: '15px',
+    marginBottom: '15px'
+  },
+
+  btn: {
+    marginRight: '20px'
   }
 }));
 
 const QAMain = (props) => {
   const [currentProduct, setCurrentProduct] = useState({ name: 'Camo Joggers' })
-  const [productId, setProductId] = useState(27189); //props.product_id
+  const [productId, setProductId] = useState(props.product); //props.product_id
   const [productQs, setProductQs] = useState([]);    // list of all questions for a product_id
   const [countQs, setCountQs] = useState(0);
   const [displayedCount, setDisplayedCount] = useState(4);
@@ -69,6 +76,7 @@ const QAMain = (props) => {
   // Collapse displayed Questions to 1
   const collapseQuestions = (e) => {
     setDisplayedQuestions(productQs.slice(0, 4));
+    setDisplayedCount(4);
   }
 
   // Logic for opening Add Question Dialog
@@ -119,22 +127,37 @@ const QAMain = (props) => {
 
   return (
     <div>
-      <Grid container spacing={4} className={classes.grid} style={{ background: 'white', height: '600px', overflowY: 'auto', overflowX: 'hidden'}}>
+      <Grid container spacing={1} className={classes.grid}>
         <Grid item xs={12}>
-          <Typography>Questions & Answers</Typography>
+          <Typography variant="h5">Questions & Answers</Typography>
         </Grid>
         <Grid item xs={12}>
           <Search searchInput={searchInput} handleSearchOnChange={handleSearchOnChange}
-            handleSearchClear={handleSearchClear} style={{ margin: '0 auto', width: 300 }} />
+            handleSearchClear={handleSearchClear} />
         </Grid>
-        <QuestionList
-          displayedQs={filteredQ.length === 0 ? displayedQuestions : filteredQ} currentProduct={currentProduct} />
-        <Grid item xs={10}>
-          {displayedCount === countQs ?
-            <Button variant="outlined" color="primary" onClick={collapseQuestions}>COLLAPSE QUESTIONS</Button>
-            : <Button variant="outlined" color="primary" onClick={allQuestions}>MORE ANSWERED QUESTIONS</Button>}
-          <Button variant="outlined" color="secondary" onClick={handleQOpen}>ADD A QUESTION</Button>
-          <AddQuestion getAllQuestions={getAllQuestions} open={openQuestion} handleQClose={handleQClose} currentProduct={currentProduct} />
+        <Grid item xs={12}></Grid>
+        <Grid container item xs={12} style={{ background: 'white', height: '600px', overflowY: 'auto', overflowX: 'hidden' }}>
+          <QuestionList
+            displayedQs={filteredQ.length === 0 ? displayedQuestions : filteredQ} currentProduct={currentProduct} />
+        </Grid>
+        <Grid item xs={12}>
+          <Grid item xs={10}>
+            {displayedCount === countQs ?
+              <Button variant="contained" className={classes.btn}
+                onClick={collapseQuestions}>COLLAPSE QUESTIONS</Button>
+              : <Button className={classes.btn} variant="contained"
+                onClick={allQuestions}>MORE ANSWERED QUESTIONS</Button>}
+            <Button
+              variant="contained"
+              onClick={handleQOpen}>
+              ADD A QUESTION
+            </Button>
+            <AddQuestion
+              getAllQuestions={getAllQuestions}
+              open={openQuestion}
+              handleQClose={handleQClose}
+              currentProduct={currentProduct} />
+          </Grid>
         </Grid>
       </Grid>
     </div >
