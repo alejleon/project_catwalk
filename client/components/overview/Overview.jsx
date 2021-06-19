@@ -55,10 +55,10 @@ const Overview = ({currentProduct, ratingsAverage, ratingsTotal}) => {
 
   if (currentStyle) {
   return (
-    <div>
+    <div >
       <CssBaseline />
       <Grid container  className={classes.grid} >
-        <Grid item xs={7}>
+        <Grid item xs={8}>
           <ImageGallery
             currentProduct={currentProduct}
             currentStyles={currentStyles}

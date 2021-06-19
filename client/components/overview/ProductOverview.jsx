@@ -7,12 +7,19 @@ import StyleSelector from './StyleSelector.jsx';
 import Rating from './Rating.jsx';
 import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography'
+import {makeStyles} from '@material-ui/core/styles'
 
 const ProductOverview = ({currentProduct, currentStyles, currentStyle, ratingsAverage, ratingsTotal, handleStyleClick}) => {
 
+  const useStyles = makeStyles((theme) => ({
+    grid:  {width: '80%',
+    margin: '10%'}
+  }))
+
+  const classes = useStyles();
 
     return (
-      <Grid container spacing={5} style={{ background: 'lavender' }}>
+      <Grid container spacing={5} style={{borderLeft: "2px solid gray"}}>
         {/* Category and Title */}
         <Grid item xs={6}>
           <Typography variant="h6">{currentProduct.category}</Typography>
@@ -44,28 +51,25 @@ const ProductOverview = ({currentProduct, currentStyles, currentStyle, ratingsAv
             </Grid>
         }
 
-        <Grid item xs={12}>
-          <Typography><b>STYLE ></b> {currentStyle.name}</Typography>
+        <Grid item xs={6}>
+          <Typography style={{justify: "center"}}><b>STYLE ></b> {currentStyle.name}</Typography>
         </Grid>
 
 
         {/* Social Media Share */}
-        <Grid item xs={7}></Grid>
+        {/* <Grid item xs={7}></Grid> */}
         <Grid item xs={5}>
-          <Grid container>
+          <Grid container space={1}>
             <Grid item xs={4}>
-              <FacebookShareButton url={document.location.href}><FacebookIcon size={52} round={true}/></FacebookShareButton>
+              <FacebookShareButton url={document.location.href}><FacebookIcon size={40} round={true}/></FacebookShareButton>
             </Grid>
             <Grid item xs={4}>
-              <TwitterShareButton url={document.location.href}><TwitterIcon size={52} round={true}/></TwitterShareButton>
+              <TwitterShareButton url={document.location.href}><TwitterIcon size={40} round={true}/></TwitterShareButton>
             </Grid>
             <Grid item xs={4}>
-              <PinterestShareButton url={document.location.href} media={currentStyle.photos[0].url}><PinterestIcon size={52} round={true}/></PinterestShareButton>
+              <PinterestShareButton url={document.location.href} media={currentStyle.photos[0].url}><PinterestIcon size={40} round={true}/></PinterestShareButton>
             </Grid>
           </Grid>
-
-
-
         </Grid>
 
         <StyleSelector

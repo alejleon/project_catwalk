@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import ImageModal from './ImageModal.jsx'
-import ExpandedViewModal from './ExpandedViewModal'
+import ImageMenu from './ImageMenu.jsx'
 import ModalImage from "react-modal-image";
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography'
@@ -14,6 +14,21 @@ const ImageGallery = ({currentStyle, currentProduct}) => {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [arrayLength, setArrayLength] = useState(currentStyle.photos.length)
   const [modalStatus, setModalStatus] = useState(false);
+  const options = {
+    settings: {
+      lighboxTransitionSpeed: 0.5,
+    },
+    buttons: {
+      showAutoplayButton: false,
+      showDownloadButton: false,
+      showNextButton: false,
+      showPrevButton: false,
+      showThumbnailsButton: false
+    },
+    thumbnails: {
+      showThumbnails: false
+    }
+  }
 
 
   useEffect(() => {
@@ -48,39 +63,36 @@ const ImageGallery = ({currentStyle, currentProduct}) => {
   return (
 
     currentStyle
-      ?  <section id="slider" style={{height: "1200px", padding: "30px", padding: "30px"}}>
+      ?  <section id="slider" style={{height: "1200px", padding: "30px", margin: "30px"}}>
+          <ArrowBack id="backButton" onClick={handlepreviousImageClick}/>
+          <ArrowForward id="forwardButton" onClick={handleNextImageClick}/>
           <Grid container >
-            <ArrowBack id="backButton" onClick={handlepreviousImageClick}/>
-            <ArrowForward id="forwardButton" onClick={handleNextImageClick}/>
             <Grid item xs={12}>
 
-              <SRLWrapper>
+              <SRLWrapper options={options}>
               {currentStyle.photos.map((photo, index) => {
                 return (
 
                     <div className={index === currentIndex ? 'slide active' : 'slide'} key={index}>
                       {index === currentIndex && (<img className="image" src={[photo.url]}/>)}
-
                     </div>
 
                 )
               })}
               </SRLWrapper>
-
-
-
             </Grid>
-            <Grid item xs={1}></Grid>
-            <Grid item xs={10}>
+
+            {/* <Grid item xs={3}></Grid> */}
+            <Grid item xs={9} style={{margin: "20px", padding: "10px"}}>
               <Typography variant="h5">{currentProduct.slogan}</Typography>
             </Grid>
-            <Grid item xs={1}></Grid>
-            <Grid item xs={1}></Grid>
-            <Grid item xs={10}>
-              <Typography variant="body1">{currentProduct.description}</Typography>
-            </Grid>
 
+            <Grid item xs={9}>
+              <Typography variant="body1" style={{margin: "20px"}}>{currentProduct.description}</Typography>
+            </Grid>
           </Grid>
+
+          {/* <ImageMenu currentStyle={currentStyle}/> */}
         </section>
 
 

@@ -9,11 +9,29 @@ body {
 
 
 .image {
-  width: 80%;
-  border-radius: 10px;
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 20px;
   margin: auto;
   display: block;
   text-align: center;
+  cursor: pointer;
+
+}
+
+.styleThumb {
+  height: 85px;
+  width: 85px;
+  border-radius: 15%;
+  cursor: pointer;
+  margin: 15px;
+}
+
+
+.imageMenu {
+  height: 100px;
+  width: 600px;
+  max-height: 100px;
 }
 
 #slider {
@@ -21,6 +39,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 60vh;
 }
 
 .slide {
