@@ -11,7 +11,6 @@ import AddQuestionForm from './AddQuestionForm.jsx'
 const AddQuestion = (props) => {
 
   return (
-
     <React.Fragment>
       <Dialog open={props.open} onClose={props.handleQClose}>
         <DialogTitle id="question-dialog-title">Ask Your Question</DialogTitle>

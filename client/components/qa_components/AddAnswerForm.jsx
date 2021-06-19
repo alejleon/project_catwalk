@@ -7,8 +7,6 @@ import Input from '@material-ui/core/Input';
 import axios from 'axios';
 import GITHUB_API_TOKEN from '../../config.js';
 
-
-
 const AddAnswerForm = (props) => {
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
@@ -18,12 +16,11 @@ const AddAnswerForm = (props) => {
   let question_id = props.questionId;
 
   const useStyles = makeStyles((theme) => ({
-    // styles here
     form: {
     }
   }));
 
-  // Handle form inputs
+//***************** START FORM HANDLERS*************************************/
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
   }
@@ -36,8 +33,6 @@ const AddAnswerForm = (props) => {
     setBody(e.target.value);
   }
 
-  // this needs to resolve before we click submit
-  //wrap in function and use async / await???
   const handleImageUpload = (e) => {
     let img = (e.target.files)
     let imgURL = URL.createObjectURL(img[0])
@@ -45,14 +40,14 @@ const AddAnswerForm = (props) => {
   };
 
   // Map over images to create thumbnails
-    const imageItem = images.map((imageURL, index) => {
-      return (
-        <img src={imageURL} key={index} width="100px" height="100px" />
+  const imageItem = images.map((imageURL, index) => {
+    return (
+      <img src={imageURL} key={index} width="100px" height="100px" />
       );
     });
+//*****************END FORM HANDLERS*************************************/
 
-
-  // handle form submission
+//*****************START FORM SUBMISSION*********************************/
   const submitAnswer = (e) => {
     e.preventDefault();
    newAnswer = {
@@ -61,7 +56,6 @@ const AddAnswerForm = (props) => {
       email,
       photos: images
     }
-   console.log("newAnswer", newAnswer);
     postAnswer(newAnswer, question_id);
     props.handleAClose();
   }
@@ -85,11 +79,13 @@ const AddAnswerForm = (props) => {
       console.error('Error: ', err);
     })
   }
+//*****************END FORM SUBMISSION*********************************/
 
   return (
     <form className="answerForm" onSubmit={submitAnswer}>
       <TextField id="answer"
         label="answer"
+        variant="outlined"
         value ={body}
         onChange={handleBodyChange}
         placeholder="Write your answer here"
@@ -102,6 +98,7 @@ const AddAnswerForm = (props) => {
       <br />
       <TextField id="nickname"
         label="nickname"
+        variant="outlined"
         value={name}
         onChange={handleNicknameChange}
         placeholder="Example: jack543!"
@@ -114,6 +111,7 @@ const AddAnswerForm = (props) => {
       </Typography>
       <TextField id="email"
         label="email"
+        variant="outlined"
         value={email}
         onChange={handleEmailChange}
         placeholder="Example: jack@email.com"
@@ -136,6 +134,7 @@ const AddAnswerForm = (props) => {
           multiple: true,
         }} /> : <div></div>}
         {images !== undefined ? <React.Fragment>{imageItem}</React.Fragment> : <div></div>}
+      <br />
       <br />
       <br />
       <Button type="submit" variant="contained">Submit Question</Button>
