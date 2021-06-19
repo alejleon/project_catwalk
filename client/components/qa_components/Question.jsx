@@ -6,12 +6,12 @@ import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import AnswerList from './AnswerList.jsx';
 import AddAnswer from './AddAnswer.jsx';
+import Divider from '@material-ui/core/Divider';
 import axios from 'axios';
 import GITHUB_API_TOKEN from '../../config.js';
 
 
 const useStyles = makeStyles((theme) => ({
-  // css styles go here
   button: {
     fontSize: 14,
     textTransform: 'capitalize',
@@ -20,9 +20,8 @@ const useStyles = makeStyles((theme) => ({
     textDecoration: 'underline'
   },
 
-  test: {
-    cursor: 'pointer',
-    paddingBottom: 0
+  indent: {
+    textIndent: '20px',
   }
 }));
 
@@ -175,51 +174,66 @@ const Question = (props) => {
       <Grid container={true} spacing={1}>
         <Grid item xs={10} key={props.question_id} >
           <Typography variant="h6" >
-            <Box className={classes.test} fontWeight="fontWeightBold" display="inline">
+            <Box fontWeight="fontWeightBold" display="inline">
               Q: {props.question.question_body}
             </Box>
-            <Box className={classes.button} onClick={reportQuestion} style={{textIndent: '20px'}}>
+            <Box className={classes.button} onClick={reportQuestion} style={{textIndent: '30px'}}>
               {reportedQ ? 'Reported' : 'Report Question'}
-          </Box>
+            </Box>
           </Typography>
         </Grid>
         <Grid item xs={1}>
           <Typography>
             <Box fontSize={14} >
-              Helpful?    <span className={classes.button} onClick={markHelpful}>
-                Yes</span>  ({isHelpful ? props.question.question_helpfulness + 1 : props.question.question_helpfulness})   |
+              Helpful?&nbsp;
+              <span className={classes.button} onClick={markHelpful}>
+                Yes&nbsp;
+              </span>
+              ({isHelpful ? props.question.question_helpfulness + 1
+                : props.question.question_helpfulness})
             </Box>
           </Typography>
         </Grid>
         <Grid item xs={1}>
           <Typography>
-            <Box className={classes.button} onClick={handleAOpen}>Add Answer</Box>
+            <Box className={classes.button} onClick={handleAOpen}>
+              Add Answer
+            </Box>
           </Typography>
-          <AddAnswer open={openAnswer} handleAClose={handleAClose} currentProduct={props.currentProduct}
-            question={props.question.question_body} getAnswers={getAnswers} questionId={questionId} />
+          <AddAnswer open={openAnswer}
+            handleAClose={handleAClose}
+            currentProduct={props.currentProduct}
+            question={props.question.question_body}
+            getAnswers={getAnswers}
+            questionId={questionId}
+          />
         </Grid>
-
-        <Grid item xs={8}></Grid>
         <Grid item xs={9}>
-          {allAnswers.length > 0 ? <AnswerList displayedAnswers={allAnswers.slice(0, displayedAnswersCount)}
-            getAnswers={getAnswers} questionId={questionId} />
+          {allAnswers.length > 0 ?
+            <AnswerList displayedAnswers={allAnswers.slice(0, displayedAnswersCount)}
+              getAnswers={getAnswers} questionId={questionId} />
             : <Button onClick={handleAOpen}>
-              <Typography variant="caption" style={{textIndent: '15px'}}>Add an answer</Typography>
+              <Typography variant="caption" className={classes.indent}>
+                Add an answer
+              </Typography>
             </Button>}
         </Grid>
         <Grid item xs={9}>
           <Box fontWeight="fontWeightBold">
             {displayedAnswersCount >= allAnswersCount ? ""
               : <Button onClick={loadMoreAnswers}>
-                <Typography variant="caption" style={{textIndent: '15px'}}>Load More Answers</Typography>
+                <Typography variant="caption" className={classes.indent}>
+                  Load More Answers
+                </Typography>
               </Button>}
             {displayedAnswersCount < 3 ? ""
               : <Button onClick={collapseAnswers}>
-                <Typography variant="caption" style={{textIndent: '15px'}}>Collapse Answers</Typography>
+                <Typography variant="caption" className={classes.indent}>
+                  Collapse Answers
+                </Typography>
               </Button>}
           </Box>
         </Grid>
-        <Grid item xs={9}></Grid>
       </Grid>
     </React.Fragment>
   );
