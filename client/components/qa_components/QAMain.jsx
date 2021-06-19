@@ -9,9 +9,9 @@ import GITHUB_API_TOKEN from '../../config.js';
 import QuestionList from './QuestionList.jsx';
 import AddQuestion from './AddQuestion.jsx';
 
-const color='#81C784';
+const color = '#0F5944';
 
-const hello =() => 'hello';
+const hello = () => 'hello';
 
 const useStyles = makeStyles((theme) => ({
   grid: {
@@ -23,7 +23,16 @@ const useStyles = makeStyles((theme) => ({
   },
 
   btn: {
-    marginRight: '20px'
+    marginRight: '20px',
+    '&:hover': {
+      background: '#94bfa2'
+    }
+  },
+
+  btnAdd: {
+    '&:hover': {
+      background: '#94bfa2'
+    }
   },
 
   mainGrid: {
@@ -166,6 +175,7 @@ const QAMain = (props) => {
         </Grid>
         <Grid item xs={12}>
           <Grid item xs={10}>
+            <br />
             {displayedCount === countQs ?
               <Button variant="contained"
                 className={classes.btn}
@@ -178,6 +188,7 @@ const QAMain = (props) => {
                 MORE ANSWERED QUESTIONS
               </Button>}
             <Button variant="contained"
+              className={classes.btnAdd}
               onClick={handleQOpen}>
               ADD A QUESTION
             </Button>
@@ -194,4 +205,4 @@ const QAMain = (props) => {
 };
 
 export default QAMain;
-export {hello};
+export { hello };

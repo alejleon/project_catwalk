@@ -120,12 +120,11 @@ const RatingsReviews = (props) => {
   const classes = useStyles();
 
   return (
-
-    <Grid id="reviews" className={classes.grid} container direction="row" spacing={1}>
-      <Grid container item xs={12} md={3} lg={3}>
+    <Grid className={classes.grid} container direction="row" style={{ width: '80%', margin: '10%' }}>
+      <Grid container item xs={12} md={4} lg={4}>
         {metaData.ratings ? <Sidebar metaData={metaData} /> : null}
       </Grid>
-      <Grid container item xs={12} md={7} lg={7} spacing={1} direction="column">
+      <Grid container item xs={12} md={8} lg={8} direction="column">
         <Grid container item direction="row" alignItems="center">
           <Typography style={{ margin: 4 }}>{reviewList.length} reviews, sorted by</Typography>
           <FormControl className={classes.formControl}>
