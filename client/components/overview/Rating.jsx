@@ -9,7 +9,7 @@ const Ratings = ({ratingsAverage, ratingsTotal}) => {
 
   return (
     <Grid container spacing={2} >
-      <Grid item xs={3}>
+      <Grid item xs={3} style={{minWidth: "120px"}}>
       {ratingsTotal &&
         <Rating
           value={ratingsAverage}

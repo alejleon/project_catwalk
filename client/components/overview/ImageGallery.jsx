@@ -61,18 +61,20 @@ const ImageGallery = ({currentStyle, currentProduct}) => {
   return (
 
     currentStyle
-      ?  <section id="slider" style={{height: "1200px", padding: "30px", margin: "30px"}}>
+     ?  <section id="slider" style={{height: "1200px", padding: "30px", marginRight: "30px", backgroundColor: "#e3e8e5", borderRadius: "20px"}}>
           <ArrowBack id="backButton" onClick={handlepreviousImageClick}/>
           <ArrowForward id="forwardButton" onClick={handleNextImageClick}/>
           <Grid container >
-            <Grid item xs={12}>
 
+            <Grid item xs={12} style={{height: "1000px"}} >  {/* this is the image grid item */}
               <SRLWrapper options={options}>
               {currentStyle.photos.map((photo, index) => {
                 return (
 
-                    <div className={index === currentIndex ? 'slide active' : 'slide'} key={index}>
+                    <div className={index === currentIndex ? 'slide active' : 'slide'} key={index} >
+
                       {index === currentIndex && (<img className="image" src={[photo.url]}/>)}
+
                     </div>
 
                 )
@@ -80,17 +82,17 @@ const ImageGallery = ({currentStyle, currentProduct}) => {
               </SRLWrapper>
             </Grid>
 
-            {/* <Grid item xs={3}></Grid> */}
-            <Grid item xs={9} style={{margin: "20px", padding: "10px"}}>
+
+            {/* Slogan and description */}
+            <Grid item xs={12} style={{margin: "10px"}}>
               <Typography variant="h5">{currentProduct.slogan}</Typography>
             </Grid>
-
-            <Grid item xs={9}>
-              <Typography variant="body1" style={{margin: "20px"}}>{currentProduct.description}</Typography>
+            <Grid item xs={12}>
+              <Typography variant="body1" style={{margin: "10px"}}>{currentProduct.description}</Typography>
             </Grid>
           </Grid>
 
-          {/* <ImageMenu currentStyle={currentStyle}/> */}
+
         </section>
 
 

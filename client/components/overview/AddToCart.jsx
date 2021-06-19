@@ -70,12 +70,12 @@ useEffect(() => {
 
     return (
       <Grid container spacing={4} style={{height: "100%", margin: "5px", padding: "20px"}}>
-        <Grid item xs={6}>
+        <Grid item xs={6} style={{width: "200px", minWidth: "200px"}}>
           <FormControl>
             <InputLabel >
               Select Size
             </InputLabel>
-            <Select displayEmpty defaultValue="" onChange={handleSizeSelect} color="primary" variant="outlined" style={{width: "200px"}}>
+            <Select displayEmpty defaultValue="" onChange={handleSizeSelect} color="primary" variant="outlined" style={{width: "180px"}}>
               <MenuItem disabled >Select Size</MenuItem>
                 {skus.map((sku) => {
                   return(
