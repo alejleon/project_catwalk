@@ -112,7 +112,7 @@ let Sidebar = (props) => {
     },
     slider: {
       root: {
-        maxWidth: '40%',
+        maxWidth: '100%',
         fontSize: 10,
       },
     }
@@ -120,7 +120,7 @@ let Sidebar = (props) => {
   const classes = useStyles();
 
   return (
-    <Grid container direction="column" alignItems="center" >
+    <Grid container direction="column" alignItems="right">
       <MuiThemeProvider theme={theme}>
         <Grid container item >
           <Typography variant="caption">RATINGS  REVIEWS</Typography>
@@ -177,97 +177,98 @@ let Sidebar = (props) => {
             color="primary"
           /> : null}
         </Grid>
-        {props.metaData.characteristics.Size
-          ? <Grid container item direction="column" alignItems="center" style={{ maxWidth: '80%' }}>
-            <Typography>Size</Typography>
-            <Slider
-              classes={{ root: classes.slider.root }}
-              value={Number(props.metaData.characteristics.Size.value)}
-              disabled={true}
-              marks={[{ value: 1, label: "A size too small" }, { value: 2 }, { value: 3, label: "Perfect" },
-              { value: 4 }, { value: 5, label: "A size too large" }]}
-              min={1}
-              max={5}
-              step={1}
-              aria-labelledby="continuous-slider" />
-          </Grid>
-          : null}
-        {props.metaData.characteristics.Width
-          ? <Grid container item direction="column" alignItems="center" style={{ maxWidth: '80%' }}>
-            <Typography>Width</Typography>
-            <Slider
-              classes={{ root: classes.slider.root }}
-              value={Number(props.metaData.characteristics.Width.value)}
-              disabled={true}
-              marks={[{ value: 1, label: "Too Narrow" }, { value: 2 }, { value: 3, label: "Perfect" },
-              { value: 4 }, { value: 5, label: "Too Wide" }]}
-              min={1}
-              max={5}
-              step={1}
-              aria-labelledby="continuous-slider" />
-          </Grid>
-          : null}
-        {props.metaData.characteristics.Comfort
-          ? <Grid container item direction="column" alignItems="center" style={{ maxWidth: '80%' }}>
-            <Typography>Comfort</Typography>
-            <Slider
-              classes={{ root: classes.slider.root }}
-              value={Number(props.metaData.characteristics.Comfort.value)}
-              disabled={true}
-              marks={[{ value: 1, label: "Uncomfortable" }, { value: 2 }, { value: 3 },
-              { value: 4 }, { value: 5, label: "Perfect" }]}
-              min={1}
-              max={5}
-              step={1}
-              aria-labelledby="continuous-slider" />
-          </Grid>
-          : null}
-        {props.metaData.characteristics.Quality
-          ? <Grid container item direction="column" alignItems="center" style={{ maxWidth: '80%' }}>
-            <Typography>Quality</Typography>
-            <Slider
-              classes={{ root: classes.slider.root }}
-              value={Number(props.metaData.characteristics.Quality.value)}
-              disabled={true}
-              marks={[{ value: 1, label: "Poor" }, { value: 2 }, { value: 3, label: "What I expected" },
-              { value: 4 }, { value: 5, label: "Perfect" }]}
-              min={1}
-              max={5}
-              step={1}
-              aria-labelledby="continuous-slider" />
-          </Grid>
-          : null}
-        {props.metaData.characteristics.Length
-          ? <Grid container item direction="column" alignItems="center" style={{ maxWidth: '80%' }}>
-            <Typography>Length</Typography>
-            <Slider
-              classes={{ root: classes.slider.root }}
-              value={Number(props.metaData.characteristics.Length.value)}
-              disabled={true}
-              marks={[{ value: 1, label: "Runs Short" }, { value: 2 }, { value: 3, label: "Perfect" },
-              { value: 4 }, { value: 5, label: "Runs Long" }]}
-              min={1}
-              max={5}
-              step={1}
-              aria-labelledby="continuous-slider" />
-          </Grid>
-          : null}
-        {props.metaData.characteristics.Fit
-          ? <Grid container item direction="column" alignItems="center" style={{ maxWidth: '80%' }}>
-            <Typography>Fit</Typography>
-            <Slider
-              classes={{ root: classes.slider.root }}
-              value={Number(props.metaData.characteristics.Fit.value)}
-              disabled={true}
-              marks={[{ value: 1, label: "Runs Tight" }, { value: 2 }, { value: 3, label: "Perfect" },
-              { value: 4 }, { value: 5, label: "Runs Long" }]}
-              min={1}
-              max={5}
-              step={1}
-              aria-labelledby="continuous-slider" />
-          </Grid>
-          : null}
-
+        <Grid container direction="column" alignItems="center" style={{}}>
+          {props.metaData.characteristics.Size
+            ? <Grid container item direction="column" alignItems="center" style={{ maxWidth: '60%' }}>
+              <Typography>Size</Typography>
+              <Slider
+                classes={{ root: classes.slider.root }}
+                value={Number(props.metaData.characteristics.Size.value)}
+                disabled={true}
+                marks={[{ value: 1, label: "A size too small" }, { value: 2 }, { value: 3, label: "Perfect" },
+                { value: 4 }, { value: 5, label: "A size too large" }]}
+                min={1}
+                max={5}
+                step={1}
+                aria-labelledby="continuous-slider" />
+            </Grid>
+            : null}
+          {props.metaData.characteristics.Width
+            ? <Grid container item direction="column" alignItems="center" style={{ maxWidth: '60%' }}>
+              <Typography>Width</Typography>
+              <Slider
+                classes={{ root: classes.slider.root }}
+                value={Number(props.metaData.characteristics.Width.value)}
+                disabled={true}
+                marks={[{ value: 1, label: "Too Narrow" }, { value: 2 }, { value: 3, label: "Perfect" },
+                { value: 4 }, { value: 5, label: "Too Wide" }]}
+                min={1}
+                max={5}
+                step={1}
+                aria-labelledby="continuous-slider" />
+            </Grid>
+            : null}
+          {props.metaData.characteristics.Comfort
+            ? <Grid container item direction="column" alignItems="center" style={{ maxWidth: '60%' }}>
+              <Typography>Comfort</Typography>
+              <Slider
+                classes={{ root: classes.slider.root }}
+                value={Number(props.metaData.characteristics.Comfort.value)}
+                disabled={true}
+                marks={[{ value: 1, label: "Uncomfortable" }, { value: 2 }, { value: 3 },
+                { value: 4 }, { value: 5, label: "Perfect" }]}
+                min={1}
+                max={5}
+                step={1}
+                aria-labelledby="continuous-slider" />
+            </Grid>
+            : null}
+          {props.metaData.characteristics.Quality
+            ? <Grid container item direction="column" alignItems="center" style={{ maxWidth: '60%' }}>
+              <Typography>Quality</Typography>
+              <Slider
+                classes={{ root: classes.slider.root }}
+                value={Number(props.metaData.characteristics.Quality.value)}
+                disabled={true}
+                marks={[{ value: 1, label: "Poor" }, { value: 2 }, { value: 3, label: "What I expected" },
+                { value: 4 }, { value: 5, label: "Perfect" }]}
+                min={1}
+                max={5}
+                step={1}
+                aria-labelledby="continuous-slider" />
+            </Grid>
+            : null}
+          {props.metaData.characteristics.Length
+            ? <Grid container item direction="column" alignItems="center" style={{ maxWidth: '60%' }}>
+              <Typography>Length</Typography>
+              <Slider
+                classes={{ root: classes.slider.root }}
+                value={Number(props.metaData.characteristics.Length.value)}
+                disabled={true}
+                marks={[{ value: 1, label: "Runs Short" }, { value: 2 }, { value: 3, label: "Perfect" },
+                { value: 4 }, { value: 5, label: "Runs Long" }]}
+                min={1}
+                max={5}
+                step={1}
+                aria-labelledby="continuous-slider" />
+            </Grid>
+            : null}
+          {props.metaData.characteristics.Fit
+            ? <Grid container item direction="column" alignItems="center" style={{ maxWidth: '60%' }}>
+              <Typography>Fit</Typography>
+              <Slider
+                classes={{ root: classes.slider.root }}
+                value={Number(props.metaData.characteristics.Fit.value)}
+                disabled={true}
+                marks={[{ value: 1, label: "Runs Tight" }, { value: 2 }, { value: 3, label: "Perfect" },
+                { value: 4 }, { value: 5, label: "Runs Long" }]}
+                min={1}
+                max={5}
+                step={1}
+                aria-labelledby="continuous-slider" />
+            </Grid>
+            : null}
+        </Grid>
       </MuiThemeProvider >
     </Grid >
   );

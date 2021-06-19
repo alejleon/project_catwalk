@@ -121,7 +121,7 @@ const RatingsReviews = (props) => {
 
   return (
     <Grid className={classes.grid} container direction="row" spacing={1}>
-      <Grid container item xs={12} md={4} lg={4} spacing={1}>
+      <Grid container item xs={12} md={3} lg={3}>
         {metaData.ratings ? <Sidebar metaData={metaData} /> : null}
       </Grid>
       <Grid container item xs={12} md={7} lg={7} spacing={1} direction="column">
