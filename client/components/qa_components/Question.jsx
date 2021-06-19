@@ -17,7 +17,10 @@ const useStyles = makeStyles((theme) => ({
     textTransform: 'capitalize',
     padding: 0,
     cursor: 'pointer',
-    textDecoration: 'underline'
+    textDecoration: 'underline',
+    '&:hover': {
+      color: '#94bfa2'
+    }
   },
 
   indent: {
@@ -182,7 +185,7 @@ const Question = (props) => {
             </Box>
           </Typography>
         </Grid>
-        <Grid item xs={1}>
+        <Grid item xs={1} style={{minWidth: '50px'}}>
           <Typography>
             <Box fontSize={14} >
               Helpful?&nbsp;
@@ -194,7 +197,7 @@ const Question = (props) => {
             </Box>
           </Typography>
         </Grid>
-        <Grid item xs={1}>
+        <Grid item xs={1} style={{minWidth: '50'}}>
           <Typography>
             <Box className={classes.button} onClick={handleAOpen}>
               Add Answer

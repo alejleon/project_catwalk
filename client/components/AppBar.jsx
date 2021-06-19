@@ -44,11 +44,11 @@ const Header =(props) => {
 
   return (
     <div className={classes.root}>
-      <AppBar position="static" style={{background: '#81C784', width: '80%', marginRight: '10%',
+      <AppBar position="static" style={{background: '#94bfa2', color: '#212121', height: '64px', width: '80%', marginRight: '10%',
     marginLeft: '10%',}}>
         <Toolbar>
-          <EcoIcon fontSize="large"/>
-          <Typography className={classes.title} variant="h4" noWrap>
+          <EcoIcon fontSize="large" />
+          <Typography className={classes.title} variant="h4">
             Thread Lightly
           </Typography>
         </Toolbar>
