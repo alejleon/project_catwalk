@@ -160,10 +160,11 @@ let ReviewListItem = (props) => {
         {props.data.photos.length > 0
           ? <div className={classes.sameLine} style={{ minHeight: 100, maxHeight: 100, minWidth: 500, maxWidth: 500 }}>
             {props.data.photos.map((image) => {
+              let imageUrl = image.url
               return <Card classes={{ root: classes.card }} key={image.id} onClick={handleImageClick}>
                 <CardMedia
                   component="img"
-                  image={image}
+                  image={imageUrl}
                   variant="outlined"
                 />
               </Card>

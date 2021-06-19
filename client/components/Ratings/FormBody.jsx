@@ -188,12 +188,26 @@ const FormBody = (props) => {
   };
 
   const handleNewImage = (event) => {
-    console.log(URL.createObjectURL(event.target.files[0]));
+    event.preventDefault();
+    // console.log(URL.createObjectURL(event.target.files[0]));
+    // let newImage = new FormData()
+    // newImage.append('image', event.target.files[0]);
+
+    // const imgurHeaders = {
+    //   Authorization: 'Bearer 7d7e1049e4f0cc07170520b3a49ea492f9c488e6',
+    //   host: '0.0.0.0'
+    // }
+    // axios.post('https://api.imgur.com/3/image', '', imgurHeaders)
+    //   .then((response) => {
+    //     console.log(response);
+    //   })
+    //   .catch((err) => {
+    //     console.log('failed: ', err);
+    //   })
     setImageList([...imageList, URL.createObjectURL(event.target.files[0])]);
   }
 
   const handleFormSubmission = () => {
-    console.log('Form submitted');
     validateForm();
 
     if (validForm.current) {
@@ -237,9 +251,11 @@ const FormBody = (props) => {
       axios.post(`${url}`, newReview, headers)
         .then((response) => {
           console.log('Successfully Posted Form');
+          props.close();
+          props.addReview();
         })
         .catch((err) => {
-          console.log('Error posting form')
+          console.log('Error posting form, ', err);
         })
     } else {
       alert('Form not valid');
