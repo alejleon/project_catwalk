@@ -8,7 +8,7 @@ Overhauling an outdated client-facing retail web-portal that has been hurting th
 
 
 ## Description
-
+https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black
 
 
 ## Installation 
