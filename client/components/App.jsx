@@ -3,12 +3,8 @@ import React, { useState, useEffect } from 'react';
 import RatingsReviews from './Ratings/RatingsReviews.jsx';
 import QAMain from './qa_components/QAMain.jsx';
 import Overview from './overview/Overview.jsx';
-<<<<<<< HEAD
 import Header from './AppBar.jsx';
-=======
 import SimpleReactLightbox from 'simple-react-lightbox'
-import Header from './qa_components/AppBar.jsx';
->>>>>>> e66e595ddd90cce6f831ed4f429abeac0b8af7bc
 import axios from 'axios';
 import GITHUB_API_TOKEN from '../config.js'
 import { on, trackEvent, getHistory } from 'react-tracker'
