@@ -1,47 +1,55 @@
 import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import axios from 'axios';
-import QuestionList from './QuestionList.jsx';
-import AddQuestion from './AddQuestion.jsx';
 import Search from './Search.jsx';
-import GITHUB_API_TOKEN from '../../config.js';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import axios from 'axios';
+import GITHUB_API_TOKEN from '../../config.js';
+import QuestionList from './QuestionList.jsx';
+import AddQuestion from './AddQuestion.jsx';
+
+const color='#81C784';
+
+const hello =() => 'hello';
 
 const useStyles = makeStyles((theme) => ({
-  // css styles go here
   grid: {
     width: '80%',
     marginRight: '10%',
     marginLeft: '10%',
-    marginTop: '15px',
-    marginBottom: '15px'
+    marginTop: '5px',
+    marginBottom: '5px'
   },
 
   btn: {
     marginRight: '20px'
+  },
+
+  mainGrid: {
+    background: '#fafafa',
+    maxHeight: '600px',
+    overflowY: 'auto',
+    overflowX: 'hidden'
   }
 }));
 
 const QAMain = (props) => {
-  const [currentProduct, setCurrentProduct] = useState({ name: 'Camo Joggers' })
-  const [productId, setProductId] = useState(props.product); //props.product_id
-  const [productQs, setProductQs] = useState([]);    // list of all questions for a product_id
+  const [currentProduct, setCurrentProduct] = useState(props.product);
+  const [productId, setProductId] = useState(props.product_id);
+  const [productQs, setProductQs] = useState([]);
   const [countQs, setCountQs] = useState(0);
   const [displayedCount, setDisplayedCount] = useState(4);
-  const [openQuestion, setOpenQuestion] = useState(false); // set Question dialog to false
+  const [openQuestion, setOpenQuestion] = useState(false);
   const [searchInput, setSearchInput] = useState("");
   const [filteredQ, setFilteredQ] = useState([]);
   const [displayedQuestions, setDisplayedQuestions] = useState([]);
   const [finalQuestions, setFinalQuestions] = useState([]);
 
 
-  // use styles
   const classes = useStyles();
 
-
-  // Axios HTTP GET Request for All Questions
+  //***************** START GET QUESTIONS LOGIC *************************************/
   const url = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-atx/qa/questions';
   const getAllQuestions = () => {
     const config = {
@@ -78,7 +86,9 @@ const QAMain = (props) => {
     setDisplayedQuestions(productQs.slice(0, 4));
     setDisplayedCount(4);
   }
+  //***************** END GET QUESTIONS LOGIC *************************************/
 
+  //***************** START ADD QUESTION DIALOG LOGIC ****************************/
   // Logic for opening Add Question Dialog
   const handleQOpen = () => {
     setOpenQuestion(true);
@@ -87,7 +97,9 @@ const QAMain = (props) => {
   const handleQClose = () => {
     setOpenQuestion(false);
   }
+  //***************** END ADD QUESTION DIALOG LOGIC **************************/
 
+  //***************** START SEARCH LOGIC *************************************/
   const handleSearchOnChange = (newValue) => {
     setSearchInput(newValue);
     if (newValue.length < 2) {
@@ -98,9 +110,10 @@ const QAMain = (props) => {
   const handleSearchClear = () => {
     setSearchInput("");
   }
+  //***************** END SEARCH LOGIC *************************************/
 
+  //***************** START useEffect LOGIC *********************************/
   useEffect(() => {
-    console.log('searchInput', searchInput);
     if (searchInput.length > 2) {
       setFilteredQ(productQs.filter((question) => {
         return question.question_body.toLowerCase().includes(searchInput.toLowerCase())
@@ -124,31 +137,47 @@ const QAMain = (props) => {
     setDisplayedQuestions(productQs.slice(0, displayedCount));
   }, [productQs]);
 
+  useEffect(() => {
+    setCurrentProduct(props.product);
+  }, [props.product]);
+
+  useEffect(() => {
+    setProductId(props.product_id);
+  }, [props.product_id]);
+  //***************** END useEffect LOGIC *********************************/
+
 
   return (
     <div>
-      <Grid container spacing={1} className={classes.grid}>
+      <Grid container spacing={0} className={classes.grid}>
         <Grid item xs={12}>
           <Typography variant="h5">Questions & Answers</Typography>
         </Grid>
         <Grid item xs={12}>
           <Search searchInput={searchInput} handleSearchOnChange={handleSearchOnChange}
             handleSearchClear={handleSearchClear} />
+          <br />
         </Grid>
         <Grid item xs={12}></Grid>
-        <Grid container item xs={12} style={{ background: 'white', height: '600px', overflowY: 'auto', overflowX: 'hidden' }}>
+        <Grid container item xs={12} className={classes.mainGrid}>
           <QuestionList
-            displayedQs={filteredQ.length === 0 ? displayedQuestions : filteredQ} currentProduct={currentProduct} />
+            displayedQs={filteredQ.length === 0 ? displayedQuestions : filteredQ}
+            currentProduct={currentProduct} />
         </Grid>
         <Grid item xs={12}>
           <Grid item xs={10}>
             {displayedCount === countQs ?
-              <Button variant="contained" className={classes.btn}
-                onClick={collapseQuestions}>COLLAPSE QUESTIONS</Button>
-              : <Button className={classes.btn} variant="contained"
-                onClick={allQuestions}>MORE ANSWERED QUESTIONS</Button>}
-            <Button
-              variant="contained"
+              <Button variant="contained"
+                className={classes.btn}
+                onClick={collapseQuestions}>
+                COLLAPSE QUESTIONS
+              </Button>
+              : <Button className={classes.btn}
+                variant="contained"
+                onClick={allQuestions}>
+                MORE ANSWERED QUESTIONS
+              </Button>}
+            <Button variant="contained"
               onClick={handleQOpen}>
               ADD A QUESTION
             </Button>
@@ -165,3 +194,4 @@ const QAMain = (props) => {
 };
 
 export default QAMain;
+export {hello};

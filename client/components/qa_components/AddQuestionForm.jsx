@@ -16,15 +16,12 @@ const AddQuestionForm = (props) => {
   let product_id = 27189;
 
   const useStyles = makeStyles((theme) => ({
-    // styles here
     form: {
 
     }
-
-
   }));
 
-  // Handle form inputs
+//***************** START FORM HANDLERS*************************************/
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
   }
@@ -40,7 +37,6 @@ const AddQuestionForm = (props) => {
   // handle form submission
   const submitQuestion = (e) => {
     e.preventDefault();
-    // get info from the form submission
     console.log('submitted');
     newQuestion = {
       body,
@@ -48,13 +44,12 @@ const AddQuestionForm = (props) => {
       email
     }
     postQuestion(newQuestion, product_id);
-
     props.handleQClose();
-
   }
+//*****************END FORM HANDLERS*************************************/
 
 
-  // Axios POST request - add question to the database
+//*****************START FORM SUBMISSION*********************************/
   const postQuestion = (newQuestion, product_id) => {
     newQuestion.product_id = product_id;
 
@@ -76,12 +71,14 @@ const AddQuestionForm = (props) => {
         console.error('Error: ', err);
       })
   }
+  //*****************END FORM SUBMISSION*********************************/
 
 
   return (
     <form className="questionForm" onSubmit={submitQuestion}>
       <TextField id="question"
         label="question"
+        variant="outlined"
         value={body}
         onChange={handleBodyChange}
         placeholder="What would you like to ask?"
@@ -94,6 +91,7 @@ const AddQuestionForm = (props) => {
       <br />
       <TextField id="nickname"
         label="nickname"
+        variant="outlined"
         value={name}
         onChange={handleNicknameChange}
         placeholder="Example: jackson11!"
@@ -106,6 +104,7 @@ const AddQuestionForm = (props) => {
        </Typography>
       <TextField id="email"
         label="email"
+        variant="outlined"
         value={email}
         onChange={handleEmailChange}
         placeholder="Why did you like the product or not?"
@@ -120,11 +119,7 @@ const AddQuestionForm = (props) => {
       <br />
       <Button type="submit" variant="contained">Submit Question</Button>
     </form>
-
-
   )
 };
-
-
 
 export default AddQuestionForm;

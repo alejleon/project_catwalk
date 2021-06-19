@@ -3,10 +3,14 @@ import React, { useState, useEffect } from 'react';
 import RatingsReviews from './Ratings/RatingsReviews.jsx';
 import QAMain from './qa_components/QAMain.jsx';
 import Overview from './overview/Overview.jsx';
+import Header from './AppBar.jsx';
 import SimpleReactLightbox from 'simple-react-lightbox'
-import Header from './qa_components/AppBar.jsx';
 import axios from 'axios';
 import GITHUB_API_TOKEN from '../config.js'
+import { on, trackEvent, getHistory } from 'react-tracker'
+import { Tracker, TracerProvider } from 'react-tracker';
+
+const tracker = new Tracker();
 
 const App = () => {
 
@@ -68,7 +72,7 @@ const App = () => {
 
 
   const handleReviewAdd = (productId) => {
-    getAverageReviewRating(productId)     
+    getAverageReviewRating(productId)
   }
 
 
@@ -78,9 +82,8 @@ const App = () => {
     <div>
 
       <Header />
-
       <Overview currentProduct={currentProduct} ratingsAverage={ratingsAverage} ratingsTotal={ratingsTotal}/>
-      <QAMain product={currentProduct.id} />
+      <QAMain product_id={currentProduct.id} product={currentProduct}/>
       <RatingsReviews product_id={currentProduct.id} addReview={handleReviewAdd} />
     </div>
     </SimpleReactLightbox>
