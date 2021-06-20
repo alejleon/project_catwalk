@@ -61,7 +61,7 @@ const ImageGallery = ({currentStyle, currentProduct}) => {
   return (
 
     currentStyle
-     ?  <section id="slider" style={{height: "1200px", padding: "30px", marginRight: "30px", backgroundColor: "#e3e8e5", borderRadius: "20px"}}>
+     ?  <section id="slider" style={{height: "1300px", padding: "30px", marginRight: "30px", backgroundColor: "#e3e8e5", borderRadius: "20px"}}>
           <ArrowBack id="backButton" onClick={handlepreviousImageClick}/>
           <ArrowForward id="forwardButton" onClick={handleNextImageClick}/>
           <Grid container >
@@ -84,11 +84,19 @@ const ImageGallery = ({currentStyle, currentProduct}) => {
 
 
             {/* Slogan and description */}
-            <Grid item xs={12} style={{margin: "10px"}}>
+            <Grid item xs={2}></Grid>
+            <Grid item xs={8} style={{marginTop: "40px", borderTop: "1px solid gray"}}></Grid>
+            <Grid item xs={2}></Grid>
+
+            <Grid item xs={1}></Grid>
+            <Grid item xs={10} style={{marginTop: "30px"}}>
               <Typography variant="h5">{currentProduct.slogan}</Typography>
             </Grid>
-            <Grid item xs={12}>
-              <Typography variant="body1" style={{margin: "10px"}}>{currentProduct.description}</Typography>
+            <Grid item xs={1}></Grid>
+
+            <Grid item xs={1}></Grid>
+            <Grid item xs={10}>
+              <Typography variant="body1" >{currentProduct.description}</Typography>
             </Grid>
           </Grid>
 

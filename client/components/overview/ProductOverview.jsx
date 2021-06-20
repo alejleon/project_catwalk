@@ -38,7 +38,7 @@ const ProductOverview = ({currentProduct, currentStyles, currentStyle, ratingsAv
           ?  <Grid item xs={12}>
                <Grid container>
                  <Grid item xs={2}>
-                    <Typography variant="h6" style={{textDecorationLine: "line-through"}}>${currentStyle.original_price} </Typography>
+                    <Typography variant="h6" style={{textDecorationLine: "line-through", minWidth: "330px"}}>${currentStyle.original_price} </Typography>
                   </Grid>
                   <Grid item xs={10}>
                     <Typography variant="h6" style={{color: 'red'}}>${currentStyle.sale_price}</Typography>
