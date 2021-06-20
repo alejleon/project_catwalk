@@ -53,9 +53,10 @@ const Overview = ({currentProduct, ratingsAverage, ratingsTotal}) => {
      getStyles()
    }, [])
 
-  if (currentStyle) {
+
   return (
-    <div >
+    currentStyle &&
+    <div style={{marginTop: "-130px", marginBottom: "-130px"}}>
       <CssBaseline />
 
       <Grid container  className={classes.grid} >
@@ -79,9 +80,6 @@ const Overview = ({currentProduct, ratingsAverage, ratingsTotal}) => {
       </Grid>
     </div>
   )
-  } else {
-    return null
-  }
 }
 
 export default Overview;

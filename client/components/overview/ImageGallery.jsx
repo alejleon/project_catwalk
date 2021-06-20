@@ -3,8 +3,8 @@ import ImageModal from './ImageModal.jsx'
 import ImageMenu from './ImageMenu.jsx'
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography'
-import ArrowForward from '@material-ui/icons/ArrowForwardIos';
-import ArrowBack from '@material-ui/icons/ArrowBackIos';
+import ArrowForward from '@material-ui/icons/ArrowForward';
+import ArrowBack from '@material-ui/icons/ArrowBack';
 import {SRLWrapper} from 'simple-react-lightbox'
 
 const ImageGallery = ({currentStyle, currentProduct}) => {
@@ -62,8 +62,8 @@ const ImageGallery = ({currentStyle, currentProduct}) => {
 
     currentStyle
      ?  <section id="slider" style={{height: "1300px", padding: "30px", marginRight: "30px", backgroundColor: "#e3e8e5", borderRadius: "20px"}}>
-          <ArrowBack id="backButton" onClick={handlepreviousImageClick}/>
-          <ArrowForward id="forwardButton" onClick={handleNextImageClick}/>
+          <ArrowBack id="backButton" style={{margin: "5px"}} onClick={handlepreviousImageClick}/>
+          <ArrowForward id="forwardButton" style={{margin: "5px"}} onClick={handleNextImageClick}/>
           <Grid container >
 
             <Grid item xs={12} style={{height: "1000px"}} >  {/* this is the image grid item */}
@@ -89,14 +89,14 @@ const ImageGallery = ({currentStyle, currentProduct}) => {
             <Grid item xs={2}></Grid>
 
             <Grid item xs={1}></Grid>
-            <Grid item xs={10} style={{marginTop: "30px"}}>
-              <Typography variant="h5">{currentProduct.slogan}</Typography>
+            <Grid item xs={10} >
+              <Typography variant="h5" style={{margin: "30px 10px 10px 10px"}}>{currentProduct.slogan}</Typography>
             </Grid>
             <Grid item xs={1}></Grid>
 
             <Grid item xs={1}></Grid>
             <Grid item xs={10}>
-              <Typography variant="body1" >{currentProduct.description}</Typography>
+              <Typography variant="body1" style={{margin: "5px 10px"}}>{currentProduct.description}</Typography>
             </Grid>
           </Grid>
 

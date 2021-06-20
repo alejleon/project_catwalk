@@ -49,7 +49,7 @@ const Header =(props) => {
     <div className={classes.root}>
       <AppBar position="static" style={{background: '#94bfa2', color: '#212121', height: '110px', width: '100%'}}>
         <Toolbar>
-          <EcoIcon fontSize="large" styles={{margin: "30px"}} />
+          <EcoIcon fontSize="large" styles={{margin: "30px", fontSize: "200px"}} />
           <Typography className={classes.title} variant="h4">
             Thread Lightly
           </Typography>

@@ -252,7 +252,7 @@ const FormBody = (props) => {
         .then((response) => {
           console.log('Successfully Posted Form');
           props.close();
-          props.addReview();
+          props.addReview(newReview.product_id);
         })
         .catch((err) => {
           console.log('Error posting form, ', err);
