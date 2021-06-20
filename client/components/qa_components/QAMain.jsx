@@ -60,7 +60,7 @@ const QAMain = (props) => {
 
   //***************** START GET QUESTIONS LOGIC *************************************/
   const url = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-atx/qa/questions';
-  const getAllQuestions = () => {
+  const getAllQuestions = (productId) => {
     const config = {
       headers: { Authorization: GITHUB_API_TOKEN },
       params: {
@@ -152,6 +152,7 @@ const QAMain = (props) => {
 
   useEffect(() => {
     setProductId(props.product_id);
+    getAllQuestions(props.product_id)
   }, [props.product_id]);
   //***************** END useEffect LOGIC *********************************/
 
@@ -169,6 +170,11 @@ const QAMain = (props) => {
         </Grid>
         <Grid item xs={12}></Grid>
         <Grid container item xs={12} className={classes.mainGrid}>
+          {productQs.length === 0 ?  <Button variant="contained"
+              className={classes.btnAdd}
+              onClick={handleQOpen}>
+              NO QUESTIONS. ADD ONE.
+            </Button> : undefined}
           <QuestionList
             displayedQs={filteredQ.length === 0 ? displayedQuestions : filteredQ}
             currentProduct={currentProduct} />

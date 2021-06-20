@@ -9,10 +9,12 @@ import axios from 'axios';
 import GITHUB_API_TOKEN from '../config.js'
 import { on, trackEvent, getHistory } from 'react-tracker'
 import { Tracker, TracerProvider } from 'react-tracker';
+import Button from '@material-ui/core/Button';
 
 const tracker = new Tracker();
 
 const App = () => {
+
 
   // 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-atx'
 
@@ -31,6 +33,36 @@ const App = () => {
   )
   const [ratingsAverage, setRatingsAverage] = useState(0)
   const [ratingsTotal, setRatingsTotal] = useState(0)
+  const [products, setProducts] = useState();
+
+
+  const url = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-atx/products';
+  const getAllProducts = () => {
+    const config = {
+      headers: { Authorization: GITHUB_API_TOKEN },
+      params: {
+        page: 1,
+        count: 100
+      }
+    }
+
+    axios.get(url, config)
+      .then((results) => {
+        console.log(results.data)
+        setProducts(products => {
+          return results.data;
+        })
+      })
+      .catch((err) => {
+        console.error('Error: ', err);
+      });
+}
+
+const selectRandomProduct = (e) => {
+  const num = Math.floor(Math.random() * 11 );
+  setCurrentProduct(products[num]);
+};
+
 
 
   var getArrayAverage = (array) => {
@@ -70,6 +102,9 @@ const App = () => {
     getAverageReviewRating(currentProduct.id)
   }, [currentProduct])
 
+  useEffect(() => {
+    getAllProducts();
+  }, [])
 
   const handleReviewAdd = (productId) => {
     getAverageReviewRating(productId)
@@ -78,15 +113,15 @@ const App = () => {
 
 
   return (
-    // <SimpleReactLightbox>
+    <SimpleReactLightbox>
     <div>
-
       <Header />
       <Overview currentProduct={currentProduct} ratingsAverage={ratingsAverage} ratingsTotal={ratingsTotal} />
       <QAMain product_id={currentProduct.id} product={currentProduct} />
       <RatingsReviews product_id={currentProduct.id} addReview={handleReviewAdd} />
     </div>
-    // </SimpleReactLightbox>
+    <Button onClick={selectRandomProduct}>Change Product</Button>
+    </SimpleReactLightbox>
   );
 }
 
