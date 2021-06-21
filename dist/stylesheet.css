@@ -21,7 +21,7 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  box-shadow: 15px;
+  box-shadow: 0 0 20px 0px gray;
 }
 
 .styleThumb {
@@ -30,8 +30,14 @@ body {
   border-radius: 15%;
   cursor: pointer;
   margin: 15px;
-
+  box-shadow: 5px 5px 13px -3px gray;
 }
+
+.styleThumb:hover {
+  transform: scale(1.1);
+  border: "4px solid #94bfa2";
+}
+
 
 
 .imageMenu {
@@ -50,21 +56,24 @@ body {
 
 .slide {
   opacity: 0;
-  transition-duration: 1s ease;
+  transition-duration: 1.5s ease;
   align-content: center;
-
 }
 
 .slide.active {
   opacity: 1;
-  transition-duration: 1s;
+  transition-duration: 1.5s;
   transform: scale(1);
   height: 1000px;
   position: relative;
   /* display: table-cell;
   vertical-align: middle; */
-
 }
+
+.slide.active:hover {
+  transform: scale(1.0);
+}
+
 
 #forwardButton {
   position: absolute;
@@ -78,6 +87,8 @@ body {
   color: white;
   background-color:rgb(33, 34, 33);
   border-radius: 15px;
+  box-shadow: 5px 5px 10px gray;
+  transition-duration: 1s ease;
 }
 
 #backButton {
@@ -92,8 +103,23 @@ body {
   color: white;
   background-color: rgb(33, 34, 33);
   border-radius: 15px;
+  box-shadow: 5px 5px 10px gray;
+}
+
+#forwardButton:hover {
+  transform: scale(1.2);
+}
+
+#backButton:hover {
+  transform: scale(1.2);
 }
 
 .shareButtons {
   min-width: 45px;
+
 }
+
+.shareButtons:hover {
+  transform: scale(1.2);
+}
+

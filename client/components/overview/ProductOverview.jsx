@@ -72,12 +72,13 @@ const ProductOverview = ({currentProduct, currentStyles, currentStyle, ratingsAv
           </Grid>
         </Grid>
 
-        <StyleSelector
-          currentStyles={currentStyles.results}
-          currentStyle={currentStyle}
-          handleStyleClick={handleStyleClick}
-        />
-
+        <Grid item xs={12}>
+          <StyleSelector
+            currentStyles={currentStyles.results}
+            currentStyle={currentStyle}
+            handleStyleClick={handleStyleClick}
+          />
+        </Grid>
       </Grid>
 
     )

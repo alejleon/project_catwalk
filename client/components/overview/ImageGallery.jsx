@@ -61,7 +61,7 @@ const ImageGallery = ({currentStyle, currentProduct}) => {
   return (
 
     currentStyle
-     ?  <section id="slider" style={{height: "1300px", padding: "30px", marginRight: "30px", backgroundColor: "#e3e8e5", borderRadius: "20px"}}>
+     ?  <section id="slider" style={{height: "1300px", padding: "30px", marginRight: "30px", backgroundColor: "#e3e8e5", borderRadius: "20px", boxShadow: "0 2px 50px -15px gray"}}>
           <ArrowBack id="backButton" style={{margin: "5px"}} onClick={handlepreviousImageClick}/>
           <ArrowForward id="forwardButton" style={{margin: "5px"}} onClick={handleNextImageClick}/>
           <Grid container >
@@ -71,7 +71,7 @@ const ImageGallery = ({currentStyle, currentProduct}) => {
               {currentStyle.photos.map((photo, index) => {
                 return (
 
-                    <div className={index === currentIndex ? 'slide active' : 'slide'} key={index} >
+                    <div className={index === currentIndex ? 'slide active' : 'slide'} style={{boxShadow: "5px"}} key={index} >
 
                       {index === currentIndex && (<img className="image" src={[photo.url]}/>)}
 
@@ -99,16 +99,8 @@ const ImageGallery = ({currentStyle, currentProduct}) => {
               <Typography variant="body1" style={{margin: "5px 10px"}}>{currentProduct.description}</Typography>
             </Grid>
           </Grid>
-
-
         </section>
-
-
-
-
       : <div></div>
-
-
   )
 }
 
