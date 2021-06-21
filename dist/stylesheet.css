@@ -38,8 +38,6 @@ body {
   border: "4px solid #94bfa2";
 }
 
-
-
 .imageMenu {
   height: 100px;
   width: 600px;
@@ -87,7 +85,7 @@ body {
   color: white;
   background-color:rgb(33, 34, 33);
   border-radius: 15px;
-  box-shadow: 5px 5px 10px gray;
+  box-shadow: 5px 5px 10px black;
   transition-duration: 1s ease;
 }
 
@@ -103,7 +101,7 @@ body {
   color: white;
   background-color: rgb(33, 34, 33);
   border-radius: 15px;
-  box-shadow: 5px 5px 10px gray;
+  box-shadow: 5px 5px 10px black;
 }
 
 #forwardButton:hover {
@@ -123,3 +121,16 @@ body {
   transform: scale(1.2);
 }
 
+.thumbnailMenu {
+  height: 75px;
+  width: 75px;
+  border: 1px solid black;
+  max-height: 50px;
+  margin: 5px;
+}
+
+.menuImage {
+  object-fit: contain;
+  max-width: 100%;
+  max-height: 100%;
+}

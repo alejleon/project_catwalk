@@ -71,17 +71,23 @@ const ImageGallery = ({currentStyle, currentProduct}) => {
               {currentStyle.photos.map((photo, index) => {
                 return (
 
-                    <div className={index === currentIndex ? 'slide active' : 'slide'} style={{boxShadow: "5px"}} key={index} >
-
-                      {index === currentIndex && (<img className="image" src={[photo.url]}/>)}
-
+                    <div className={index === currentIndex ? 'slide active' : 'slide'}
+                      style={{boxShadow: "5px"}} key={index} >
+                        {index === currentIndex && (<img className="image" src={[photo.url]}/>)}
                     </div>
+
 
                 )
               })}
               </SRLWrapper>
             </Grid>
 
+            {/* Thumbnail Menu */}
+            {/* <Grid item xs={1}></Grid>
+            <Grid item xs={10}>
+              <ImageMenu currentStyle={currentStyle}/>
+            </Grid>
+            <Grid item xs={1}></Grid> */}
 
             {/* Slogan and description */}
             <Grid item xs={2}></Grid>
