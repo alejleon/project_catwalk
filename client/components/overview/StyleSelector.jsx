@@ -22,7 +22,7 @@ const StyleSelector = ({currentStyles, currentStyle, handleStyleClick}) => {
          <Grid item xs={3} key={style.style_id} style={{minWidth: "90px"}}>
 
            <div >
-             <img className="styleThumb" src={style.photos[0].thumbnail_url} style={style.style_id === currentStyle.style_id ? {boxShadow: "0 0 12px 7px #94bfa2"} : {}} onClick={() => {handleStyleClick(style)}} />
+             <img className="styleThumb" src={style.photos[0].thumbnail_url} alt="thumbnail product" style={style.style_id === currentStyle.style_id ? {boxShadow: "0 0 12px 7px #94bfa2"} : {}} onClick={() => {handleStyleClick(style)}} />
            </div>
 
          </Grid>

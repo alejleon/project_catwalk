@@ -73,7 +73,7 @@ const ImageGallery = ({currentStyle, currentProduct}) => {
 
                     <div className={index === currentIndex ? 'slide active' : 'slide'}
                       style={{boxShadow: "5px"}} key={index} >
-                        {index === currentIndex && (<img className="image" src={[photo.url]}/>)}
+                        {index === currentIndex && (<img className="image" src={[photo.url]} alt="product image"/>)}
                     </div>
 
 
