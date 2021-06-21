@@ -37,8 +37,8 @@ const ProductOverview = ({currentProduct, currentStyles, currentStyle, ratingsAv
         {currentStyle.sale_price
           ?  <Grid item xs={12}>
                <Grid container>
-                 <Grid item xs={2}>
-                    <Typography variant="h6" style={{textDecorationLine: "line-through"}}>${currentStyle.original_price} </Typography>
+                 <Grid item xs={2} style={{minWidth: "75px"}}>
+                    <Typography variant="h6" style={{textDecorationLine: "line-through", minWidth: "330px"}}>${currentStyle.original_price} </Typography>
                   </Grid>
                   <Grid item xs={10}>
                     <Typography variant="h6" style={{color: 'red'}}>${currentStyle.sale_price}</Typography>
@@ -72,12 +72,13 @@ const ProductOverview = ({currentProduct, currentStyles, currentStyle, ratingsAv
           </Grid>
         </Grid>
 
-        <StyleSelector
-          currentStyles={currentStyles.results}
-          currentStyle={currentStyle}
-          handleStyleClick={handleStyleClick}
-        />
-
+        <Grid item xs={12}>
+          <StyleSelector
+            currentStyles={currentStyles.results}
+            currentStyle={currentStyle}
+            handleStyleClick={handleStyleClick}
+          />
+        </Grid>
       </Grid>
 
     )

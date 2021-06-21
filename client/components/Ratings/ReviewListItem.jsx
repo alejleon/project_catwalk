@@ -62,7 +62,7 @@ const styles = (theme) => ({
   review: {
     padding: 8,
     margin: 10,
-    backgroundColor: 'lavender',
+    backgroundColor: '#e3e8e5',
     // boxShadow: '10px 10px 5px black'
   }
 });

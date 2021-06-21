@@ -174,8 +174,8 @@ const Question = (props) => {
 
   return (
     <React.Fragment>
-      <Grid container={true} spacing={1}>
-        <Grid item xs={10} key={props.question_id} >
+      <Grid container={true} spacing={1} >
+        <Grid item xs={10} key={props.question_id} style={{backgroundColor: "#e3e8e5"}}>
           <Typography variant="h6" >
             <Box fontWeight="fontWeightBold" display="inline">
               Q: {props.question.question_body}
@@ -185,7 +185,7 @@ const Question = (props) => {
             </Box>
           </Typography>
         </Grid>
-        <Grid item xs={1} style={{minWidth: '50px'}}>
+        <Grid item xs={1} style={{minWidth: '50px', backgroundColor: "#e3e8e5"}}>
           <Typography>
             <Box fontSize={14} >
               Helpful?&nbsp;
@@ -197,7 +197,7 @@ const Question = (props) => {
             </Box>
           </Typography>
         </Grid>
-        <Grid item xs={1} style={{minWidth: '50'}}>
+        <Grid item xs={1} style={{minWidth: '50', backgroundColor: "#e3e8e5"}}>
           <Typography>
             <Box className={classes.button} onClick={handleAOpen}>
               Add Answer
