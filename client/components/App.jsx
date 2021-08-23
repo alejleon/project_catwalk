@@ -78,15 +78,15 @@ const App = () => {
 
 
   return (
-    // <SimpleReactLightbox>
+    <SimpleReactLightbox>
     <div>
 
       <Header />
-      <Overview currentProduct={currentProduct} ratingsAverage={ratingsAverage} ratingsTotal={ratingsTotal} />
+      <Overview currentProduct={currentProduct} ratingsAverage={ratingsAverage} ratingsTotal={ratingsTotal} style={{border: '2px solid red'}}/>
       <QAMain product_id={currentProduct.id} product={currentProduct} />
       <RatingsReviews product_id={currentProduct.id} addReview={handleReviewAdd} />
     </div>
-    // </SimpleReactLightbox>
+    </SimpleReactLightbox>
   );
 }
 
