@@ -3,7 +3,7 @@
 
 ## Overview
 
-E-commerce website redesigned and optimized for a mock client with the ultimate goal of improving an outdated end-user experience to attract a wider customer base.
+E-commerce website redesigned and optimized for a mock client with the ultimate goal of improving an outdated end-user experience and attracting a wider customer base.
 
 
 ## Technology and Tools
