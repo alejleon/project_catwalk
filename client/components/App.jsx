@@ -78,7 +78,7 @@ const App = () => {
 
 
   return (
-    <SimpleReactLightbox>
+    // <SimpleReactLightbox>
     <div>
 
       <Header />
@@ -86,7 +86,7 @@ const App = () => {
       <QAMain product_id={currentProduct.id} product={currentProduct} />
       <RatingsReviews product_id={currentProduct.id} addReview={handleReviewAdd} />
     </div>
-    </SimpleReactLightbox>
+    // </SimpleReactLightbox>
   );
 }
 
