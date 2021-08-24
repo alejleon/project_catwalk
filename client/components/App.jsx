@@ -18,16 +18,26 @@ const App = () => {
 
   const [currentProduct, setCurrentProduct] = useState(
     {
-      "id": 27189,
+      "id": 38322,
       "campus": "hr-atx",
       "name": "Camo Onesie",
       "slogan": "Blend in to your crowd",
       "description": "The So Fatigues will wake you up and fit you in. This high energy camo will have you blending in to even the wildest surroundings.",
       "category": "Jackets",
       "default_price": "140.00",
-      "created_at": "2021-06-04T21:11:24.988Z",
-      "updated_at": "2021-06-04T21:11:24.988Z"
-    }
+      "created_at": "2021-08-13T14:38:00.907Z",
+      "updated_at": "2021-08-13T14:38:00.907Z",
+      "features": [
+          {
+              "feature": "Fabric",
+              "value": "Canvas"
+          },
+          {
+              "feature": "Buttons",
+              "value": "Brass"
+          }
+      ]
+  }
   )
   const [ratingsAverage, setRatingsAverage] = useState(0)
   const [ratingsTotal, setRatingsTotal] = useState(0)
@@ -78,14 +88,14 @@ const App = () => {
 
 
   return (
-
     <SimpleReactLightbox>
+    <div>
       <Header />
-      <Overview currentProduct={currentProduct} ratingsAverage={ratingsAverage} ratingsTotal={ratingsTotal} />
+      <Overview currentProduct={currentProduct} ratingsAverage={ratingsAverage} ratingsTotal={ratingsTotal} style={{border: '2px solid red'}}/>
       <QAMain product_id={currentProduct.id} product={currentProduct} />
       <RatingsReviews product_id={currentProduct.id} addReview={handleReviewAdd} />
+    </div>
     </SimpleReactLightbox>
-
   );
 }
 
