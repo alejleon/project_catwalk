@@ -31,7 +31,7 @@ npm install
  ```
 
 
-## Usage
+## Preview
 
 
 ## Team Members
