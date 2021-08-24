@@ -56,7 +56,6 @@ const Overview = ({currentProduct, ratingsAverage, ratingsTotal}) => {
   if (currentStyle) {
   return (
     <div >
-<div>testing</div>
       <CssBaseline />
 
       <Grid container  className={classes.grid} >
