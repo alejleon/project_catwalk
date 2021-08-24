@@ -17,21 +17,31 @@ E-commerce website redesigned and optimized for a mock client with the ultimate 
 
 
 ## Installation 
-1. Clone down repo
+1. Clone the repo
+```
+git clone https://github.com/alejleon/project_catwalk.git
+```
 2. install dependencies
 ```
 npm install
 ```
-3. run server and local environment
+
+
+
+## Usage
+To spin up the website locally, firsst run: 
  ```
  npm start
  ```
+ followed by:
  ```
  npm run react-dev
  ```
+ Go to your nearest local 3000 port to test drive the website.
+ 
+ 
+ ## Samples
 
-
-## Preview
 
 
 ## Team Members
