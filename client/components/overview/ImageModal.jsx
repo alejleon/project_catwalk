@@ -1,5 +1,5 @@
 import React from 'react';
-import {useLightbox} from 'simple-react-lightbox';
+// import {useLightbox} from 'simple-react-lightbox';
 
 const ImageModal = ({modalStatus}) => {
 

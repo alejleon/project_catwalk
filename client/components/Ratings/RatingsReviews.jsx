@@ -120,7 +120,7 @@ const RatingsReviews = (props) => {
   const classes = useStyles();
 
   return (
-    <Grid className={classes.grid} container direction="row" style={{ width: '80%', margin: '10%' }}>
+    <Grid id="reviews" className={classes.grid} container direction="row" style={{ width: '80%', margin: '10%' }}>
       <Grid container item xs={12} md={4} lg={4}>
         {metaData.ratings ? <Sidebar metaData={metaData} /> : null}
       </Grid>

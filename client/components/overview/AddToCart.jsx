@@ -48,6 +48,9 @@ useEffect(() => {
         {headers: {
           Authorization: GITHUB_API_TOKEN
         }})
+        .then(() => {
+          alert("Your item has been added to your shopping cart!")
+        })
         .catch((err) => {
           console.error(err)
         })
@@ -69,13 +72,14 @@ useEffect(() => {
     var skus = Object.entries(currentStyle.skus)
 
     return (
+      // Select Size
       <Grid container spacing={4} style={{height: "100%", margin: "5px", padding: "20px"}}>
         <Grid item xs={6} style={{width: "200px", minWidth: "200px"}}>
           <FormControl>
             <InputLabel >
               Select Size
             </InputLabel>
-            <Select displayEmpty defaultValue="" onChange={handleSizeSelect} color="primary" variant="outlined" style={{width: "180px"}}>
+            <Select displayEmpty defaultValue="" onChange={handleSizeSelect} color="primary" variant="outlined" style={{width: "180px", boxShadow: "5px 5px 7px -7px gray"}}>
               <MenuItem disabled >Select Size</MenuItem>
                 {skus.map((sku) => {
                   return(
@@ -87,15 +91,15 @@ useEffect(() => {
         </Grid>
 
 
+       {/* Select QTY */}
         <Grid item xs={4}>
           <FormControl>
             <InputLabel >
               Qty
               </InputLabel>
 
-
           {currentSku !== 1
-          ? <Select displayEmpty defaultValue="" onChange={handleQuantitySelection} variant="outlined" style={{width: "75px"}}>
+          ? <Select displayEmpty defaultValue="" onChange={handleQuantitySelection} variant="outlined" style={{width: "75px", boxShadow: "5px 5px 7px -7px gray"}}>
             <MenuItem disabled>0</MenuItem>
             { skuQty
               ? skuQty.map((number) => {
@@ -106,7 +110,7 @@ useEffect(() => {
               :<MenuItem>Select Size</MenuItem>
             }
             </Select>
-          : <Select disabled displayEmpty color="primary" defaultValue="" variant="outlined" style={{width: "75px"}}>
+          : <Select disabled displayEmpty color="primary" defaultValue="" variant="outlined" style={{width: "75px", boxShadow: "5px 5px 5px -6px gray"}}>
               <MenuItem>0</MenuItem>
             </Select>
           }
@@ -114,14 +118,14 @@ useEffect(() => {
         </Grid>
 
 
-
+       {/* Add to cart?| */}
         <Grid item xs={12}>
           <FormControl>
           { currentSku !== 1 && quantitySelected
-            ?  <Button variant="outlined" color="secondary" endIcon={<ShoppingCartOutlinedIcon />} style={{width: "100%"}} size="large" onClick={() => {
+            ?  <Button variant="outlined" endIcon={<ShoppingCartOutlinedIcon />} style={{width: "100%", color: "#94bfa2", border: "3px solid #94bfa2", fontWeight: "bold", boxShadow: "5px 5px 5px -5px gray"}} size="large" onClick={() => {
               handleAddToCart(currentSku)
             }}>Add To Cart</Button>
-            : <Button disabled variant="outlined" endIcon={<ShoppingCartOutlinedIcon />} style={{width: "100%"}} size="large">Add To Cart</Button>
+            : <Button disabled variant="outlined" endIcon={<ShoppingCartOutlinedIcon />} style={{width: "100%",  boxShadow: "5px 5px 5px -6px gray"}} size="large">Add To Cart</Button>
           }
           </FormControl>
           </Grid>
