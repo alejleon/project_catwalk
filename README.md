@@ -22,6 +22,13 @@ E-commerce website redesigned and optimized for a mock client with the ultimate 
 ```
 npm install
 ```
+3. run server and local environment
+ ```
+ npm start
+ ```
+ ```
+ npm run react-dev
+ ```
 
 
 ## Usage
