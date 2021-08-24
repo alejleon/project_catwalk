@@ -18,24 +18,27 @@ const useStyles = makeStyles((theme) => ({
   title: {
     flexGrow: 1,
     display: 'none',
+    margin: "20px",
+    fontFamily: "'Clicker Script', cursive",
+    fontSize: "60px",
     [theme.breakpoints.up('sm')]: {
       display: 'block',
     },
   },
-  search: {
-    position: 'relative',
-    borderRadius: theme.shape.borderRadius,
-    backgroundColor: fade(theme.palette.common.white, 0.15),
-    '&:hover': {
-      backgroundColor: fade(theme.palette.common.white, 0.25),
-    },
-    marginLeft: 0,
-    width: '100%',
-    [theme.breakpoints.up('sm')]: {
-      marginLeft: theme.spacing(1),
-      width: 'auto',
-    },
-  },
+  // search: {
+  //   position: 'relative',
+  //   borderRadius: theme.shape.borderRadius,
+  //   backgroundColor: fade(theme.palette.common.white, 0.15),
+  //   '&:hover': {
+  //     backgroundColor: fade(theme.palette.common.white, 0.25),
+  //   },
+  //   marginLeft: 0,
+  //   width: '100%',
+  //   [theme.breakpoints.up('sm')]: {
+  //     marginLeft: theme.spacing(1),
+  //     width: 'auto',
+  //   },
+  // },
 }));
 
 const Header =(props) => {
@@ -44,10 +47,9 @@ const Header =(props) => {
 
   return (
     <div className={classes.root}>
-      <AppBar position="static" style={{background: '#94bfa2', color: '#212121', height: '64px', width: '80%', marginRight: '10%',
-    marginLeft: '10%',}}>
+      <AppBar position="static" style={{background: '#94bfa2', color: '#212121', height: '110px', width: '100%'}}>
         <Toolbar>
-          <EcoIcon fontSize="large" />
+          <EcoIcon fontSize="large" styles={{margin: "30px", fontSize: "200px"}} />
           <Typography className={classes.title} variant="h4">
             Thread Lightly
           </Typography>
