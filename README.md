@@ -21,7 +21,7 @@ E-commerce website redesigned and optimized for a mock client with the ultimate 
 ```
 git clone https://github.com/alejleon/project_catwalk.git
 ```
-2. install dependencies
+2. Install dependencies
 ```
 npm install
 ```
@@ -29,7 +29,7 @@ npm install
 
 
 ## Usage
-To spin up the website locally, firsst run: 
+To spin up the website locally, first run: 
  ```
  npm start
  ```
@@ -40,7 +40,7 @@ To spin up the website locally, firsst run:
  Go to your nearest local 3000 port to test drive the website.
  
  
- ## Samples
+ ## Preview
 
 
 
