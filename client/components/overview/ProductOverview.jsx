@@ -20,7 +20,6 @@ const ProductOverview = ({currentProduct, currentStyles, currentStyle, ratingsAv
   // backgroundColor: "#cbd6cf"
     return (
       <Grid container spacing={5} style={{borderLeft: "2px solid gray", padding: "60px", margin: "30px"}}>
-        <div>testing</div>
         {/* Category and Title */}
         <Grid item xs={6} style={{height: "15px"}}>
           <Typography variant="h6">{currentProduct.category}</Typography>
