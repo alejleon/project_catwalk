@@ -5,6 +5,8 @@
 
 E-commerce website redesigned and optimized for a mock client with the ultimate goal of improving an outdated end-user experience and attracting a wider customer base.
 
+Sister project to [Thread Lightly products service](https://github.com/alejleon/Products_Service).
+
 
 ## Technology and Tools
 
